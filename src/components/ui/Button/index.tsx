@@ -1,6 +1,6 @@
 import * as React from "react"
 import { type VariantProps } from "class-variance-authority"
-import { cn } from "cn"
+import { clsx } from "@/lib/clsx"
 import { Slot } from "radix-ui"
 import { buttonVariants } from "./style"
 
@@ -21,7 +21,7 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={clsx(buttonVariants({ variant, size, className }))}
       {...props}
     />
   )
