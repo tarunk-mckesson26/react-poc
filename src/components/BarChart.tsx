@@ -4,7 +4,7 @@ import type { ChartConfig } from ".//ui/chart";
 import { Button } from "./ui/Button";
 
 
-export default function BarChartDemo() {
+const BarChartDemo = () => {
 
     const chartConfig = {
         value: {
@@ -54,3 +54,5 @@ export default function BarChartDemo() {
         </div>
     )
 }
+
+export default BarChartDemo;

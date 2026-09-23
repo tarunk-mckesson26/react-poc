@@ -3,13 +3,14 @@ import { Slot } from "radix-ui"
 import { buttonVariants } from "./style"
 import { type ButtonProps } from "./type"
 
-function Button({
+const Button = ({
   className,
   variant = "default",
   size = "default",
   asChild = false,
   ...props
-}: ButtonProps) {
+}: ButtonProps
+) => {
   const Comp = asChild ? Slot.Root : "button"
 
   return (
@@ -21,6 +22,7 @@ function Button({
       {...props}
     />
   )
+
 }
 
 export { Button, buttonVariants }
