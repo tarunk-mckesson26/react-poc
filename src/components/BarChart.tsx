@@ -1,9 +1,10 @@
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import type { ChartConfig } from ".//ui/chart";
+import { Button } from "./ui/Button";
 
 
-export default function BarChartDemo() {
+const BarChartDemo = () => {
 
     const chartConfig = {
         value: {
@@ -24,6 +25,7 @@ export default function BarChartDemo() {
 
     return (
         <div className="w-full">
+            <Button variant="outline" onClick={() => alert('Button clicked!')}>Click Me</Button>
             <div>
                 <h2 className="py-2 mb-5 text-center">Rebate Performance Trend</h2>
             </div>
@@ -52,3 +54,5 @@ export default function BarChartDemo() {
         </div>
     )
 }
+
+export default BarChartDemo;
