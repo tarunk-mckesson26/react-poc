@@ -2,6 +2,7 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import type { ChartConfig } from ".//ui/chart";
 import { Button } from "./ui/Button";
+import { TooltipComponent } from "./ui/Tooltip";
 
 
 const BarChartDemo = () => {
@@ -25,6 +26,7 @@ const BarChartDemo = () => {
 
     return (
         <div className="w-full">
+
             <Button variant="outline" onClick={() => alert('Button clicked!')}>Click Me</Button>
             <div>
                 <h2 className="py-2 mb-5 text-center">Rebate Performance Trend</h2>
@@ -51,6 +53,23 @@ const BarChartDemo = () => {
 
                 </BarChart>
             </ChartContainer>
+            <div className="flex gap-x-4">
+            <TooltipComponent
+                trigger="Help"
+                content="Information here"
+            />
+            <TooltipComponent
+                side="right"
+                trigger="right tooltip"
+                content="Information here"
+            />
+            <TooltipComponent
+                size="lg"
+                side="right"
+                trigger="big tooltip"
+                content="Information here"
+            />
+            </div>
         </div>
     )
 }
