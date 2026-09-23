@@ -3,7 +3,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import type { ChartConfig } from "./ui/chart";
 
 
-export default function LineGraphDemo() {
+const LineGraphDemo = () => {
 
     const chartConfig = {
         value: {
@@ -59,3 +59,5 @@ export default function LineGraphDemo() {
         </div>
     )
 }
+
+export default LineGraphDemo;

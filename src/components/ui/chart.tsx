@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cn } from "cn"
+import { clsx } from "@/lib/clsx"
 import * as RechartsPrimitive from "recharts"
 import type { TooltipValueType } from "recharts"
 
@@ -61,7 +61,7 @@ function ChartContainer({
       <div
         data-slot="chart"
         data-chart={chartId}
-        className={cn(
+        className={clsx(
           "flex aspect-video justify-center text-xs [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
           className
         )}
@@ -158,7 +158,7 @@ function ChartTooltipContent({
 
     if (labelFormatter) {
       return (
-        <div className={cn("font-medium", labelClassName)}>
+        <div className={clsx("font-medium", labelClassName)}>
           {labelFormatter(value, payload)}
         </div>
       )
@@ -168,7 +168,7 @@ function ChartTooltipContent({
       return null
     }
 
-    return <div className={cn("font-medium", labelClassName)}>{value}</div>
+    return <div className={clsx("font-medium", labelClassName)}>{value}</div>
   }, [
     label,
     labelFormatter,
@@ -187,7 +187,7 @@ function ChartTooltipContent({
 
   return (
     <div
-      className={cn(
+      className={clsx(
         "grid min-w-32 items-start gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs shadow-xl",
         className
       )}
@@ -204,7 +204,7 @@ function ChartTooltipContent({
             return (
               <div
                 key={index}
-                className={cn(
+                className={clsx(
                   "flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
                   indicator === "dot" && "items-center"
                 )}
@@ -218,7 +218,7 @@ function ChartTooltipContent({
                     ) : (
                       !hideIndicator && (
                         <div
-                          className={cn(
+                          className={clsx(
                             "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
                             {
                               "h-2.5 w-2.5": indicator === "dot",
@@ -238,7 +238,7 @@ function ChartTooltipContent({
                       )
                     )}
                     <div
-                      className={cn(
+                      className={clsx(
                         "flex flex-1 justify-between leading-none",
                         nestLabel ? "items-end" : "items-center"
                       )}
@@ -287,7 +287,7 @@ function ChartLegendContent({
 
   return (
     <div
-      className={cn(
+      className={clsx(
         "flex items-center justify-center gap-4",
         verticalAlign === "top" ? "pb-3" : "pt-3",
         className
@@ -302,7 +302,7 @@ function ChartLegendContent({
           return (
             <div
               key={index}
-              className={cn(
+              className={clsx(
                 "flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground"
               )}
             >
