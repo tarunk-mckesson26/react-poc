@@ -1,30 +1,28 @@
 import { useState } from 'react';
+import { Bar, BarChart as RechartsBarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import './App.css';
-import BarChartDemo from './components/BarChart';
-import LineGraphDemo from './components/LineGraph';
 import { Avatar } from './components/ui/Avatar';
+import { BarChart as ChartCard } from './components/ui/BarChart';
 import { Input } from './components/ui/InputField';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from './components/ui/chart';
 import { avatarTest } from './assets';
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'charts' | 'avatars' | 'inputs'>('charts');
+  const [activeTab, setActiveTab] = useState<'charts' | 'avatars' | 'inputs' | 'chart-card'>('charts');
+
+  const chartCardData = [
+    { name: 'Jan', value: 2100 },
+    { name: 'Feb', value: 2600 },
+    { name: 'Mar', value: 2300 },
+    { name: 'Apr', value: 3100 },
+    { name: 'May', value: 3800 },
+    { name: 'Jun', value: 4200 },
+  ];
 
   return (
     <div className='max-w-[1200px] mx-auto p-6'>
       <div className='mb-6 flex gap-2 border-b border-slate-200 pb-3'>
-        <button
-          type='button'
-          onClick={() => setActiveTab('charts')}
-          className={[
-            'rounded-md px-4 py-2 text-sm font-medium transition-colors',
-            activeTab === 'charts'
-              ? 'bg-slate-900 text-white'
-              : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
-          ].join(' ')}
-        >
-          Charts
-        </button>
-
+        
         <button
           type='button'
           onClick={() => setActiveTab('avatars')}
@@ -50,14 +48,22 @@ function App() {
         >
           Input Variants
         </button>
+
+        <button
+          type='button'
+          onClick={() => setActiveTab('chart-card')}
+          className={[
+            'rounded-md px-4 py-2 text-sm font-medium transition-colors',
+            activeTab === 'chart-card'
+              ? 'bg-slate-900 text-white'
+              : 'bg-slate-100 text-slate-700 hover:bg-slate-200',
+          ].join(' ')}
+        >
+          Chart Card
+        </button>
       </div>
 
-      {activeTab === 'charts' ? (
-        <div className='space-y-8'>
-          <BarChartDemo />
-          <LineGraphDemo />
-        </div>
-      ) : activeTab === 'avatars' ? (
+      {activeTab === 'avatars' ? (
         <div className='rounded-xl border border-slate-200 bg-white p-6 shadow-sm'>
           <h2 className='mb-6 text-xl font-semibold text-slate-900'>Avatar Variants</h2>
 
@@ -83,7 +89,7 @@ function App() {
             </div>
           </div>
         </div>
-      ) : (
+      ) : activeTab === 'inputs' ? (
         <div className='rounded-xl border border-slate-200 bg-white p-6 shadow-sm'>
           <h2 className='mb-6 text-xl font-semibold text-slate-900'>Input Variants</h2>
 
@@ -119,6 +125,23 @@ function App() {
             </div>
           </div>
         </div>
+      ) : (
+        <ChartCard
+          title='Revenue Overview'
+          chartTitle='Monthly revenue'
+          linkText='View report'
+          description='Revenue increased by 18% compared to the previous quarter.'
+        >
+          <ChartContainer config={{ value: { label: 'Revenue', color: '#22c55e' } }} className='h-[260px] w-full'>
+            <RechartsBarChart data={chartCardData} margin={{ top: 12, right: 12, left: 0, bottom: 0 }}>
+              <CartesianGrid vertical={false} strokeDasharray='3 3' />
+              <XAxis dataKey='name' tickLine={false} axisLine={false} />
+              <YAxis tickLine={false} axisLine={false} />
+              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+              <Bar dataKey='value' fill='#22c55e' radius={[6, 6, 0, 0]} />
+            </RechartsBarChart>
+          </ChartContainer>
+        </ChartCard>
       )}
     </div>
   );
