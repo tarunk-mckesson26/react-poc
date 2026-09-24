@@ -3,7 +3,7 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import type { ChartConfig } from ".//ui/chart";
 import { Button } from "./ui/Button";
 import { TooltipComponent } from "./ui/Tooltip";
-
+import { Pagination } from "./ui/pagination";
 
 const BarChartDemo = () => {
 
@@ -70,6 +70,7 @@ const BarChartDemo = () => {
                 content="Information here"
             />
             </div>
+            <Pagination />
         </div>
     )
 }
