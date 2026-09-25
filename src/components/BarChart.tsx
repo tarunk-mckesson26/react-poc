@@ -3,9 +3,11 @@ import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import type { ChartConfig } from ".//ui/chart";
 import { Button } from "./ui/Button";
 import { TooltipComponent } from "./ui/Tooltip";
-import { Pagination } from "./ui/pagination";
+import { PaginationComponent } from "./ui/Pagination";
+import { useState } from "react";
 
 const BarChartDemo = () => {
+    const [currentPage, setCurrentPage] = useState(1);
 
     const chartConfig = {
         value: {
@@ -70,7 +72,12 @@ const BarChartDemo = () => {
                 content="Information here"
             />
             </div>
-            <Pagination />
+            <PaginationComponent
+                totalItems={100}
+                itemsPerPage={10}
+                currentPage={currentPage}
+                onPageChange={setCurrentPage}
+            />
         </div>
     )
 }

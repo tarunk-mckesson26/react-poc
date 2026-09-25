@@ -1,42 +1,58 @@
-import * as React from "react"
-import { cn } from "cn"
+import { clsx } from "@/lib/clsx"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from "lucide-react"
 
 import { Button } from "@/components/ui/Button"
-import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
+import {
+  paginationContentClass,
+  paginationEllipsisClass,
+  paginationNavClass,
+} from "./style"
+import type {
+  PaginationContentProps,
+  PaginationEllipsisProps,
+  PaginationItemProps,
+  PaginationLinkProps,
+  PaginationNextProps,
+  PaginationPreviousProps,
+  PaginationProps,
+} from "./type"
 
-function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
+/**
+ * Pagination primitives — thin wrappers around native elements plus the shared
+ * Button component. Composition mirrors shadcn/ui so consumers can build
+ * bespoke layouts, while the default `PaginationComponent` in `./index` covers
+ * the common dynamic use case.
+ */
+
+function Pagination({ className, ...props }: PaginationProps) {
   return (
     <nav
       role="navigation"
       aria-label="pagination"
       data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center", className)}
+      className={clsx(paginationNavClass, className)}
       {...props}
     />
   )
 }
 
-function PaginationContent({
-  className,
-  ...props
-}: React.ComponentProps<"ul">) {
+function PaginationContent({ className, ...props }: PaginationContentProps) {
   return (
     <ul
       data-slot="pagination-content"
-      className={cn("flex items-center gap-0.5", className)}
+      className={clsx(paginationContentClass, className)}
       {...props}
     />
   )
 }
 
-function PaginationItem({ ...props }: React.ComponentProps<"li">) {
+function PaginationItem({ ...props }: PaginationItemProps) {
   return <li data-slot="pagination-item" {...props} />
 }
-
-type PaginationLinkProps = {
-  isActive?: boolean
-} & Pick<React.ComponentProps<typeof Button>, "size"> &
-  React.ComponentProps<"a">
 
 function PaginationLink({
   className,
@@ -49,7 +65,7 @@ function PaginationLink({
       asChild
       variant={isActive ? "outline" : "ghost"}
       size={size}
-      className={cn(className)}
+      className={clsx(className)}
     >
       <a
         aria-current={isActive ? "page" : undefined}
@@ -65,12 +81,12 @@ function PaginationPrevious({
   className,
   text = "Previous",
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: PaginationPreviousProps) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
       size="default"
-      className={cn("pl-1.5!", className)}
+      className={clsx("pl-1.5!", className)}
       {...props}
     >
       <ChevronLeftIcon data-icon="inline-start" />
@@ -83,12 +99,12 @@ function PaginationNext({
   className,
   text = "Next",
   ...props
-}: React.ComponentProps<typeof PaginationLink> & { text?: string }) {
+}: PaginationNextProps) {
   return (
     <PaginationLink
       aria-label="Go to next page"
       size="default"
-      className={cn("pr-1.5!", className)}
+      className={clsx("pr-1.5!", className)}
       {...props}
     >
       <span className="hidden sm:block">{text}</span>
@@ -97,22 +113,15 @@ function PaginationNext({
   )
 }
 
-function PaginationEllipsis({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
   return (
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn(
-        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
-        className
-      )}
+      className={clsx(paginationEllipsisClass, className)}
       {...props}
     >
-      <MoreHorizontalIcon
-      />
+      <MoreHorizontalIcon />
       <span className="sr-only">More pages</span>
     </span>
   )
