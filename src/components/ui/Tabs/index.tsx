@@ -1,7 +1,14 @@
 import { Tabs as TabsPrimitive } from "radix-ui"
 import { clsx } from "@/lib/clsx"
 import { tabsContentVariants, tabsListVariants, tabsTriggerVariants } from "./style"
-import type { TabsContentProps, TabsListProps, TabsProps, TabsTriggerProps } from "./type"
+import type {
+  TabsComponentItem,
+  TabsComponentProps,
+  TabsContentProps,
+  TabsListProps,
+  TabsProps,
+  TabsTriggerProps,
+} from "./type"
 
 /**
  * Tabs components - shadcn/ui style, built on Radix's Tabs primitive.
@@ -35,4 +42,43 @@ const TabsContent = ({ className, ...props }: TabsContentProps) => (
   />
 )
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants, tabsTriggerVariants }
+function TabsComponent({
+  items,
+  defaultValue,
+  listClassName,
+  triggerClassName,
+  contentClassName,
+  ...props
+}: TabsComponentProps) {
+  const fallbackValue = items.find((item) => !item.disabled)?.value
+
+  return (
+    <Tabs defaultValue={defaultValue ?? fallbackValue} {...props}>
+      <TabsList className={listClassName}>
+        {items.map((item) => (
+          <TabsTrigger
+            key={item.value}
+            value={item.value}
+            disabled={item.disabled}
+            className={clsx(triggerClassName, item.triggerClassName)}
+          >
+            {item.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+
+      {items.map((item) => (
+        <TabsContent
+          key={item.value}
+          value={item.value}
+          className={clsx(contentClassName, item.contentClassName)}
+        >
+          {item.content}
+        </TabsContent>
+      ))}
+    </Tabs>
+  )
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent, TabsComponent, tabsListVariants, tabsTriggerVariants }
+export type { TabsComponentItem, TabsComponentProps }

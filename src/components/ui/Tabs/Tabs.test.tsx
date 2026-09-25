@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./index"
+import { Tabs, TabsComponent, TabsContent, TabsList, TabsTrigger } from "./index"
 
 function renderTabs(onValueChange?: (value: string) => void) {
   return render(
@@ -44,5 +44,28 @@ describe("Tabs", () => {
 
     await user.click(tab3)
     expect(screen.getByText("Content 1")).toBeInTheDocument()
+  })
+
+  it("renders dynamic tab data with React elements", async () => {
+    const user = userEvent.setup()
+    render(
+      <TabsComponent
+        items={[
+          {
+            value: "overview",
+            label: <span>Overview</span>,
+            content: <div>Overview panel</div>,
+          },
+          {
+            value: "settings",
+            label: <span>Settings</span>,
+            content: <section>Settings panel</section>,
+          },
+        ]}
+      />
+    )
+    expect(screen.getByText("Overview panel")).toBeInTheDocument()
+    await user.click(screen.getByRole("tab", { name: "Settings" }))
+    expect(screen.getByText("Settings panel")).toBeInTheDocument()
   })
 })

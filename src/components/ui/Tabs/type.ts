@@ -8,7 +8,20 @@ export interface TabItem {
   disabled?: boolean
 }
 
+export interface TabsComponentItem extends TabItem {
+  content: React.ReactNode
+  triggerClassName?: string
+  contentClassName?: string
+}
+
 export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root>
 export type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List>
 export type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger>
 export type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content>
+
+export interface TabsComponentProps extends Omit<TabsProps, "children"> {
+  items: TabsComponentItem[]
+  listClassName?: string
+  triggerClassName?: string
+  contentClassName?: string
+}
