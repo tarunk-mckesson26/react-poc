@@ -25,19 +25,23 @@ import type {
   SelectValueProps,
 } from "./type"
 
-function Select(props: SelectRootProps) {
-  return <SelectPrimitive.Root data-slot="select" {...props} />
-}
+/** Root that holds the open state and selected value. */
+const Select = (props: SelectRootProps) => (
+  <SelectPrimitive.Root data-slot="select" {...props} />
+)
 
-function SelectGroup(props: SelectGroupProps) {
-  return <SelectPrimitive.Group data-slot="select-group" {...props} />
-}
+/** Groups related items so they can share a `SelectLabel`. */
+const SelectGroup = (props: SelectGroupProps) => (
+  <SelectPrimitive.Group data-slot="select-group" {...props} />
+)
 
-function SelectValue(props: SelectValueProps) {
-  return <SelectPrimitive.Value data-slot="select-value" {...props} />
-}
+/** Shows the selected item's text, or the placeholder when nothing is selected. */
+const SelectValue = (props: SelectValueProps) => (
+  <SelectPrimitive.Value data-slot="select-value" {...props} />
+)
 
-function SelectTrigger({
+/** Button that opens the list; handles size, invalid and focus-ring styles. */
+const SelectTrigger = ({
   className,
   iconClassName,
   size = "default",
@@ -45,8 +49,7 @@ function SelectTrigger({
   showFocusRing = true,
   children,
   ...props
-}: SelectTriggerProps) {
-  return (
+}: SelectTriggerProps) => (
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       data-size={size}
@@ -62,16 +65,16 @@ function SelectTrigger({
         <ChevronDownIcon className={clsx(selectIconClass, iconClassName)} />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
-  )
-}
+)
 
-function SelectContent({
+/** Dropdown panel rendered in a portal, with scroll buttons around the viewport. */
+const SelectContent = ({
   className,
   viewportClassName,
   children,
   position = "popper",
   ...props
-}: SelectContentProps) {
+}: SelectContentProps) => {
   const isPopper = position === "popper"
   return (
     <SelectPrimitive.Portal>
@@ -101,23 +104,22 @@ function SelectContent({
   )
 }
 
-function SelectLabel({ className, ...props }: SelectLabelProps) {
-  return (
-    <SelectPrimitive.Label
-      data-slot="select-label"
-      className={clsx(selectLabelClass, className)}
-      {...props}
-    />
-  )
-}
+/** Non-selectable heading for a `SelectGroup`. */
+const SelectLabel = ({ className, ...props }: SelectLabelProps) => (
+  <SelectPrimitive.Label
+    data-slot="select-label"
+    className={clsx(selectLabelClass, className)}
+    {...props}
+  />
+)
 
-function SelectItem({
+/** Selectable option that shows a check icon when selected. */
+const SelectItem = ({
   className,
   indicatorClassName,
   children,
   ...props
-}: SelectItemProps) {
-  return (
+}: SelectItemProps) => (
     <SelectPrimitive.Item
       data-slot="select-item"
       className={clsx(selectItemClass, className)}
@@ -130,18 +132,16 @@ function SelectItem({
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
-  )
-}
+)
 
-function SelectSeparator({ className, ...props }: SelectSeparatorProps) {
-  return (
-    <SelectPrimitive.Separator
-      data-slot="select-separator"
-      className={clsx(selectSeparatorClass, className)}
-      {...props}
-    />
-  )
-}
+/** Horizontal divider between items or groups. */
+const SelectSeparator = ({ className, ...props }: SelectSeparatorProps) => (
+  <SelectPrimitive.Separator
+    data-slot="select-separator"
+    className={clsx(selectSeparatorClass, className)}
+    {...props}
+  />
+)
 
 export {
   Select,

@@ -8,7 +8,8 @@ import {
 } from "./select"
 import type { SelectComponentProps } from "./type"
 
-export function SelectComponent({
+/** Ready-to-use Select built from an `options` array, with per-section `classNames`. */
+export const SelectComponent = ({
   options,
   placeholder = "Select an option",
   size = "default",
@@ -22,8 +23,7 @@ export function SelectComponent({
   classNames = {},
   position = "popper",
   ...rootProps
-}: SelectComponentProps) {
-  return (
+}: SelectComponentProps) => (
     <Select disabled={disabled} {...rootProps}>
       <SelectTrigger
         id={id}
@@ -55,8 +55,7 @@ export function SelectComponent({
         ))}
       </SelectContent>
     </Select>
-  )
-}
+)
 
 export * from "./select"
 export { selectTriggerVariants } from "./style"
