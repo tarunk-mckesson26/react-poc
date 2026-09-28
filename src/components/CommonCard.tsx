@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { MoveRight } from "lucide-react";
-import { Alert, AlertDescription } from "../components/ui/alert";
+import { Alert, AlertDescription } from "../components/ui/Alert";
 import { TrendingUp } from "lucide-react";
 import { Separator } from "../components/ui/separator";
 

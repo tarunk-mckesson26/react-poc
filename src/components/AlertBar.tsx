@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "../components/ui/Alert";
 import { InfoIcon } from "lucide-react";
 
 type AlertBarProps = {
