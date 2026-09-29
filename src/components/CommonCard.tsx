@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card";
-import { Button } from "../components/ui/button";
+import { Button } from "../components/ui/Button";
 import { MoveRight } from "lucide-react";
 import { Alert, AlertDescription } from "../components/ui/Alert";
 import { TrendingUp } from "lucide-react";
-import { Separator } from "../components/ui/separator";
+import { Separator } from "../components/ui/Separator";
 
 type CommonCardProps = {
   title: string;
