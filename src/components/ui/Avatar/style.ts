@@ -18,11 +18,7 @@ export const avatarVariants = cva(
         lg: "h-14 w-14 text-base",
         xl: "h-16 w-16 text-lg",
       },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
+    }
   }
 )
 
