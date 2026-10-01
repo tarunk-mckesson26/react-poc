@@ -14,6 +14,7 @@ import {
   SquareMousePointer,
   TextCursorInput,
   ToggleRight,
+  ChartLine,
 } from 'lucide-react';
 import './App.css';
 import { SideNav } from './layouts/sideNav';
@@ -23,6 +24,7 @@ const icons: Record<string, React.ReactNode> = {
   accordion: <Rows3 />,
   avatar: <CircleUser />,
   'bar-chart': <ChartColumn />,
+  'line-graph': <ChartLine />,
   button: <MousePointerClick />,
   checkbox: <SquareCheck />,
   combobox: <ChevronsUpDown />,
