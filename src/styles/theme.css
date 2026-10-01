@@ -1,0 +1,447 @@
+/**
+ * Generated from Figma design tokens (Default.tokens.json).
+ * Semantic colors live as raw CSS variables in `:root` / `.dark`; the `@theme inline`
+ * block exposes them to Tailwind so utilities resolve per color scheme.
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Surfaces */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-overlay: var(--overlay);
+
+  /* Primary */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-primary-tint: var(--primary-tint);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-deep: var(--primary-deep);
+
+  /* Secondary */
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-active: var(--secondary-active);
+
+  /* Accent & muted */
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-translucent: var(--accent-translucent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Status */
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-active: var(--destructive-active);
+  --color-destructive-strong: var(--destructive-strong);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-strong: var(--success-strong);
+  --color-success-bright: var(--success-bright);
+  --color-success-tint: var(--success-tint);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-active: var(--brand-active);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-tint: var(--brand-tint);
+
+  /* Borders, inputs, focus */
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset: var(--ring-offset);
+
+  /* Text & links */
+  --color-text: var(--text);
+  --color-text-inverted: var(--text-inverted);
+  --color-link: var(--link);
+  --color-link-hover: var(--link-hover);
+  --color-link-visited: var(--link-visited);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Categories */
+  --color-category-1: var(--category-1);
+  --color-category-1-bg: var(--category-1-bg);
+  --color-category-1-border: var(--category-1-border);
+  --color-category-1-text: var(--category-1-text);
+  --color-category-1-strong: var(--category-1-strong);
+  --color-category-2: var(--category-2);
+  --color-category-3: var(--category-3);
+  --color-category-4: var(--category-4);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Scrollbar */
+  --color-scroll-track: var(--scroll-track);
+  --color-scroll-thumb: var(--scroll-thumb);
+  --color-scroll-arrow: var(--scroll-arrow);
+
+  /* White alpha ramp (token values are the resulting opacity of white) */
+  --color-alpha-5: var(--alpha-5);
+  --color-alpha-10: var(--alpha-10);
+  --color-alpha-20: var(--alpha-20);
+  --color-alpha-30: var(--alpha-30);
+  --color-alpha-40: var(--alpha-40);
+  --color-alpha-50: var(--alpha-50);
+  --color-alpha-60: var(--alpha-60);
+  --color-alpha-70: var(--alpha-70);
+  --color-alpha-80: var(--alpha-80);
+  --color-alpha-90: var(--alpha-90);
+
+  /* Legacy aliases kept for existing components */
+  --color-border-pressed: var(--border-strong);
+  --color-primary-pressed: var(--primary-active);
+  --color-destructive-pressed: var(--destructive-active);
+}
+
+@theme {
+  /* Typography */
+  --font-sans: "Libre Franklin", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: Georgia, ui-serif, serif;
+  --font-mono: Monospace, ui-monospace, monospace;
+
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 1;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+
+  /* Radii */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+  --radius-3xl: 1.375rem;
+  --radius-4xl: 1.5rem;
+  --radius-5xl: 1.625rem;
+
+  /* Containers */
+  --container-3xs: 16rem;
+  --container-2xs: 18rem;
+  --container-xs: 20rem;
+  --container-sm: 24rem;
+  --container-md: 28rem;
+  --container-lg: 32rem;
+  --container-xl: 36rem;
+  --container-2xl: 42rem;
+  --container-3xl: 48rem;
+  --container-4xl: 56rem;
+  --container-5xl: 64rem;
+  --container-6xl: 72rem;
+  --container-7xl: 80rem;
+
+  /* Shadows */
+  --shadow-2xs: 0 1px 0 0 #0000000d;
+  --shadow-xs: 0 1px 2px 0 #0000000d;
+  --shadow-sm: 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+  --shadow-md: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+  --shadow-lg: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+  --shadow-xl: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+  --shadow-2xl: 0 25px 50px -12px #00000040;
+
+  --inset-shadow-2xs: inset 0 1px 0 0 #0000000d;
+  --inset-shadow-xs: inset 0 1px 1px 0 #0000000d;
+  --inset-shadow-sm: inset 0 2px 4px 0 #0000000d;
+
+  --drop-shadow-xs: 0 1px 1px #0000000d;
+  --drop-shadow-sm: 0 1px 2px #00000026;
+  --drop-shadow-md: 0 3px 3px #0000001f;
+  --drop-shadow-lg: 0 4px 4px #00000026;
+  --drop-shadow-xl: 0 9px 7px #0000001a;
+  --drop-shadow-2xl: 0 25px 25px #00000026;
+
+  /* Blur */
+  --blur-xs: 4px;
+  --blur-sm: 8px;
+  --blur-md: 12px;
+  --blur-lg: 16px;
+  --blur-xl: 24px;
+  --blur-2xl: 40px;
+  --blur-3xl: 64px;
+}
+
+:root {
+  color-scheme: light;
+
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --overlay: #0a0a0a;
+
+  --primary: #005a8c;
+  --primary-foreground: #fafafa;
+  --primary-hover: #0956ab;
+  --primary-active: #074385;
+  --primary-tint: #e7eff8;
+  --primary-strong: #04284f;
+  --primary-deep: #063467;
+
+  --secondary: #5b94d2;
+  --secondary-foreground: #171717;
+  --secondary-hover: #8eb5e0;
+  --secondary-active: #3b7fc9;
+
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --accent-hover: #f5f5f5;
+  --accent-translucent: #0a0a0a1a;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #fef2f2;
+  --destructive-hover: #b91c1c;
+  --destructive-active: #991b1b;
+  --destructive-strong: #991b1b;
+  --success: #007948;
+  --success-foreground: #ffffff;
+  --success-strong: #00492b;
+  --success-bright: #00854f;
+  --success-tint: #e6f3ed;
+  --warning: #fde68a;
+  --warning-foreground: #333333;
+  --info: #2563eb;
+  --info-foreground: #eff6ff;
+
+  --brand: #e07600;
+  --brand-foreground: #ffffff;
+  --brand-hover: #d66c00;
+  --brand-active: #c65c00;
+  --brand-strong: #b54b00;
+  --brand-tint: #fcf1e6;
+
+  --border: #e5e5e5;
+  --border-strong: #d4d4d4;
+  --input: #e5e5e5;
+  --ring: #a3a3a3;
+  --ring-offset: #ffffff;
+
+  --text: #333333;
+  --text-inverted: #fafafa;
+  --link: #2563eb;
+  --link-hover: #1d4ed8;
+  --link-visited: #9333ea;
+
+  --chart-1: #e07600;
+  --chart-2: #0d9488;
+  --chart-3: #164e63;
+  --chart-4: #fbbf24;
+  --chart-5: #f59e0b;
+
+  --category-1: #7c3aed;
+  --category-1-bg: #ede9fe;
+  --category-1-border: #c4b5fd;
+  --category-1-text: #4c1d95;
+  --category-1-strong: #5b21b6;
+  --category-2: #9333ea;
+  --category-3: #4f46e5;
+  --category-4: #0e7490;
+
+  --sidebar: #fafafa;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #171717;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a3a3a3;
+
+  --scroll-track: #f1f1f1;
+  --scroll-thumb: #c1c1c1;
+  --scroll-arrow: #505050;
+
+  --alpha-5: #fffffff2;
+  --alpha-10: #ffffffe6;
+  --alpha-20: #ffffffcc;
+  --alpha-30: #ffffffb3;
+  --alpha-40: #ffffff99;
+  --alpha-50: #ffffff80;
+  --alpha-60: #ffffff66;
+  --alpha-70: #ffffff4d;
+  --alpha-80: #ffffff33;
+  --alpha-90: #ffffff1a;
+
+  /* Figma "custom" tokens — light-only, used for one-off component states */
+  --custom-blue-500: #3b82f6;
+  --custom-amber-50: #fffbeb;
+  --custom-amber-200: #fde68a;
+  --custom-amber-900: #78350f;
+  --custom-neutral-800: #262626;
+  --custom-outline: #a3a3a380;
+  --custom-outline-10: #a3a3a31a;
+  --custom-dark-input: #ffffff00;
+  --custom-transparent: #ffffff00;
+  --custom-popover-70: #ffffffb3;
+  --custom-foreground-10: #0a0a0a1a;
+  --custom-bg-background-20: #ffffff33;
+  --custom-bg-primary-5: #1717170d;
+  --custom-input-30: #e5e5e54d;
+  --custom-input-50: #e5e5e580;
+  --custom-primary-20: #005a8c33;
+  --custom-destructive-10: #dc26261a;
+  --custom-destructive-20: #dc262633;
+  --custom-destructive-40: #dc262666;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #171717;
+  --card-foreground: #fafafa;
+  --popover: #262626;
+  --popover-foreground: #fafafa;
+  --overlay: #0a0a0a;
+
+  --primary: #e5e5e5;
+  --primary-foreground: #171717;
+  --primary-hover: #e5e5e5;
+  --primary-active: #e5e5e5;
+  --primary-tint: #04284f;
+  --primary-strong: #04284f;
+  --primary-deep: #063467;
+
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --secondary-hover: #262626;
+  --secondary-active: #262626;
+
+  --accent: #404040;
+  --accent-foreground: #fafafa;
+  --accent-hover: #404040;
+  --accent-translucent: #fafafa1a;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+
+  --destructive: #f87171;
+  --destructive-foreground: #fef2f2;
+  --destructive-hover: #f87171;
+  --destructive-active: #f87171;
+  --destructive-strong: #991b1b;
+  --success: #339d72;
+  --success-foreground: #002918;
+  --success-strong: #00492b;
+  --success-bright: #00854f;
+  --success-tint: #e6f3ed;
+  --warning: #fbbf24;
+  --warning-foreground: #451a03;
+  --info: #60a5fa;
+  --info-foreground: #172554;
+
+  --brand: #e07600;
+  --brand-foreground: #ffffff;
+  --brand-hover: #d66c00;
+  --brand-active: #c65c00;
+  --brand-strong: #b54b00;
+  --brand-tint: #fcf1e6;
+
+  --border: #ffffff1a;
+  --border-strong: #d4d4d4;
+  --input: #ffffff26;
+  --ring: #737373;
+  --ring-offset: #000000;
+
+  --text: #fafafa;
+  --text-inverted: #333333;
+  --link: #60a5fa;
+  --link-hover: #93c5fd;
+  --link-visited: #c084fc;
+
+  --chart-1: #0e7490;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #a855f7;
+  --chart-5: #06b6d4;
+
+  --category-1: #7c3aed;
+  --category-1-bg: #4c1d95;
+  --category-1-border: #5b21b6;
+  --category-1-text: #ede9fe;
+  --category-1-strong: #5b21b6;
+  --category-2: #9333ea;
+  --category-3: #4f46e5;
+  --category-4: #0e7490;
+
+  --sidebar: #171717;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #005a8c;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #ffffff1a;
+  --sidebar-ring: #525252;
+
+  --scroll-track: #505050;
+  --scroll-thumb: #737373;
+  --scroll-arrow: #c1c1c1;
+}
