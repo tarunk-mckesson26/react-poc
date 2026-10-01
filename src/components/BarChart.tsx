@@ -5,12 +5,15 @@ import { Button } from "./ui/Button";
 import { TooltipComponent } from "./ui/Tooltip";
 import { PaginationComponent } from "./ui/Pagination";
 import { AccordionComponent } from "./ui/Accordion";
+import { LineGraph } from "./ui/LineGraph";
 import { useState } from "react";
+import CircleArrowLeft from "@/assets/CircleArrowLeft.svg";
 import type { AccordionItemData } from "./ui/Accordion";
 
 const BarChartDemo = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [accordionValue, setAccordionValue] = useState<string | string[]>("faq-1");
+    const [selectedDot, setSelectedDot] = useState<string | null>(null);
 
     const chartConfig = {
         value: {
@@ -54,10 +57,85 @@ const BarChartDemo = () => {
         { name: 'Jun-2026', value: 5500 },
     ];
 
+    // LineGraph example data - quarterly savings trend
+    const lineGraphData = [
+        { quarter: "Q4-2026", savings: 31100 },
+        { quarter: "Q1-2027", savings: 33500 },
+        { quarter: "Q2-2027", savings: 38750 },
+        { quarter: "Q3-2027", savings: 42850 },
+    ];
+
+    const lineGraphConfig = {
+        savings: {
+            label: "Savings",
+            color: "#16a34a"
+        }
+    } satisfies ChartConfig;
+
     return (
         <div className="w-full">
 
-            <Button variant="outline" onClick={() => alert('Button clicked!')}>Click Me</Button>
+            {/* <div className="flex gap-x-5">
+                <Button size="xs">Click Me</Button>
+                <Button size="xs" disabled>Disabled</Button>
+                <Button size="xs" data-loading="true">Loading</Button>
+            </div>
+            <div className="flex gap-x-5">
+                <Button>Click Me</Button>
+                <Button disabled>Disabled</Button>
+                <Button data-loading="true">Loading</Button>
+            </div>
+            <div className="flex gap-x-5">
+                <Button size="sm">Click Me</Button>
+                <Button size="sm" disabled>Disabled</Button>
+                <Button size="sm" data-loading="true">Loading</Button>
+            </div>
+            <div className="flex gap-x-5">
+                <Button size="lg">Click Me</Button>
+                <Button size="lg" disabled>Disabled</Button>
+                <Button size="lg" data-loading="true">Loading</Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button size="icon"><img src={CircleArrowLeft} alt="icon" /></Button>
+                <Button size="icon-xs" data-loading="true"><img src={CircleArrowLeft} alt="icon" /></Button>
+                <Button size="icon-sm"><img src={CircleArrowLeft} alt="icon" /></Button>
+                <Button size="icon-lg" data-loading="true"><img src={CircleArrowLeft} alt="icon" /></Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button variant="secondary">Click Me</Button>
+                <Button variant="secondary" disabled>Disabled</Button>
+                <Button variant="secondary" data-loading="true">Loading</Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button variant="destructive">Click Me</Button>
+                <Button variant="destructive" disabled>Disabled</Button>
+                <Button variant="destructive" data-loading="true">Loading</Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button variant="tertiary">Click Me</Button>
+                <Button variant="tertiary" disabled>Disabled</Button>
+                <Button variant="tertiary" data-loading="true">Loading</Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button variant="ghost">Click Me</Button>
+                <Button variant="ghost" disabled>Disabled</Button>
+                <Button variant="ghost" data-loading="true">Loading</Button>
+            </div>
+
+            <div className="flex gap-x-5">
+                <Button variant="link">Click Me</Button>
+                <Button variant="link" disabled>Disabled</Button>
+                <Button variant="link" data-loading="true">Loading</Button>
+            </div> */}
+
+
+
+
             <div>
                 <h2 className="py-2 mb-5 text-center">Rebate Performance Trend</h2>
             </div>
@@ -84,21 +162,21 @@ const BarChartDemo = () => {
                 </BarChart>
             </ChartContainer>
             <div className="flex gap-x-4">
-            <TooltipComponent
-                trigger="Help"
-                content="Information here"
-            />
-            <TooltipComponent
-                side="right"
-                trigger="right tooltip"
-                content="Information here"
-            />
-            <TooltipComponent
-                size="lg"
-                side="right"
-                trigger="big tooltip"
-                content="Information here"
-            />
+                <TooltipComponent
+                    trigger="Help"
+                    content="Information here"
+                />
+                <TooltipComponent
+                    side="right"
+                    trigger="right tooltip"
+                    content="Information here"
+                />
+                <TooltipComponent
+                    size="lg"
+                    side="right"
+                    trigger="big tooltip"
+                    content="Information here"
+                />
             </div>
 
             {/* Pagination Example - Controlled Component */}
@@ -135,7 +213,7 @@ const BarChartDemo = () => {
             </div>
 
             {/* Accordion Example - Multiple Open */}
-            <div className="mt-8">
+            <div className="mt-8 mb-8">
                 <h3 className="text-sm font-semibold mb-4">Settings Section (Multiple Open)</h3>
                 <AccordionComponent
                     type="multiple"
@@ -176,6 +254,26 @@ const BarChartDemo = () => {
                     ]}
                     defaultValue={["settings-general"]}
                 />
+            </div>
+
+            {/* LineGraph Example - Area Chart */}
+            <div className="mt-8">
+                <LineGraph
+                    title="Quarterly Savings Trend"
+                    data={lineGraphData}
+                    config={lineGraphConfig}
+                    dataKey="savings"
+                    xAxisKey="quarter"
+                    color="#16a34a"
+                    showDots
+                    onDotClick={(data) => {
+                        setSelectedDot(`${data.quarter}: $${data.savings}`);
+                        console.log("Dot clicked:", data);
+                    }}
+                />
+                {selectedDot && (
+                    <p className="text-xs text-muted-foreground mt-2">Selected: {selectedDot}</p>
+                )}
             </div>
         </div>
     )
