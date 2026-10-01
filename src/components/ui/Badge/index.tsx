@@ -8,6 +8,7 @@ function Badge({
   variant = "default",
   size = "default",
   asChild = false,
+  number = false,
   tabIndex = 0,
   ...props
 }: BadgeProps) {
@@ -15,35 +16,14 @@ function Badge({
 
   return (
     <Comp
-      data-slot="badge"
-      data-variant={variant}
-      data-size={size}
-      tabIndex={tabIndex}
-      className={clsx(badgeVariants({ variant, size, className }))}
-      {...props}
-    />
-  );
-}
-
-function BadgeNumber({
-  className,
-  variant = "default",
-  size = "default",
-  asChild = false,
-  tabIndex = 0,
-  ...props
-}: BadgeProps) {
-  const Comp = asChild ? Slot.Root : "span";
-
-  return (
-    <Comp
-      data-slot="badge-number"
+      data-slot={number ? "badge-number" : "badge"}
       data-variant={variant}
       data-size={size}
       tabIndex={tabIndex}
       className={clsx(
         badgeVariants({ variant, size }),
-        "h-5 min-w-5 rounded-full px-1 font-sans font-medium not-italic text-xs leading-4 tracking-normal text-center",
+        number &&
+          "h-5 min-w-5 rounded-full px-1 font-sans font-medium not-italic text-xs leading-4 tracking-normal text-center",
         className,
       )}
       {...props}
@@ -51,5 +31,5 @@ function BadgeNumber({
   );
 }
 
-export { Badge, BadgeNumber, badgeVariants };
+export { Badge, badgeVariants };
 export type { BadgeProps };
