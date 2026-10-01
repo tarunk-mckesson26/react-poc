@@ -57,7 +57,7 @@ const BarChartDemo = () => {
     return (
         <div className="w-full">
 
-            <Button variant="outline" onClick={() => alert('Button clicked!')}>Click Me</Button>
+            <Button variant="tertiary" onClick={() => alert('Button clicked!')}>Click Me</Button>
             <div>
                 <h2 className="py-2 mb-5 text-center">Rebate Performance Trend</h2>
             </div>
