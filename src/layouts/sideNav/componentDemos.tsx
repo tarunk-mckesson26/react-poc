@@ -8,6 +8,7 @@ import { Button } from "../../components/ui/Button"
 import { Checkbox } from "../../components/ui/Checkbox"
 import { Combobox } from "../../components/ui/Combobox"
 import { Input } from "../../components/ui/InputField"
+import { LineGraph } from "../../components/ui/LineGraph"
 import { PaginationComponent } from "../../components/ui/Pagination"
 import { Progress } from "../../components/ui/Progress"
 import { SelectComponent } from "../../components/ui/Select"
@@ -150,6 +151,30 @@ const InputDemo = () => {
   )
 }
 
+const LineGraphDemo = () => {
+  const config = {
+    savings: { label: "Savings", color: "#16a34a" },
+  } satisfies ChartConfig
+
+  const data = [
+    { quarter: "Q4-2026", savings: 31100 },
+    { quarter: "Q1-2027", savings: 33500 },
+    { quarter: "Q2-2027", savings: 38750 },
+    { quarter: "Q3-2027", savings: 42850 },
+  ]
+
+  return (
+    <LineGraph
+      title="Quarterly savings trend"
+      data={data}
+      config={config}
+      dataKey="savings"
+      xAxisKey="quarter"
+      className="h-[320px] w-full max-w-2xl"
+    />
+  )
+}
+
 const PaginationDemo = () => {
   const [page, setPage] = useState(1)
 
@@ -274,6 +299,7 @@ export const componentDemos: ComponentDemo[] = [
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   { id: "combobox", label: "Combobox", description: "Searchable single and multi select.", render: () => <ComboboxDemo /> },
   { id: "input", label: "Input", description: "Text field variants.", render: () => <InputDemo /> },
+  { id: "line-graph", label: "Line Graph", description: "Area chart built on Recharts.", render: () => <LineGraphDemo /> },
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
   { id: "select", label: "Select", description: "Dropdown selection.", render: () => <SelectDemo /> },
@@ -281,5 +307,4 @@ export const componentDemos: ComponentDemo[] = [
   { id: "spinner", label: "Spinner", description: "Loading indicator.", render: () => <SpinnerDemo /> },
   { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
   { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
-  { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
-]
+  { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },]
