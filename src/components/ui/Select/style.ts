@@ -1,13 +1,13 @@
 import { cva } from "class-variance-authority"
 
 export const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-2 border border-input bg-background text-foreground shadow-xs whitespace-nowrap transition-colors outline-none data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 dark:bg-input/30",
+  "flex w-[200px] items-center justify-between gap-[6px] border border-input bg-background text-foreground shadow-xs whitespace-nowrap transition-colors outline-none data-[placeholder]:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 dark:bg-input/30",
   {
     variants: {
       size: {
         sm: "h-8 rounded-md px-2.5 text-xs",
-        default: "h-9 rounded-lg px-3 text-sm",
-        lg: "h-11 rounded-xl px-4 text-base",
+        default: "rounded-[10px] px-3 text-sm w-[200px] h-[32px]",
+        lg: "rounded-[10px] px-3 text-sm w-[200px] h-[32px]",
       },
       focusRing: {
         true: "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 data-[state=open]:border-ring data-[state=open]:ring-3 data-[state=open]:ring-ring/50",

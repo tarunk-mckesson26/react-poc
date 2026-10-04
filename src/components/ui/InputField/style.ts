@@ -7,7 +7,6 @@ export const inputVariants = cva(
       variant: {
         default: "border-input bg-background",
         outline: "border-border bg-transparent",
-        ghost: "border-transparent bg-transparent",
       },
       size: {
         sm: "h-8 rounded-md px-2.5 text-xs",
