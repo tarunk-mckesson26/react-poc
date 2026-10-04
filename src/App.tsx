@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Bell,
   ChartColumn,
   ChevronsUpDown,
   CircleUser,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 import { SideNav } from './layouts/sideNav';
+import { Toaster } from './components/ui/Sonner';
 import { componentDemos } from './layouts/sideNav/componentDemos';
 
 const icons: Record<string, React.ReactNode> = {
@@ -30,6 +32,7 @@ const icons: Record<string, React.ReactNode> = {
   pagination: <ListOrdered />,
   progress: <SlidersHorizontal />,
   select: <SquareMousePointer />,
+  sonner: <Bell />,
   spinner: <Loader />,
   switch: <ToggleRight />,
   tabs: <PanelsTopLeft />,
@@ -75,6 +78,8 @@ const App = () => {
           {active.render()}
         </section>
       </main>
+
+      <Toaster />
     </div>
   );
 };

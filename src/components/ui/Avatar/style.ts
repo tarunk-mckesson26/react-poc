@@ -1,22 +1,18 @@
 import { cva } from "class-variance-authority"
 
 export const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full border border-border bg-background",
+  "relative flex shrink-0 overflow-hidden rounded-full bg-background",
   {
     variants: {
       variant: {
-        default: "bg-muted text-foreground",
-        primary: "bg-primary text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground",
-        outline: "bg-background text-foreground",
-        ghost: "bg-transparent text-foreground",
+        default: "bg-avatar-bgColor text-avatar-fallback-textColor",
       },
       size: {
         xs: "h-6 w-6 text-[10px]",
         sm: "h-8 w-8 text-xs",
-        default: "h-10 w-10 text-sm",
-        lg: "h-14 w-14 text-base",
-        xl: "h-16 w-16 text-lg",
+        default: "size-avatar text-sm",
+        lg: "size-avatar text-base",
+        xl: "size-avatar text-lg",
       },
     }
   }

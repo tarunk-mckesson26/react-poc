@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Bar, BarChart as RechartsBarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { AlertIcon, SuccessIcon } from "../../assets"
 import { AccordionComponent, type AccordionItemData } from "../../components/ui/Accordion"
 import { Avatar } from "../../components/ui/Avatar"
 import { BarChart } from "../../components/ui/BarChart"
@@ -10,6 +11,7 @@ import { Input } from "../../components/ui/InputField"
 import { PaginationComponent } from "../../components/ui/Pagination"
 import { Progress } from "../../components/ui/Progress"
 import { SelectComponent } from "../../components/ui/Select"
+import { sonner } from "../../components/ui/Sonner"
 import { Spinner } from "../../components/ui/Spinner"
 import { Switch } from "../../components/ui/Switch"
 import { TabsComponent } from "../../components/ui/Tabs"
@@ -33,9 +35,9 @@ const AccordionDemo = () => {
 const AvatarDemo = () => (
   <Row>
     <Avatar size="xs" firstName="Ada" lastName="Lovelace" />
-    <Avatar size="sm" firstName="Grace" lastName="Hopper" variant="primary" />
-    <Avatar size="default" firstName="Alan" lastName="Turing" variant="secondary" />
-    <Avatar size="lg" firstName="Linus" lastName="Torvalds" variant="outline" />
+    <Avatar size="sm" firstName="Grace" lastName="Hopper" />
+    <Avatar size="default" firstName="Alan" lastName="Turing" />
+    <Avatar size="lg" firstName="Linus" lastName="Torvalds"/>
     <Avatar size="xl" src="https://i.pravatar.cc/128" alt="User avatar" />
   </Row>
 )
@@ -218,6 +220,36 @@ const TabsDemo = () => {
   )
 }
 
+const SonnerDemo = () => (
+  <Row>
+    <Button
+      onClick={() =>
+        sonner({
+          text: "Upload complete",
+          description: "3 files added",
+          fill: "success",
+          icon: <img src={SuccessIcon} alt="" />,
+        })
+      }
+    >
+      Success
+    </Button>
+    <Button
+      variant="destructive"
+      onClick={() =>
+        sonner({
+          text: "Something went wrong",
+          description: "Please try again.",
+          fill: "error",
+          icon: <img src={AlertIcon} alt="" />,
+        })
+      }
+    >
+      Error
+    </Button>
+  </Row>
+)
+
 const TooltipDemo = () => (
   <Row>
     <TooltipComponent trigger={<Button variant="secondary">Top</Button>} content="Tooltip on top" />
@@ -245,6 +277,7 @@ export const componentDemos: ComponentDemo[] = [
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
   { id: "select", label: "Select", description: "Dropdown selection.", render: () => <SelectDemo /> },
+  { id: "sonner", label: "Sonner", description: "Success and error toast notifications.", render: () => <SonnerDemo /> },
   { id: "spinner", label: "Spinner", description: "Loading indicator.", render: () => <SpinnerDemo /> },
   { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
   { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
