@@ -16,4 +16,8 @@ export interface ButtonProps
    * @default false
    */
   asChild?: boolean
+  /**
+   * When "true", shows a spinner before the label and hides other icons.
+   */
+  "data-loading"?: boolean | "true" | "false"
 }
