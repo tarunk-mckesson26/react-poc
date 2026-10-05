@@ -6,6 +6,7 @@ import { TooltipComponent } from "./ui/Tooltip";
 import { PaginationComponent } from "./ui/Pagination";
 import { AccordionComponent } from "./ui/Accordion";
 import { LineGraph } from "./ui/LineGraph";
+import { CardComponent } from "./ui/card";
 import { useState } from "react";
 import CircleArrowLeft from "@/assets/CircleArrowLeft.svg";
 import type { AccordionItemData } from "./ui/Accordion";
@@ -274,6 +275,21 @@ const BarChartDemo = () => {
                 {selectedDot && (
                     <p className="text-xs text-muted-foreground mt-2">Selected: {selectedDot}</p>
                 )}
+            </div>
+
+            {/* Card Example */}
+            <div className="mt-8 mb-8">
+                <h3 className="text-sm font-semibold mb-4">Card Example</h3>
+                <CardComponent
+                    className="max-w-sm"
+                    title="Rebate Summary"
+                    description="Your current rebate tier and savings overview."
+                    action={<Button size="xs" variant="ghost">Edit</Button>}
+                    footer={<Button size="sm" className="ml-auto">View Details</Button>}
+                >
+                    <p className="text-2xl font-semibold">$5,500</p>
+                    <p className="text-sm text-muted-foreground">Saved this month across all tiers.</p>
+                </CardComponent>
             </div>
         </div>
     )
