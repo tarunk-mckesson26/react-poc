@@ -63,7 +63,7 @@ function PaginationLink({
   return (
     <Button
       asChild
-      variant={isActive ? "outline" : "ghost"}
+      variant={isActive ? "primary" : "ghost"}
       size={size}
       className={clsx(className)}
     >
@@ -71,6 +71,7 @@ function PaginationLink({
         aria-current={isActive ? "page" : undefined}
         data-slot="pagination-link"
         data-active={isActive}
+        className="inline-flex items-center justify-center"
         {...props}
       />
     </Button>
