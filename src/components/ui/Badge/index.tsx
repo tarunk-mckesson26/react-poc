@@ -1,17 +1,18 @@
-import { Slot } from "radix-ui";
 import { clsx } from "@/lib/clsx";
-import { badgeVariants } from "./style";
-import type { BadgeProps } from "./type";
+import { Slot } from "radix-ui";
+import { badgeNumberStyles, badgeVariants } from "./style";
+import { type BadgeProps } from "./type";
 
-function Badge({
+const Badge = ({
   className,
   variant = "default",
   size = "default",
   asChild = false,
   number = false,
   tabIndex = 0,
+  children,
   ...props
-}: BadgeProps) {
+}: BadgeProps) => {
   const Comp = asChild ? Slot.Root : "span";
 
   return (
@@ -22,14 +23,15 @@ function Badge({
       tabIndex={tabIndex}
       className={clsx(
         badgeVariants({ variant, size }),
-        number &&
-          "h-5 min-w-5 rounded-full px-1 font-sans font-medium not-italic text-xs leading-4 tracking-normal text-center",
+        number && badgeNumberStyles,
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </Comp>
   );
-}
+};
 
 export { Badge, badgeVariants };
 export type { BadgeProps };
