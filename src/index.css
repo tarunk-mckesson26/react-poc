@@ -11,6 +11,9 @@
   --color-badge-default-foreground: var(--badge-default-foreground);
   --color-badge-secondary: var(--badge-secondary);
   --color-badge-secondary-foreground: var(--badge-secondary-foreground);
+  --color-breadcrumb-focus: var(--breadcrumb-focus);
+  --color-breadcrumb-link: var(--breadcrumb-link);
+  --color-breadcrumb-link-hover: var(--breadcrumb-link-hover);
   --color-border: var(--border);
   --color-border-pressed: var(--border-pressed);
   --color-card: var(--card);
@@ -58,6 +61,9 @@
   --badge-default-foreground: #fafafa;
   --badge-secondary: #ede9fe;
   --badge-secondary-foreground: #4c1d95;
+  --breadcrumb-focus: #a3a3a380;
+  --breadcrumb-link: #0a5fbc;
+  --breadcrumb-link-hover: #063467;
   --border: #e5e5e5;
   --border-pressed: #d4d4d4;
   --card: #ffffff;
