@@ -1,6 +1,6 @@
 import { cn } from "cn"
 import { Tooltip as TooltipPrimitive } from "radix-ui"
-import { tooltipVariants, tooltipArrowClass } from "./style"
+import { tooltipArrowClass, tooltipContentClass } from "./style"
 import type {
   TooltipProviderProps,
   TooltipRootProps,
@@ -45,7 +45,7 @@ function TooltipContent({
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         sideOffset={sideOffset}
-        className={cn(tooltipVariants(), className)}
+        className={cn(tooltipContentClass, className)}
         {...props}
       >
         {children}
