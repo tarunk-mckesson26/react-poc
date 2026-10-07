@@ -1,13 +1,10 @@
-import type React from "react"
-import type { VariantProps } from "class-variance-authority"
-import type { alertVariants } from "./alert"
+import type React from "react";
+import { type VariantProps } from "class-variance-authority";
+import { type alertVariants } from "./style";
+
+export type AlertName = "root" | "title" | "description" | "action";
 
 export interface AlertProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof alertVariants> {}
-
-export type AlertTitleProps = React.ComponentProps<"div">
-
-export type AlertDescriptionProps = React.ComponentProps<"div">
-
-export type AlertActionProps = React.ComponentProps<"div">
+  extends React.ComponentProps<"div">, VariantProps<typeof alertVariants> {
+  name?: AlertName;
+}
