@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function SolutionsPanel() {
+const SolutionsPanel = () => {
     useEffect(() => {
         fetch("/api/customer?customerName=All%20ACCOUNTS", {
             method: "GET",
@@ -36,3 +36,5 @@ export default function SolutionsPanel() {
         </div>
     );
 }
+
+export default SolutionsPanel;
