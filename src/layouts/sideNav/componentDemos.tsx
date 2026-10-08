@@ -144,7 +144,6 @@ const InputDemo = () => {
     <div className="flex max-w-sm flex-col gap-4">
       <Input placeholder="Default input" value={value} onChange={(event) => setValue(event.target.value)} />
       <Input variant="outline" size="default" placeholder="Outline input" />
-      <Input variant="ghost" size="lg" placeholder="Ghost input" />
       <Input placeholder="Invalid input" invalid />
       <Input placeholder="Disabled input" disabled />
     </div>
