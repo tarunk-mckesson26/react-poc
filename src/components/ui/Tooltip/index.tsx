@@ -1,6 +1,4 @@
-import { clsx } from "@/lib/clsx"
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./tooltip"
-import { tooltipVariants } from "./style"
 import type { TooltipComponentProps } from "./type"
 
 /**
@@ -16,7 +14,6 @@ export function TooltipComponent({
     trigger,
     content,
     side = "top",
-    size = "sm",
     delayDuration = 200,
     disabled = false,
     className,
@@ -40,7 +37,7 @@ export function TooltipComponent({
                 </TooltipTrigger>
                 <TooltipContent
                     side={side}
-                    className={clsx(tooltipVariants({ size }), className)}
+                    className={className}
                 >
                     {content}
                 </TooltipContent>
@@ -50,5 +47,4 @@ export function TooltipComponent({
     )
 }
 
-export { tooltipVariants }
 export type { TooltipComponentProps }
