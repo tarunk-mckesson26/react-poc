@@ -1,23 +1,35 @@
-import { Slot } from "radix-ui"
-import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
-import { clsx } from "@/lib/clsx"
+import { Slot } from "radix-ui";
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
+import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
+import { cn } from "cn";
+import { clsx } from "@/lib/clsx";
+
 import {
   breadcrumbEllipsisClassName,
+  breadcrumbDropdownMenuContentClassName,
+  breadcrumbDropdownMenuItemClassName,
+  breadcrumbDropdownMenuTriggerClassName,
   breadcrumbItemClassName,
   breadcrumbLinkClassName,
   breadcrumbListClassName,
   breadcrumbPageClassName,
   breadcrumbSeparatorClassName,
-} from "./style"
+} from "./style";
+
 import type {
   BreadcrumbEllipsisProps,
+  BreadcrumbDropdownMenuTriggerProps,
   BreadcrumbItemProps,
   BreadcrumbLinkProps,
   BreadcrumbListProps,
   BreadcrumbPageProps,
   BreadcrumbProps,
   BreadcrumbSeparatorProps,
-} from "./type"
+  BreadcrumbDropdownMenuContentProps,
+  BreadcrumbDropdownMenuGroupProps,
+  BreadcrumbDropdownMenuItemProps,
+  BreadcrumbDropdownMenuProps,
+} from "./type";
 
 function Breadcrumb({ className, ...props }: BreadcrumbProps) {
   return (
@@ -27,7 +39,7 @@ function Breadcrumb({ className, ...props }: BreadcrumbProps) {
       className={clsx(className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
@@ -37,7 +49,7 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListProps) {
       className={clsx(breadcrumbListClassName, className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
@@ -47,15 +59,11 @@ function BreadcrumbItem({ className, ...props }: BreadcrumbItemProps) {
       className={clsx(breadcrumbItemClassName, className)}
       {...props}
     />
-  )
+  );
 }
 
-function BreadcrumbLink({
-  asChild,
-  className,
-  ...props
-}: BreadcrumbLinkProps) {
-  const Comp = asChild ? Slot.Root : "a"
+function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkProps) {
+  const Comp = asChild ? Slot.Root : "a";
 
   return (
     <Comp
@@ -63,7 +71,7 @@ function BreadcrumbLink({
       className={clsx(breadcrumbLinkClassName, className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
@@ -76,7 +84,7 @@ function BreadcrumbPage({ className, ...props }: BreadcrumbPageProps) {
       className={clsx(breadcrumbPageClassName, className)}
       {...props}
     />
-  )
+  );
 }
 
 function BreadcrumbSeparator({
@@ -94,13 +102,10 @@ function BreadcrumbSeparator({
     >
       {children ?? <ChevronRightIcon />}
     </li>
-  )
+  );
 }
 
-function BreadcrumbEllipsis({
-  className,
-  ...props
-}: BreadcrumbEllipsisProps) {
+function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisProps) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
@@ -112,7 +117,68 @@ function BreadcrumbEllipsis({
       <MoreHorizontalIcon />
       <span className="sr-only">More</span>
     </span>
-  )
+  );
+}
+
+function BreadcrumbDropdownMenu({ ...props }: BreadcrumbDropdownMenuProps) {
+  return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />;
+}
+
+function BreadcrumbDropdownMenuContent({
+  className,
+  align = "start",
+  sideOffset = 4,
+  ...props
+}: BreadcrumbDropdownMenuContentProps) {
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        data-slot="dropdown-menu-content"
+        sideOffset={sideOffset}
+        align={align}
+        className={cn(breadcrumbDropdownMenuContentClassName, className)}
+        {...props}
+      />
+    </DropdownMenuPrimitive.Portal>
+  );
+}
+
+function BreadcrumbDropdownMenuGroup({
+  ...props
+}: BreadcrumbDropdownMenuGroupProps) {
+  return (
+    <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
+  );
+}
+
+function BreadcrumbDropdownMenuItem({
+  className,
+  inset,
+  variant = "default",
+  ...props
+}: BreadcrumbDropdownMenuItemProps) {
+  return (
+    <DropdownMenuPrimitive.Item
+      data-slot="dropdown-menu-item"
+      data-inset={inset}
+      data-variant={variant}
+      className={cn(breadcrumbDropdownMenuItemClassName, className)}
+      {...props}
+    />
+  );
+}
+
+function BreadcrumbDropdownMenuTrigger({
+  className,
+  ...props
+}: BreadcrumbDropdownMenuTriggerProps) {
+  return (
+    <DropdownMenuPrimitive.Trigger
+      data-slot="dropdown-menu-trigger"
+      className={cn(breadcrumbDropdownMenuTriggerClassName, className)}
+      {...props}
+    />
+  );
 }
 
 export {
@@ -123,7 +189,12 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
-}
+  BreadcrumbDropdownMenu,
+  BreadcrumbDropdownMenuTrigger,
+  BreadcrumbDropdownMenuContent,
+  BreadcrumbDropdownMenuGroup,
+  BreadcrumbDropdownMenuItem,
+};
 
 export type {
   BreadcrumbProps,
@@ -133,4 +204,9 @@ export type {
   BreadcrumbPageProps,
   BreadcrumbSeparatorProps,
   BreadcrumbEllipsisProps,
-}
+  BreadcrumbDropdownMenuProps,
+  BreadcrumbDropdownMenuTriggerProps,
+  BreadcrumbDropdownMenuContentProps,
+  BreadcrumbDropdownMenuGroupProps,
+  BreadcrumbDropdownMenuItemProps,
+};
