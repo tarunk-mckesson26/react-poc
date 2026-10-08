@@ -8,7 +8,6 @@ import { AccordionComponent } from "./ui/Accordion";
 import { LineGraph } from "./ui/LineGraph";
 import { CardComponent } from "./ui/card";
 import { useState } from "react";
-import CircleArrowLeft from "@/assets/CircleArrowLeft.svg";
 import type { AccordionItemData } from "./ui/Accordion";
 
 const BarChartDemo = () => {
@@ -173,10 +172,14 @@ const BarChartDemo = () => {
                     content="Information here"
                 />
                 <TooltipComponent
-                    size="lg"
                     side="right"
-                    trigger="big tooltip"
+                    trigger="left tooltip"
                     content="Information here"
+                />
+                <TooltipComponent
+                    side="bottom"
+                    trigger="bottom tooltip"
+                    content="Information hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation hereInformation here"
                 />
             </div>
 

@@ -1,7 +1,5 @@
 import type React from "react"
 import type { Tooltip as TooltipPrimitive } from "radix-ui"
-import type { VariantProps } from "class-variance-authority"
-import type { tooltipVariants } from "./style"
 
 /**
  * Centralized type definitions for Tooltip components
@@ -26,8 +24,7 @@ export type TooltipContentProps = React.ComponentProps<
  * Props for the composed TooltipComponent wrapper
  * Simplifies usage by accepting trigger and content as props
  */
-export interface TooltipComponentProps
-  extends VariantProps<typeof tooltipVariants> {
+export interface TooltipComponentProps {
   /** The trigger element - can be text, button, icon, or any React element */
   trigger: React.ReactNode
   /** The content displayed in the tooltip */
