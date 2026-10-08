@@ -2,7 +2,7 @@ import { clsx } from "@/lib/clsx"
 import { Slot } from "radix-ui"
 import { buttonVariants } from "./style"
 import { type ButtonProps } from "./type"
-import { Spinner } from "../spinner"
+import { Spinner } from "../Spinner"
 
 /**
  * Button component - inspired by shadcn/ui but customized for our design system
