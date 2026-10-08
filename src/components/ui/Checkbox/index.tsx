@@ -1,4 +1,3 @@
-import { Checkbox as CheckboxPrimitive } from "radix-ui"
 import { Check } from "lucide-react"
 import { clsx } from "@/lib/clsx"
 import {
@@ -9,18 +8,11 @@ import {
 } from "./style"
 import type { CheckboxProps } from "./type"
 
-/**
- * Checkbox component - shadcn/ui style, built on Radix's Checkbox primitive.
- *
- * Key features:
- * - Radix handles ARIA, keyboard toggling, and data-state automatically
- * - Checked/invalid visuals are pure CSS (data-state / aria-invalid selectors)
- * - variant="card" switches to the bordered, selectable card layout
- */
 const Checkbox = ({
   className,
   variant = "default",
   size = "default",
+  align = "start",
   label,
   description,
   error,
@@ -29,6 +21,8 @@ const Checkbox = ({
   containerClassName,
   labelClassName,
   descriptionClassName,
+  onCheckedChange,
+  onChange,
   ...props
 }: CheckboxProps) => {
   const hasError = Boolean(error) || invalid
@@ -37,21 +31,38 @@ const Checkbox = ({
     <label
       data-slot="checkbox"
       data-variant={variant}
-      className={clsx(checkboxContainerVariants({ variant }), containerClassName)}
+      aria-invalid={hasError}
+      className={clsx("group", checkboxContainerVariants({ variant, align }), containerClassName)}
     >
-      <CheckboxPrimitive.Root
-        data-slot="checkbox-indicator"
-        aria-invalid={hasError}
-        className={clsx("peer", checkboxIndicatorVariants({ size }), className)}
-        {...props}
-      >
-        <CheckboxPrimitive.Indicator className="flex items-center justify-center text-current">
+      <span className={clsx("relative mt-0.5 flex shrink-0", align === "end" ? "order-2" : "order-1")}>
+        <input
+          {...props}
+          type="checkbox"
+          data-slot="checkbox-indicator"
+          aria-invalid={hasError}
+          className={clsx(
+            "peer",
+            align === "end" ? "order-2" : "order-1",
+            checkboxIndicatorVariants({ size }),
+            className
+          )}
+          onChange={(event) => {
+            onChange?.(event)
+            onCheckedChange?.(event.currentTarget.checked)
+          }}
+        />
+        <span aria-hidden="true" className="pointer-events-none absolute inset-0 z-10 hidden items-center justify-center text-white peer-checked:flex">
           {icon}
-        </CheckboxPrimitive.Indicator>
-      </CheckboxPrimitive.Root>
+        </span>
+      </span>
 
       {(label || description) && (
-        <span className="flex min-w-0 flex-1 flex-col gap-1">
+        <span
+          className={clsx(
+            "flex min-w-0 flex-1 flex-col gap-1.5",
+            align === "end" ? "order-1" : "order-2"
+          )}
+        >
           {label ? (
             <span className={clsx(checkboxLabelVariants, labelClassName)}>{label}</span>
           ) : null}
@@ -71,5 +82,5 @@ const Checkbox = ({
   )
 }
 
-export { Checkbox, checkboxContainerVariants, checkboxIndicatorVariants }
+export { Checkbox }
 
