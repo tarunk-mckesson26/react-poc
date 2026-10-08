@@ -18,7 +18,7 @@ import type { CardComponentProps } from "./type"
  * rendered when `title`, `description` or `action` is provided, and the
  * footer only when `footer` is provided.
  */
-function CardComponent({
+const CardComponent = ({
   size = "default",
   className,
   image,
@@ -34,7 +34,7 @@ function CardComponent({
   contentClassName,
   footerClassName,
   ...props
-}: CardComponentProps) {
+}: CardComponentProps) =>{
   const hasHeader = Boolean(title || description || action)
 
   return (

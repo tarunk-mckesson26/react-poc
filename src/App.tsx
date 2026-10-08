@@ -8,7 +8,7 @@ function App() {
   return (
     <div className='max-w-[1000px] mx-auto'>
       <ComponentsShowcase />
-      <BarChartDemo />
+      {/* <BarChartDemo /> */}
       <SolutionsPanel />
     </div>
   )
