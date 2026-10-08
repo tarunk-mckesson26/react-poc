@@ -125,11 +125,6 @@
   --color-border-pressed: var(--border-strong);
   --color-primary-pressed: var(--primary-active);
   --color-destructive-pressed: var(--destructive-active);
-
-  /*added manually*/
-  --spacing-avatar: 48px;
-  --color-avatar-bgColor: #f5f5f5;
-  --color-avatar-fallback-textColor: #505050;
   
 }
 

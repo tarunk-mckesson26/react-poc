@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Bell,
   ChartColumn,
@@ -21,6 +21,7 @@ import './App.css';
 import { SideNav } from './layouts/sideNav';
 import { Toaster } from './components/ui/Sonner';
 import { componentDemos } from './layouts/sideNav/componentDemos';
+import { ensureAuthenticated } from './auth/oktaAuth';
 
 const icons: Record<string, React.ReactNode> = {
   accordion: <Rows3 />,
@@ -44,8 +45,47 @@ const icons: Record<string, React.ReactNode> = {
 const App = () => {
   const [activeId, setActiveId] = useState(componentDemos[0].id);
   const [collapsed, setCollapsed] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadSolutions = async () => {
+      const accessToken = await ensureAuthenticated();
+      if (!accessToken || controller.signal.aborted) return;
+
+      setAuthenticated(true);
+
+      const response = await fetch('/api/looker/solutions', {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+        signal: controller.signal,
+      });
+      if (!response.ok) throw new Error(`Request failed with status ${response.status}`);
+
+      const data = await response.json();
+      console.log('Looker solutions:', data);
+    };
+
+    loadSolutions().catch((err) => {
+      if (!controller.signal.aborted) console.error('Looker solutions error:', err);
+    });
+
+    return () => controller.abort();
+  }, []);
 
   const active = componentDemos.find((demo) => demo.id === activeId) ?? componentDemos[0];
+
+  if (!authenticated) {
+    return (
+      <div className='flex min-h-screen items-center justify-center text-sm text-slate-500'>
+        Signing in...
+      </div>
+    );
+  }
 
   return (
     <div className='flex min-h-screen bg-slate-50'>
