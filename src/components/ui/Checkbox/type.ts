@@ -1,6 +1,5 @@
 import type * as React from "react"
 import type { VariantProps } from "class-variance-authority"
-import type { Checkbox as CheckboxPrimitive } from "radix-ui"
 import type { checkboxContainerVariants, checkboxIndicatorVariants } from "./style"
 
 export interface CheckboxOption {
@@ -12,14 +11,11 @@ export interface CheckboxOption {
   error?: string
 }
 
-/**
- * Extends Radix's Checkbox.Root props (checked/onCheckedChange/disabled come for free).
- * variant/size are pulled from the CVA variants in style.ts, so they stay in sync automatically.
- */
 export interface CheckboxProps
-  extends Omit<React.ComponentProps<typeof CheckboxPrimitive.Root>, "size">,
-    Pick<VariantProps<typeof checkboxContainerVariants>, "variant">,
+  extends Omit<React.ComponentProps<"input">, "size" | "type" | "children">,
+    Pick<VariantProps<typeof checkboxContainerVariants>, "variant" | "align">,
     Pick<VariantProps<typeof checkboxIndicatorVariants>, "size"> {
+  onCheckedChange?: (checked: boolean) => void
   label?: React.ReactNode
   description?: React.ReactNode
   error?: React.ReactNode

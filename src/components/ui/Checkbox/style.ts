@@ -1,8 +1,15 @@
 import { cva } from "class-variance-authority"
 
-/** Checkbox indicator variants - checked/invalid react to Radix's data-state/aria-invalid attrs. */
+export const checkboxFocusPreviewStyles =
+  "border-checkbox-focus-ring! shadow-[0_0_0_4px_rgba(10,95,188,0.2)]"
+export const checkboxPressedPreviewStyles =
+  "checked:brightness-90 not-checked:border-slate-400"
+
+const checkboxCheckedBoxBorderStyles =
+  "has-[:checked]:border-transparent has-[:checked]:[background:linear-gradient(var(--checkbox-card-checked-bgColor,rgba(23,23,23,0.05)),var(--checkbox-card-checked-bgColor,rgba(23,23,23,0.05)))_padding-box,linear-gradient(white,white)_padding-box,linear-gradient(0deg,var(--custom-alpha-30-dark-alpha-20,rgba(255,255,255,0.7)),var(--custom-alpha-30-dark-alpha-20,rgba(255,255,255,0.7)))_border-box,linear-gradient(0deg,var(--base-primary,#0A5FBC),var(--base-primary,#0A5FBC))_border-box] has-[[aria-invalid=true]]:[background-image:none]"
+
 export const checkboxIndicatorVariants = cva(
-  "shrink-0 items-center justify-center rounded-[5px] border border-slate-300 bg-white text-transparent shadow-xs outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white aria-invalid:border-red-500 aria-invalid:shadow-[0_0_0_2px_rgba(239,68,68,0.12)] disabled:cursor-not-allowed disabled:opacity-50",
+  "appearance-none shrink-0 rounded-checkbox border border-checkbox-unchecked-border bg-checkbox-unchecked-bg shadow-xs outline-none transition-all duration-200 focus-visible:shadow-[0_0_0_4px_rgba(10,95,188,0.2)] checked:border-checkbox-checked-border checked:bg-checkbox-checked-bg checked:active:brightness-90 not-checked:active:border-slate-400 aria-invalid:border-checkbox-invalid-border! aria-invalid:shadow-[0_0_0_4px_rgba(239,68,68,0.2)] disabled:cursor-not-allowed",
   {
     variants: {
       size: {
@@ -17,20 +24,25 @@ export const checkboxIndicatorVariants = cva(
 
 /** Checkbox container variants - card backgrounds react to the nested indicator via `has-*`. */
 export const checkboxContainerVariants = cva(
-  "flex select-none items-center gap-3 rounded-xl transition-all duration-200",
+  "flex w-fit min-h-6 select-none items-start gap-2 rounded-md transition-all duration-200 has-[:disabled]:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-0 bg-transparent",
-        card: "w-full border border-slate-200 bg-white p-3 has-[[data-state=checked]]:bg-slate-100 has-[[aria-invalid=true]]:border-red-500 has-[[aria-invalid=true]]:bg-red-50 has-[[aria-invalid=true]]:shadow-sm sm:p-4",
+        default: "border-0 bg-transparent min-h-10",
+        card: `min-h-[60px] border border-slate-200 bg-white p-3 ${checkboxCheckedBoxBorderStyles} has-[[aria-invalid=true]]:border-checkbox-invalid-border! has-[[aria-invalid=true]]:bg-red-50 has-[[aria-invalid=true]]:shadow-sm sm:p-4`,
+      },
+      align: {
+        // both hug content width; order-1/order-2 (applied in index.tsx) flips box/label visual position.
+        start: "",
+        end: "",
       },
     },
-    defaultVariants: { variant: "default" },
+    defaultVariants: { variant: "default", align: "start" },
   }
 )
 
 /** Label/description text styles - no variants needed, so plain strings instead of cva. */
 export const checkboxLabelVariants =
-  "text-sm font-medium leading-5 text-slate-900 break-words peer-aria-invalid:text-red-600"
+  "font-sans text-sm font-medium leading-none tracking-normal text-checkbox-checked-label break-words group-aria-invalid:text-checkbox-invalid-label"
 export const checkboxDescriptionVariants =
-  "text-sm leading-5 text-slate-500 break-words peer-aria-invalid:text-red-500"
+  "font-sans text-sm leading-5 font-normal tracking-normal text-checkbox-description break-words"

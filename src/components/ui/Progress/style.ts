@@ -1,36 +1,37 @@
 import { cva } from "class-variance-authority"
 
-/** Progress track (background rail) style variants using CVA. */
+export const progressContainerStyles = "flex w-full max-w-[400px] flex-col gap-2"
+export const progressValueStyles = "text-sm font-semibold text-slate-900"
+
 export const progressTrackVariants = cva(
-  "relative w-full overflow-hidden rounded-full bg-slate-100",
+  "relative w-full max-w-[400px] overflow-hidden rounded-full bg-[var(--progress-track-bgColor,#E7EFF8)]",
   {
     variants: {
       size: {
-        default: "h-2",
-        sm: "h-1.5",
-        lg: "h-3",
+        default: "h-1",
       },
     },
-    defaultVariants: { size: "default" },
+    defaultVariants: {
+      size: "default",
+    },
   }
 )
 
-/** Progress indicator (filled bar) style variants using CVA. */
 export const progressIndicatorVariants = cva(
-  "h-full w-full flex-1 rounded-full transition-transform duration-500 ease-out",
+  "h-full rounded-full bg-[var(--progress-indicator-bgColor,#0A5FBC)] transition-[width] duration-500 ease-out",
   {
     variants: {
-      variant: {
-        default: "bg-blue-600",
-        violet: "bg-violet-500",
-        gradient: "bg-gradient-to-r from-sky-400 to-blue-600",
+      percent: {
+        "100%": "w-full",
+        "75%": "w-3/4",
+        "50%": "w-1/2",
+        "25%": "w-1/4",
+        "0%": "w-0",
       },
     },
-    defaultVariants: { variant: "default" },
+    defaultVariants: {
+      percent: "100%",
+    },
   }
 )
 
-/** Header/caption text styles - no variants needed, so plain strings instead of cva. */
-export const progressLabelVariants = "text-sm font-medium text-slate-900"
-export const progressValueVariants = "text-sm font-semibold text-slate-900"
-export const progressCaptionVariants = "text-xs text-slate-500"
