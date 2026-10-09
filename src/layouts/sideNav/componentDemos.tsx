@@ -244,6 +244,7 @@ export const componentDemos: ComponentDemo[] = [
   // { id: "select", label: "Select", description: "Dropdown selection.", render: () => <SelectDemo /> },
   // { id: "sonner", label: "Sonner", description: "Success and error toast notifications.", render: () => <SonnerDemo /> },
   // { id: "spinner", label: "Spinner", description: "Loading indicator.", render: () => <SpinnerDemo /> },
-  { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
-  { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
-  { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },]
+  // { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
+  // { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
+  // { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
+  ]
