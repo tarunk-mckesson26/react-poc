@@ -10,6 +10,7 @@ import {
   checkboxFocusPreviewStyles as focusStyles,
   checkboxPressedPreviewStyles as pressedStyles,
 } from "@/components/ui/Checkbox/style"
+import ButtonDemo from "./buttonDemo"
 
 const Row = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-wrap items-center gap-3">{children}</div>
@@ -20,159 +21,183 @@ const Row = ({ children }: { children: React.ReactNode }) => (
 const ProgressDemo = () => (
   <Row>
     <Progress percent="100%" valueLabel="100%" aria-label="Progress, 100 percent" />
-          <Progress percent="75%" valueLabel="75%" aria-label="Progress, 75 percent" />
-          <Progress percent="50%" valueLabel="50%" aria-label="Progress, 50 percent" />
-          <Progress percent="25%" valueLabel="25%" aria-label="Progress, 25 percent" />
-          <Progress percent="0%" valueLabel="0%" aria-label="Progress, 0 percent" />
-          <Progress value={62.5} valueLabel="62.5%" aria-label="Dynamic progress" />
+    <Progress percent="75%" valueLabel="75%" aria-label="Progress, 75 percent" />
+    <Progress percent="50%" valueLabel="50%" aria-label="Progress, 50 percent" />
+    <Progress percent="25%" valueLabel="25%" aria-label="Progress, 25 percent" />
+    <Progress percent="0%" valueLabel="0%" aria-label="Progress, 0 percent" />
+    <Progress value={62.5} valueLabel="62.5%" aria-label="Dynamic progress" />
   </Row>
+)
+
+const TooltipDemo = () => (
+  <div className="flex gap-x-4">
+    <TooltipComponent
+      trigger="Top tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="right"
+      trigger="Right tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="left"
+      trigger="Left tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="bottom"
+      trigger="Bottom tooltip"
+      content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum."
+    />
+  </div>
 )
 
 const CheckboxDemo = () => (
   <div className="flex flex-col gap-4">
     <Row>
-       <h2 className="text-lg font-semibold text-violet-600">Checkbox</h2>
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 text-sm font-semibold text-slate-500">Default</legend>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default Start</h4>
-                    <Checkbox align="start" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="start" label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default End</h4>
-                    <Checkbox align="end" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="end" label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box Start</h4>
-                    <Checkbox variant="card" align="start" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="start" label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box End</h4>
-                    <Checkbox variant="card" align="end" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="end" label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                </div>
-              </fieldset>
-      
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 text-sm font-semibold text-slate-500">Focus</legend>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default Start</h4>
-                    <Checkbox align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default End</h4>
-                    <Checkbox align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box Start</h4>
-                    <Checkbox variant="card" align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box End</h4>
-                    <Checkbox variant="card" align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                </div>
-              </fieldset>
-      
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 text-sm font-semibold text-slate-500">Pressed</legend>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default Start</h4>
-                    <Checkbox align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default End</h4>
-                    <Checkbox align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box Start</h4>
-                    <Checkbox variant="card" align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box End</h4>
-                    <Checkbox variant="card" align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                </div>
-              </fieldset>
-      
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 text-sm font-semibold text-slate-500">Disabled</legend>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default Start</h4>
-                    <Checkbox align="start" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="start" disabled label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default End</h4>
-                    <Checkbox align="end" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="end" disabled label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box Start</h4>
-                    <Checkbox variant="card" align="start" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="start" disabled label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box End</h4>
-                    <Checkbox variant="card" align="end" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="end" disabled label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                </div>
-              </fieldset>
-      
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 text-sm font-semibold text-slate-500">Invalid</legend>
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default Start</h4>
-                    <Checkbox align="start" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="start" invalid label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Default End</h4>
-                    <Checkbox align="end" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox align="end" invalid label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box Start</h4>
-                    <Checkbox variant="card" align="start" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="start" invalid label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                  <div className="flex min-w-0 flex-col gap-3">
-                    <h4 className="text-sm font-medium">Box End</h4>
-                    <Checkbox variant="card" align="end" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
-                    <Checkbox variant="card" align="end" invalid label="Checkbox Text" description="This is a checkbox description." />
-                  </div>
-                </div>
-              </fieldset>
-      
-              <fieldset className="min-w-0 border-0 p-0">
-                <legend className="mb-3 mt-4 text-sm font-semibold text-violet-600">Checkbox Group</legend>
-                <div className="flex flex-col gap-3">
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                  <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
-                </div>
-              </fieldset>
+      <h2 className="text-lg font-semibold text-violet-600">Checkbox</h2>
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 text-sm font-semibold text-slate-500">Default</legend>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default Start</h4>
+            <Checkbox align="start" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="start" label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default End</h4>
+            <Checkbox align="end" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="end" label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box Start</h4>
+            <Checkbox variant="card" align="start" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="start" label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box End</h4>
+            <Checkbox variant="card" align="end" label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="end" label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 text-sm font-semibold text-slate-500">Focus</legend>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default Start</h4>
+            <Checkbox align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default End</h4>
+            <Checkbox align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box Start</h4>
+            <Checkbox variant="card" align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="start" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box End</h4>
+            <Checkbox variant="card" align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="end" className={focusStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 text-sm font-semibold text-slate-500">Pressed</legend>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default Start</h4>
+            <Checkbox align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default End</h4>
+            <Checkbox align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box Start</h4>
+            <Checkbox variant="card" align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="start" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box End</h4>
+            <Checkbox variant="card" align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="end" className={pressedStyles} label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 text-sm font-semibold text-slate-500">Disabled</legend>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default Start</h4>
+            <Checkbox align="start" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="start" disabled label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default End</h4>
+            <Checkbox align="end" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="end" disabled label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box Start</h4>
+            <Checkbox variant="card" align="start" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="start" disabled label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box End</h4>
+            <Checkbox variant="card" align="end" disabled label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="end" disabled label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 text-sm font-semibold text-slate-500">Invalid</legend>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default Start</h4>
+            <Checkbox align="start" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="start" invalid label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Default End</h4>
+            <Checkbox align="end" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox align="end" invalid label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box Start</h4>
+            <Checkbox variant="card" align="start" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="start" invalid label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+          <div className="flex min-w-0 flex-col gap-3">
+            <h4 className="text-sm font-medium">Box End</h4>
+            <Checkbox variant="card" align="end" invalid label="Checkbox Text" description="This is a checkbox description." defaultChecked />
+            <Checkbox variant="card" align="end" invalid label="Checkbox Text" description="This is a checkbox description." />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset className="min-w-0 border-0 p-0">
+        <legend className="mb-3 mt-4 text-sm font-semibold text-violet-600">Checkbox Group</legend>
+        <div className="flex flex-col gap-3">
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+          <Checkbox label="Checkbox Text" description="This is a checkbox description" defaultChecked />
+        </div>
+      </fieldset>
     </Row>
   </div>
 )
@@ -213,16 +238,6 @@ const TabsDemo = () => {
   )
 }
 
-
-const TooltipDemo = () => (
-  <Row>
-    <TooltipComponent trigger={<Button variant="secondary">Top</Button>} content="Tooltip on top" />
-    <TooltipComponent side="right" trigger={<Button variant="secondary">Right</Button>} content="Tooltip on right" />
-    <TooltipComponent side="bottom" trigger={<Button variant="secondary">Bottom</Button>} content="Tooltip on bottom" />
-    <TooltipComponent side="left" trigger={<Button variant="secondary">Left</Button>} content="Tooltip on left" />
-  </Row>
-)
-
 export interface ComponentDemo {
   id: string
   label: string
@@ -234,7 +249,7 @@ export const componentDemos: ComponentDemo[] = [
   // { id: "accordion", label: "Accordion", description: "Collapsible content panels.", render: () => <AccordionDemo /> },
   // { id: "avatar", label: "Avatar", description: "User image with initials fallback.", render: () => <AvatarDemo /> },
   // { id: "bar-chart", label: "Bar Chart", description: "Chart card built on Recharts.", render: () => <BarChartDemo /> },
-  // { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
+  { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   // { id: "combobox", label: "Combobox", description: "Searchable single and multi select.", render: () => <ComboboxDemo /> },
   // { id: "input", label: "Input", description: "Text field variants.", render: () => <InputDemo /> },
@@ -246,5 +261,5 @@ export const componentDemos: ComponentDemo[] = [
   // { id: "spinner", label: "Spinner", description: "Loading indicator.", render: () => <SpinnerDemo /> },
   // { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
   // { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
-  // { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
-  ]
+  { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
+]
