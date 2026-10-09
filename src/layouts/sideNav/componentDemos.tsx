@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/Button"
 import { Badge } from "@/components/ui/Badge"
 import { PaginationComponent } from "@/components/ui/Pagination"
 import { Progress } from "@/components/ui/Progress"
-import { Switch } from "@/components/ui/Switch"
-import { TabsComponent } from "@/components/ui/Tabs"
 import { TooltipComponent } from "@/components/ui/Tooltip"
 import {
   checkboxFocusPreviewStyles as focusStyles,
@@ -14,6 +12,7 @@ import { BreadcrumbDropdownMenu, BreadcrumbDropdownMenuItem, BreadcrumbItem, Bre
 import { BellRingIcon, ChevronDownIcon, CircleCheck, InfoIcon, TriangleAlert } from "lucide-react"
 import { Alert } from "@/components/ui/Alert"
 import { Checkbox } from "@/components/ui/Checkbox"
+import ButtonDemo from "./buttonDemo"
 
 const Row = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-wrap items-center gap-3">{children}</div>
@@ -336,12 +335,36 @@ const BreadcrumbDemo = () => (
 const ProgressDemo = () => (
   <Row>
     <Progress percent="100%" valueLabel="100%" aria-label="Progress, 100 percent" />
-          <Progress percent="75%" valueLabel="75%" aria-label="Progress, 75 percent" />
-          <Progress percent="50%" valueLabel="50%" aria-label="Progress, 50 percent" />
-          <Progress percent="25%" valueLabel="25%" aria-label="Progress, 25 percent" />
-          <Progress percent="0%" valueLabel="0%" aria-label="Progress, 0 percent" />
-          <Progress value={62.5} valueLabel="62.5%" aria-label="Dynamic progress" />
+    <Progress percent="75%" valueLabel="75%" aria-label="Progress, 75 percent" />
+    <Progress percent="50%" valueLabel="50%" aria-label="Progress, 50 percent" />
+    <Progress percent="25%" valueLabel="25%" aria-label="Progress, 25 percent" />
+    <Progress percent="0%" valueLabel="0%" aria-label="Progress, 0 percent" />
+    <Progress value={62.5} valueLabel="62.5%" aria-label="Dynamic progress" />
   </Row>
+)
+
+const TooltipDemo = () => (
+  <div className="flex gap-x-4">
+    <TooltipComponent
+      trigger="Top tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="right"
+      trigger="Right tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="left"
+      trigger="Left tooltip"
+      content="Lorem Ipsum"
+    />
+    <TooltipComponent
+      side="bottom"
+      trigger="Bottom tooltip"
+      content="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum."
+    />
+  </div>
 )
 
 const CheckboxDemo = () => (
@@ -499,45 +522,6 @@ const PaginationDemo = () => {
   return <PaginationComponent totalItems={120} itemsPerPage={10} currentPage={page} onPageChange={setPage} />
 }
 
-const SwitchDemo = () => {
-  const [on, setOn] = useState(true)
-
-  return (
-    <div className="flex flex-col gap-4">
-      <Switch label="Airplane mode" checked={on} onCheckedChange={setOn} />
-      <Switch label="Notifications" description="Receive updates by email" align="end" />
-      <Switch label="Disabled" disabled />
-    </div>
-  )
-}
-
-const TabsDemo = () => {
-  const [tab, setTab] = useState("overview")
-
-  return (
-    <TabsComponent
-      value={tab}
-      onValueChange={setTab}
-      className="max-w-xl"
-      items={[
-        { value: "overview", label: "Overview", content: <p>Content for the overview tab.</p> },
-        { value: "details", label: "Details", content: <p>Content for the details tab.</p> },
-        { value: "settings", label: "Settings", content: <p>Content for the settings tab.</p> },
-      ]}
-    />
-  )
-}
-
-
-const TooltipDemo = () => (
-  <Row>
-    <TooltipComponent trigger={<Button variant="secondary">Top</Button>} content="Tooltip on top" />
-    <TooltipComponent side="right" trigger={<Button variant="secondary">Right</Button>} content="Tooltip on right" />
-    <TooltipComponent side="bottom" trigger={<Button variant="secondary">Bottom</Button>} content="Tooltip on bottom" />
-    <TooltipComponent side="left" trigger={<Button variant="secondary">Left</Button>} content="Tooltip on left" />
-  </Row>
-)
-
 export interface ComponentDemo {
   id: string
   label: string
@@ -552,6 +536,7 @@ export const componentDemos: ComponentDemo[] = [
   { id: "alert", label: "Alert", description: "Informational messages with different variants.", render: () => <AlertDemo /> },
   { id: "badge", label: "Badge", description: "Variants and sizes.", render: () => <BadgeDemo /> },
   { id: "breadcrumb", label: "Breadcrumb", description: "Navigation for hierarchical content.", render: () => <BreadcrumbDemo /> },
+  { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   // { id: "combobox", label: "Combobox", description: "Searchable single and multi select.", render: () => <ComboboxDemo /> },
   // { id: "input", label: "Input", description: "Text field variants.", render: () => <InputDemo /> },
@@ -563,5 +548,5 @@ export const componentDemos: ComponentDemo[] = [
   // { id: "spinner", label: "Spinner", description: "Loading indicator.", render: () => <SpinnerDemo /> },
   // { id: "switch", label: "Switch", description: "Toggle control.", render: () => <SwitchDemo /> },
   // { id: "tabs", label: "Tabs", description: "Tabbed content panels.", render: () => <TabsDemo /> },
-  // { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
-  ]
+  { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
+]
