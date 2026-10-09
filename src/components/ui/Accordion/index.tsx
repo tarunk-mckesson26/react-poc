@@ -12,7 +12,7 @@ import type { AccordionComponentProps } from "./type"
  * Renders a collapsible list from a plain `items` array so consumers don't
  * need to hand-compose `AccordionItem` / `AccordionTrigger` / `AccordionContent`
  * for the common case. All Radix Root props (`type`, `value`, `defaultValue`,
- * `onValueChange`, `collapsible`, etc.) pass straight through, keeping the
+ * `onValueChangee`, `collapsible`, etc.) pass straight through, keeping the
  * discriminated typing for controlled/uncontrolled and single/multiple modes.
  */
 function AccordionComponent({

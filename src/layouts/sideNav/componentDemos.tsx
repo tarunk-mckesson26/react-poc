@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/Button"
-import { Checkbox } from "@/components/ui/Checkbox"
+import { Badge } from "@/components/ui/Badge"
 import { PaginationComponent } from "@/components/ui/Pagination"
 import { Progress } from "@/components/ui/Progress"
 import { Switch } from "@/components/ui/Switch"
@@ -10,13 +10,329 @@ import {
   checkboxFocusPreviewStyles as focusStyles,
   checkboxPressedPreviewStyles as pressedStyles,
 } from "@/components/ui/Checkbox/style"
+import { BreadcrumbDropdownMenu, BreadcrumbDropdownMenuItem, BreadcrumbItem, Breadcrumb, BreadcrumbList, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbEllipsis, BreadcrumbDropdownMenuTrigger, BreadcrumbDropdownMenuContent, BreadcrumbDropdownMenuGroup } from "@/components/ui/Breadcrumb"
+import { BellRingIcon, ChevronDownIcon, CircleCheck, InfoIcon, TriangleAlert } from "lucide-react"
+import { Alert } from "@/components/ui/Alert"
+import { Checkbox } from "@/components/ui/Checkbox"
 
 const Row = ({ children }: { children: React.ReactNode }) => (
   <div className="flex flex-wrap items-center gap-3">{children}</div>
 )
 
+const AlertDemo = () => (
+  <Row>
+    <div className="mx-auto grid grid-cols-1 gap-8 p-8"> 
 
+      <Alert variant="info"> 
 
+        <BellRingIcon /> 
+
+        <Alert name="title">Alert Title</Alert> 
+
+        <Alert name="description">This is an alert description.</Alert> 
+
+      </Alert> 
+
+      <Alert variant="alert"> 
+
+        <TriangleAlert /> 
+
+        <Alert name="title">Alert Title</Alert> 
+
+        <Alert name="description">This is an alert description.</Alert> 
+
+      </Alert> 
+
+      <Alert variant="error"> 
+
+        <InfoIcon /> 
+
+        <Alert name="title">Alert Title</Alert> 
+
+        <Alert name="description">This is an alert description.</Alert> 
+
+      </Alert> 
+
+      <Alert variant="success"> 
+
+        <CircleCheck /> 
+
+        <Alert name="title">Alert Title</Alert> 
+
+        <Alert name="description">This is an alert description.</Alert> 
+
+      </Alert> 
+
+      <Alert variant="success-strong"> 
+
+        <CircleCheck /> 
+
+        <Alert name="title">Alert Title</Alert> 
+
+        <Alert name="description">This is an alert description.</Alert> 
+
+      </Alert> 
+
+    </div> 
+  </Row>
+)
+const BadgeDemo = () => (
+  <Row>
+    <section className="flex flex-col items-start gap-4"> 
+
+        <h2 className="text-sm font-medium">Large</h2> 
+
+        <Badge variant="default" size="lg"> 
+
+          Default 
+
+        </Badge> 
+
+        <Badge variant="secondary" size="lg"> 
+
+          Secondary 
+
+        </Badge> 
+
+        <Badge variant="outline" size="lg"> 
+
+          Outline 
+
+        </Badge> 
+
+        <Badge variant="destructive" size="lg"> 
+
+          Destructive 
+
+        </Badge> 
+
+        <Badge variant="ghost" size="lg"> 
+
+          Ghost 
+
+        </Badge> 
+
+      </section> 
+
+      <section className="flex flex-col items-start gap-4"> 
+
+        <h2 className="text-sm font-medium">Default</h2> 
+
+        <Badge variant="default" size="default"> 
+
+          Default 
+
+        </Badge> 
+
+        <Badge variant="secondary" size="default"> 
+
+          Secondary 
+
+        </Badge> 
+
+        <Badge variant="outline" size="default"> 
+
+          Outline 
+
+        </Badge> 
+
+        <Badge variant="destructive" size="default"> 
+
+          Destructive 
+
+        </Badge> 
+
+        <Badge variant="ghost" size="default"> 
+
+          Ghost 
+
+        </Badge> 
+
+      </section> 
+
+      <section className="flex flex-col items-start gap-4"> 
+
+        <h2 className="text-sm font-medium">Badge Number</h2> 
+
+        <div className="grid grid-cols-2 gap-6"> 
+
+          <div className="flex flex-col items-start gap-4"> 
+
+            <Badge number variant="default" size="default"> 
+
+              1 
+
+            </Badge> 
+
+            <Badge number variant="secondary" size="default"> 
+
+              2 
+
+            </Badge> 
+
+            <Badge number variant="outline" size="default"> 
+
+              3 
+
+            </Badge> 
+
+            <Badge number variant="destructive" size="default"> 
+
+              4 
+
+            </Badge> 
+
+            <Badge number variant="ghost" size="default"> 
+
+              5 
+
+            </Badge> 
+
+          </div> 
+
+        </div> 
+
+      </section> 
+  </Row>
+)
+
+const BreadcrumbDemo = () => (
+  <Row>
+    <Breadcrumb> 
+
+        <BreadcrumbList> 
+
+          <BreadcrumbItem> 
+
+            <BreadcrumbLink href="#">Breadcrumb</BreadcrumbLink> 
+
+          </BreadcrumbItem> 
+
+          <BreadcrumbSeparator /> 
+
+          <BreadcrumbItem> 
+
+            <BreadcrumbDropdownMenu> 
+
+              <BreadcrumbDropdownMenuTrigger asChild> 
+
+                <Button 
+
+                  size="icon-sm" 
+
+                  variant="ghost" 
+
+                  className="focus-visible:ring-0! focus-visible:border-transparent!" 
+
+                > 
+
+                  <BreadcrumbEllipsis /> 
+
+                  <span className="sr-only">Toggle menu</span> 
+
+                </Button> 
+
+              </BreadcrumbDropdownMenuTrigger> 
+
+              <BreadcrumbSeparator /> 
+
+              <BreadcrumbDropdownMenuContent align="start"> 
+
+                <BreadcrumbDropdownMenuGroup> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    Documentation 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    Themes 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    GitHub 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                </BreadcrumbDropdownMenuGroup> 
+
+              </BreadcrumbDropdownMenuContent> 
+
+            </BreadcrumbDropdownMenu> 
+
+          </BreadcrumbItem> 
+
+          {/* <BreadcrumbSeparator /> 
+
+          <BreadcrumbItem> 
+
+            <BreadcrumbLink href="#">Components</BreadcrumbLink> 
+
+          </BreadcrumbItem>*/} 
+
+          <BreadcrumbItem> 
+
+            <BreadcrumbDropdownMenu> 
+
+              <BreadcrumbDropdownMenuTrigger asChild> 
+
+                <button className="flex items-center gap-1"> 
+
+                  Components 
+
+                  <ChevronDownIcon 
+
+                    data-icon="inline-end" 
+
+                    className="size-3.5" 
+
+                  /> 
+
+                </button> 
+
+              </BreadcrumbDropdownMenuTrigger> 
+
+              <BreadcrumbDropdownMenuContent align="start"> 
+
+                <BreadcrumbDropdownMenuGroup> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    Documentation 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    Themes 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                  <BreadcrumbDropdownMenuItem> 
+
+                    GitHub 
+
+                  </BreadcrumbDropdownMenuItem> 
+
+                </BreadcrumbDropdownMenuGroup> 
+
+              </BreadcrumbDropdownMenuContent> 
+
+            </BreadcrumbDropdownMenu> 
+
+          </BreadcrumbItem> 
+
+          <BreadcrumbSeparator /> 
+
+        </BreadcrumbList> 
+
+      </Breadcrumb> 
+  </Row>
+)
 const ProgressDemo = () => (
   <Row>
     <Progress percent="100%" valueLabel="100%" aria-label="Progress, 100 percent" />
@@ -31,7 +347,6 @@ const ProgressDemo = () => (
 const CheckboxDemo = () => (
   <div className="flex flex-col gap-4">
     <Row>
-       <h2 className="text-lg font-semibold text-violet-600">Checkbox</h2>
               <fieldset className="min-w-0 border-0 p-0">
                 <legend className="mb-3 text-sm font-semibold text-slate-500">Default</legend>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -234,7 +549,9 @@ export const componentDemos: ComponentDemo[] = [
   // { id: "accordion", label: "Accordion", description: "Collapsible content panels.", render: () => <AccordionDemo /> },
   // { id: "avatar", label: "Avatar", description: "User image with initials fallback.", render: () => <AvatarDemo /> },
   // { id: "bar-chart", label: "Bar Chart", description: "Chart card built on Recharts.", render: () => <BarChartDemo /> },
-  // { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
+  { id: "alert", label: "Alert", description: "Informational messages with different variants.", render: () => <AlertDemo /> },
+  { id: "badge", label: "Badge", description: "Variants and sizes.", render: () => <BadgeDemo /> },
+  { id: "breadcrumb", label: "Breadcrumb", description: "Navigation for hierarchical content.", render: () => <BreadcrumbDemo /> },
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   // { id: "combobox", label: "Combobox", description: "Searchable single and multi select.", render: () => <ComboboxDemo /> },
   // { id: "input", label: "Input", description: "Text field variants.", render: () => <InputDemo /> },
