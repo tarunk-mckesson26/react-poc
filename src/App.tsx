@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import {
   Bell,
+  BadgeCheck,
   ChartColumn,
   ChevronsUpDown,
+  CircleAlert,
   CircleUser,
   ListOrdered,
   Loader,
@@ -16,15 +18,19 @@ import {
   TextCursorInput,
   ToggleRight,
   ChartLine,
+  Route,
 } from 'lucide-react';
 import './App.css';
 import { SideNav } from './layouts/sideNav';
 import { componentDemos } from './layouts/sideNav/componentDemos';
 
 const icons: Record<string, React.ReactNode> = {
+  alert: <CircleAlert />,
   accordion: <Rows3 />,
   avatar: <CircleUser />,
+  badge: <BadgeCheck />,
   'bar-chart': <ChartColumn />,
+  breadcrumb: <Route />,
   'line-graph': <ChartLine />,
   button: <MousePointerClick />,
   checkbox: <SquareCheck />,
