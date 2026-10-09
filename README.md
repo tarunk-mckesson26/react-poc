@@ -2,6 +2,18 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
+## Okta Sign-In
+
+Copy `.env.example` to `.env` and set `VITE_OKTA_ISSUER` and `VITE_OKTA_CLIENT_ID` to the values for your Okta OIDC Single-Page Application. Do not put a client secret in this frontend project.
+
+Add these URLs to the Okta application's sign-in settings for local development:
+
+- Sign-in redirect URI: `http://localhost:5173/login/callback`
+- Sign-out redirect URI: `http://localhost:5173`
+- Trusted origin: `http://localhost:5173`
+
+Restart the Vite dev server after changing `.env` values.
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
