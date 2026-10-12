@@ -1,4 +1,5 @@
 import type React from "react";
+import AccordionDemo from "./accordionDemo";
 import AlertDemo from "./alertDemo";
 import AvatarDemo from "./avatarDemo";
 import BadgeDemo from "./badgeDemo";
@@ -17,6 +18,7 @@ export interface ComponentDemo {
 }
 
 export const componentDemos: ComponentDemo[] = [
+  { id: "accordion", label: "Accordion", description: "Collapsible sections in basic and bordered variants.", render: () => <AccordionDemo /> },
   { id: "alert", label: "Alert", description: "Informational messages with different variants.", render: () => <AlertDemo /> },
   { id: "avatar", label: "Avatar", description: "Image, name, and icon avatars in different sizes.", render: () => <AvatarDemo /> },
   { id: "badge", label: "Badge", description: "Variants and sizes.", render: () => <BadgeDemo /> },
