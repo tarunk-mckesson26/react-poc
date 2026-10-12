@@ -10,19 +10,9 @@ describe("Avatar", () => {
   })
 
   it("renders an image when src is provided", () => {
-    const preloadImage = document.createElement("img")
-    Object.defineProperties(preloadImage, {
-      complete: { value: true },
-      naturalWidth: { value: 1 },
-    })
-    const imageConstructor = jest.spyOn(window, "Image").mockImplementation(() => preloadImage)
+    render(<Avatar src="/avatar.png" alt="Jane Doe" />)
 
-    try {
-      render(<Avatar src="/avatar.png" alt="Jane Doe" />)
-      expect(screen.getByRole("img", { name: /jane doe/i })).toHaveAttribute("src", "/avatar.png")
-    } finally {
-      imageConstructor.mockRestore()
-    }
+    expect(screen.getByRole("img", { name: /jane doe/i })).toHaveAttribute("src", "/avatar.png")
   })
 
   it("renders a custom icon when provided", () => {
