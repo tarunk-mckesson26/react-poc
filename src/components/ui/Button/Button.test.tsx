@@ -14,7 +14,7 @@ describe("Button", () => {
     render(<Button>Default</Button>)
     const btn = screen.getByRole("button", { name: /default/i })
     expect(btn).toHaveAttribute("data-slot", "button")
-    expect(btn).toHaveAttribute("data-variant", "default")
+    expect(btn).toHaveAttribute("data-variant", "primary")
     expect(btn).toHaveAttribute("data-size", "default")
   })
 

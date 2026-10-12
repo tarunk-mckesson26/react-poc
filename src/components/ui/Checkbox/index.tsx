@@ -17,7 +17,7 @@ const Checkbox = ({
   description,
   error,
   invalid,
-  icon = <Check className="h-3 w-3" />,
+  icon = <Check className="size-3" />,
   containerClassName,
   labelClassName,
   descriptionClassName,
@@ -32,7 +32,7 @@ const Checkbox = ({
       data-slot="checkbox"
       data-variant={variant}
       aria-invalid={hasError}
-      className={clsx("group", checkboxContainerVariants({ variant, align }), containerClassName)}
+      className={clsx("group", checkboxContainerVariants({ variant }), containerClassName)}
     >
       <span className={clsx("relative mt-0.5 flex shrink-0", align === "end" ? "order-2" : "order-1")}>
         <input

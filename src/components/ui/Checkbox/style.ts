@@ -13,9 +13,9 @@ export const checkboxIndicatorVariants = cva(
   {
     variants: {
       size: {
-        default: "h-4 w-4",
-        sm: "h-3.5 w-3.5",
-        lg: "h-5 w-5",
+        default: "size-4",
+        sm: "size-3.5",
+        lg: "size-5",
       },
     },
     defaultVariants: { size: "default" },
@@ -31,13 +31,8 @@ export const checkboxContainerVariants = cva(
         default: "border-0 bg-transparent min-h-10",
         card: `min-h-[60px] border border-slate-200 bg-white p-3 ${checkboxCheckedBoxBorderStyles} has-[[aria-invalid=true]]:border-checkbox-invalid-border! has-[[aria-invalid=true]]:bg-red-50 has-[[aria-invalid=true]]:shadow-sm sm:p-4`,
       },
-      align: {
-        // both hug content width; order-1/order-2 (applied in index.tsx) flips box/label visual position.
-        start: "",
-        end: "",
-      },
     },
-    defaultVariants: { variant: "default", align: "start" },
+    defaultVariants: { variant: "default" },
   }
 )
 

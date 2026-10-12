@@ -8,6 +8,7 @@ import CheckboxDemo from "./checkboxDemo";
 import PaginationDemo from "./paginationDemo";
 import ProgressDemo from "./progressDemo";
 import TooltipDemo from "./tooltipDemo";
+import SwitchDemo from "./switchDemo";
 
 export interface ComponentDemo {
   id: string;
@@ -26,4 +27,5 @@ export const componentDemos: ComponentDemo[] = [
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
   { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
+  { id: "switch", label: "Switch", description: "Toggle control with label.", render: () => <SwitchDemo /> },
 ];
