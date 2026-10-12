@@ -1,5 +1,6 @@
 import type React from "react";
 import AlertDemo from "./alertDemo";
+import AvatarDemo from "./avatarDemo";
 import BadgeDemo from "./badgeDemo";
 import BreadcrumbDemo from "./breadcrumbDemo";
 import ButtonDemo from "./buttonDemo";
@@ -17,6 +18,7 @@ export interface ComponentDemo {
 
 export const componentDemos: ComponentDemo[] = [
   { id: "alert", label: "Alert", description: "Informational messages with different variants.", render: () => <AlertDemo /> },
+  { id: "avatar", label: "Avatar", description: "Image, name, and icon avatars in different sizes.", render: () => <AvatarDemo /> },
   { id: "badge", label: "Badge", description: "Variants and sizes.", render: () => <BadgeDemo /> },
   { id: "breadcrumb", label: "Breadcrumb", description: "Navigation for hierarchical content.", render: () => <BreadcrumbDemo /> },
   { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
