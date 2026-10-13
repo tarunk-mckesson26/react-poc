@@ -1,4 +1,4 @@
-import { cn } from "cn"
+import { clsx } from "@/lib/clsx"
 import { Tooltip as TooltipPrimitive } from "radix-ui"
 import { tooltipArrowClass, tooltipContentClass } from "./style"
 import type {
@@ -45,7 +45,7 @@ function TooltipContent({
       <TooltipPrimitive.Content
         data-slot="tooltip-content"
         sideOffset={sideOffset}
-        className={cn(tooltipContentClass, className)}
+        className={clsx(tooltipContentClass, className)}
         {...props}
       >
         {children}
@@ -56,10 +56,4 @@ function TooltipContent({
 }
 
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }
-export type {
-  TooltipProviderProps,
-  TooltipRootProps,
-  TooltipTriggerProps,
-  TooltipContentProps,
-} from "./type"
 

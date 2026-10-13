@@ -10,41 +10,49 @@ import type { TooltipComponentProps } from "./type"
  * Supports customizable positioning, sizing, delay, and disabled state.
  * Trigger can be text, an icon, or any React element.
  */
-export function TooltipComponent({
-    trigger,
-    content,
-    side = "top",
-    delayDuration = 200,
-    disabled = false,
-    className,
+function TooltipComponent({
+  trigger,
+  content,
+  side = "top",
+  delayDuration = 200,
+  disabled = false,
+  className,
 }: TooltipComponentProps) {
-    // Don't render tooltip if disabled
-    if (disabled) {
-        return <>{trigger}</>
-    }
+  if (disabled) {
+    return <>{trigger}</>
+  }
 
-    // Auto-wrap string triggers in a span for proper Radix UI handling
-    // This allows users to pass text, icons, or elements
-    const triggerElement = typeof trigger === "string"
-        ? <span className="inline-flex">{trigger}</span>
-        : trigger
-
-    return (
-        <TooltipProvider>
-            <Tooltip delayDuration={delayDuration}>
-                <TooltipTrigger asChild>
-                    {triggerElement}
-                </TooltipTrigger>
-                <TooltipContent
-                    side={side}
-                    className={className}
-                >
-                    {content}
-                </TooltipContent>
-            </Tooltip>
-        </TooltipProvider>
-
+  // Radix needs a real element to attach the trigger ref to, so bare text is wrapped
+  const triggerElement =
+    typeof trigger === "string" ? (
+      <span className="inline-flex">{trigger}</span>
+    ) : (
+      trigger
     )
+
+  return (
+    <TooltipProvider>
+      <Tooltip delayDuration={delayDuration}>
+        <TooltipTrigger asChild>{triggerElement}</TooltipTrigger>
+        <TooltipContent side={side} className={className}>
+          {content}
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
 }
 
-export type { TooltipComponentProps }
+export {
+  TooltipComponent,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+}
+export type {
+  TooltipComponentProps,
+  TooltipContentProps,
+  TooltipProviderProps,
+  TooltipRootProps,
+  TooltipTriggerProps,
+} from "./type"

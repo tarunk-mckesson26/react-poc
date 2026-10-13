@@ -1,69 +1,99 @@
+import { Fragment } from "react";
 import { Button } from "@/components/ui/Button";
+import {
+  buttonFocusPreviewStyles,
+  buttonHoverPreviewStyles,
+} from "@/components/ui/Button/style";
+import type { ButtonSize, ButtonVariant } from "@/components/ui/Button/type";
 import { FileChartPie } from "lucide-react";
 
-const ButtonDemo = () => {
-    return (
-        <div className="flex flex-col gap-y-2">
-            <div className="flex gap-x-5">
-                <Button size="xs">Click Me</Button>
-                <Button size="xs" disabled>Disabled</Button>
-                <Button size="xs" data-loading="true">Loading</Button>
-            </div>
-            <div className="flex gap-x-5">
-                <Button>Click Me</Button>
-                <Button disabled>Disabled</Button>
-                <Button data-loading="true">Loading</Button>
-            </div>
-            <div className="flex gap-x-5">
-                <Button size="sm">Click Me</Button>
-                <Button size="sm" disabled>Disabled</Button>
-                <Button size="sm" data-loading="true">Loading</Button>
-            </div>
-            <div className="flex gap-x-5">
-                <Button size="lg">Click Me</Button>
-                <Button size="lg" disabled>Disabled</Button>
-                <Button size="lg" data-loading="true">Loading</Button>
-            </div>
+const variants: { title: string; variant: ButtonVariant }[] = [
+  { title: "Primary", variant: "primary" },
+  { title: "Secondary", variant: "secondary" },
+  { title: "Destructive", variant: "destructive" },
+  { title: "Tertiary", variant: "tertiary" },
+  { title: "Ghost", variant: "ghost" },
+  { title: "Link", variant: "link" },
+];
 
-            <div className="flex gap-x-5">
-                <Button size="icon"><FileChartPie /></Button>
-                <Button size="icon-xs" data-loading="true"><FileChartPie /></Button>
-                <Button size="icon-sm"><FileChartPie /></Button>
-                <Button size="icon-lg" data-loading="true"><FileChartPie /></Button>
-            </div>
+const sizes: { title: string; size: ButtonSize; icon: boolean }[] = [
+  { title: "default", size: "default", icon: false },
+  { title: "xs", size: "xs", icon: false },
+  { title: "sm", size: "sm", icon: false },
+  { title: "lg", size: "lg", icon: false },
+  { title: "icon", size: "icon", icon: true },
+  { title: "icon-xs", size: "icon-xs", icon: true },
+  { title: "icon-sm", size: "icon-sm", icon: true },
+  { title: "icon-lg", size: "icon-lg", icon: true },
+];
 
-            <div className="flex gap-x-5">
-                <Button variant="secondary">Click Me</Button>
-                <Button variant="secondary" disabled>Disabled</Button>
-                <Button variant="secondary" data-loading="true">Loading</Button>
-            </div>
+const states = ["Default", "Hover", "Focus", "Loading", "Disabled", "Pressed"] as const;
+type DemoState = (typeof states)[number];
 
-            <div className="flex gap-x-5">
-                <Button variant="destructive">Click Me</Button>
-                <Button variant="destructive" disabled>Disabled</Button>
-                <Button variant="destructive" data-loading="true">Loading</Button>
-            </div>
+const ButtonCell = ({
+  variant,
+  size,
+  icon,
+  state,
+}: {
+  variant: ButtonVariant;
+  size: ButtonSize;
+  icon: boolean;
+  state: DemoState;
+}) => {
+  // Hover/focus can't be held in a static gallery, so their looks are forced via className.
+  const previewClassName =
+    state === "Hover"
+      ? buttonHoverPreviewStyles[variant]
+      : state === "Focus"
+        ? buttonFocusPreviewStyles[variant]
+        : undefined;
 
-            <div className="flex gap-x-5">
-                <Button variant="tertiary">Click Me</Button>
-                <Button variant="tertiary" disabled>Disabled</Button>
-                <Button variant="tertiary" data-loading="true">Loading</Button>
-            </div>
+  return (
+    <Button
+      variant={variant}
+      size={size}
+      disabled={state === "Disabled"}
+      data-loading={state === "Loading"}
+      aria-pressed={state === "Pressed" ? true : undefined}
+      aria-label={icon ? `${variant} ${size} button` : undefined}
+      className={previewClassName}
+    >
+      {icon ? <FileChartPie /> : "Button"}
+    </Button>
+  );
+};
 
-            <div className="flex gap-x-5">
-                <Button variant="ghost">Click Me</Button>
-                <Button variant="ghost" disabled>Disabled</Button>
-                <Button variant="ghost" data-loading="true">Loading</Button>
-            </div>
+const ButtonDemo = () => (
+  <div className="flex flex-col gap-12">
+    {variants.map(({ title, variant }) => (
+      <section key={variant} className="flex flex-col gap-4">
+        <h2 className="text-sm font-semibold text-slate-500">{title}</h2>
+        <div
+          className="grid items-center gap-x-6 gap-y-3"
+          style={{ gridTemplateColumns: `72px repeat(${states.length}, minmax(96px, 1fr))` }}
+        >
+          <div />
+          {states.map((state) => (
+            <span key={state} className="text-xs font-medium text-slate-400">
+              {state}
+            </span>
+          ))}
 
-            <div className="flex gap-x-5">
-                <Button variant="link">Click Me</Button>
-                <Button variant="link" disabled>Disabled</Button>
-                <Button variant="link" data-loading="true">Loading</Button>
-            </div>
-
+          {sizes.map(({ title: sizeTitle, size, icon }) => (
+            <Fragment key={size}>
+              <span className="text-xs text-slate-400">{sizeTitle}</span>
+              {states.map((state) => (
+                <div key={state} className="flex items-center">
+                  <ButtonCell variant={variant} size={size} icon={icon} state={state} />
+                </div>
+              ))}
+            </Fragment>
+          ))}
         </div>
-    )
-}
+      </section>
+    ))}
+  </div>
+);
 
-export default ButtonDemo
+export default ButtonDemo;

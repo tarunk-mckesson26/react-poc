@@ -41,10 +41,18 @@ function AccordionComponent({
 }
 
 export {
-  AccordionComponent
+  AccordionComponent,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 }
 export type {
   AccordionComponentProps,
+  AccordionContentProps,
   AccordionItemData,
+  AccordionItemProps,
+  AccordionRootProps,
+  AccordionTriggerProps,
   AccordionVariant,
 } from "./type"
