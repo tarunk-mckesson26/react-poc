@@ -62,6 +62,8 @@
   --radius-checkbox: var(--checkbox-border-radius);
   --color-toast-success-borderColor: var(--toast-success-borderColor);
   --color-toast-success-bgColor: var(--toast-success-bgColor);
+  --color-toast-error-borderColor: var(--toast-error-borderColor);
+  --color-toast-error-bgColor: var(--toast-error-bgColor);
 }
 
 :root {
@@ -125,5 +127,7 @@
   --checkbox-focus-ringColor: #0A5FBC;
   --toast-success-borderColor: #8AC7AE;
   --toast-success-bgColor: #E6F3ED;
+  --toast-error-borderColor: #FECACA;
+  --toast-error-bgColor: #FEF2F2;
 
 }

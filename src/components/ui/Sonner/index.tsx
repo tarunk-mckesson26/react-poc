@@ -4,7 +4,7 @@ import { clsx } from "@/lib/clsx"
 import { sonnerCloseVariants, sonnerIconVariants, sonnerVariants } from "./style"
 import type { SonnerFill, SonnerProps, SonnerToastOptions, SonnerToasterProps } from "./type"
 
-const FILL_PRESETS = ["success", "error", "custom"] as const
+const FILL_PRESETS = ["success", "error"] as const
 
 const isPreset = (fill: string): fill is SonnerFill =>
   (FILL_PRESETS as readonly string[]).includes(fill)
@@ -33,13 +33,13 @@ const Sonner = ({
       data-slot="sonner"
       role="status"
       aria-live="polite"
-      className={clsx(sonnerVariants({ fill: preset, size }), className)}
+      className={clsx(sonnerVariants({ fill: preset === "custom" ? null : preset, size }), className)}
       style={{
         backgroundColor: preset === "custom" ? fill : undefined,
         color,
       }}
     >
-      {icon ? <span className={clsx(sonnerIconVariants(), iconClassName)}>{icon}</span> : null}
+      {icon ? <span className={clsx(sonnerIconVariants(), "self-start", iconClassName)}>{icon}</span> : null}
 
       <div className={clsx("flex min-w-0 flex-col gap-0.5", textClassName)}>
         <span className="font-medium">{text}</span>

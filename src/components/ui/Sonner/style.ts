@@ -11,7 +11,7 @@ export const sonnerVariants = cva(
     variants: {
       fill: {
         success: "border-toast-success-borderColor bg-toast-success-bgColor text-success-foreground",
-        error: "border-transparent bg-destructive text-destructive-foreground",
+        error: "border-toast-error-borderColor bg-toast-error-bgColor text-destructive-pressed",
       },
       size: {
         sm: "px-3 py-2 text-xs",
