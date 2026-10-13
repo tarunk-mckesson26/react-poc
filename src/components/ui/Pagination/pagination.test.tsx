@@ -67,6 +67,31 @@ describe("Pagination primitives", () => {
     render(<PaginationEllipsis />)
     expect(screen.getByText("More pages")).toBeInTheDocument()
   })
+
+  it("hides the ellipsis from the accessibility tree", () => {
+    const { container } = render(<PaginationEllipsis />)
+    const ellipsis = container.querySelector(
+      "[data-slot='pagination-ellipsis']"
+    )
+    expect(ellipsis).toHaveAttribute("aria-hidden")
+  })
+
+  it("marks list items with their slot attribute", () => {
+    render(
+      <PaginationContent>
+        <PaginationItem>Item</PaginationItem>
+      </PaginationContent>
+    )
+    expect(screen.getByRole("listitem")).toHaveAttribute(
+      "data-slot",
+      "pagination-item"
+    )
+  })
+
+  it("merges a custom className on the nav", () => {
+    render(<Pagination className="custom-nav" />)
+    expect(screen.getByRole("navigation")).toHaveClass("custom-nav", "flex")
+  })
 })
 
 describe("PaginationComponent", () => {
@@ -115,6 +140,49 @@ describe("PaginationComponent", () => {
     expect(screen.getAllByText("More pages")).toHaveLength(2)
   })
 
+  it("shows only a trailing ellipsis near the start of a large range", () => {
+    render(
+      <PaginationComponent
+        totalItems={1000}
+        itemsPerPage={10}
+        currentPage={2}
+        onPageChange={jest.fn()}
+      />
+    )
+    expect(screen.getAllByText("More pages")).toHaveLength(1)
+    expect(screen.getByRole("link", { name: "1" })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: "100" })).toBeInTheDocument()
+  })
+
+  it("shows only a leading ellipsis near the end of a large range", () => {
+    render(
+      <PaginationComponent
+        totalItems={1000}
+        itemsPerPage={10}
+        currentPage={99}
+        onPageChange={jest.fn()}
+      />
+    )
+    expect(screen.getAllByText("More pages")).toHaveLength(1)
+    expect(screen.getByRole("link", { name: "1" })).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: "100" })).toBeInTheDocument()
+  })
+
+  it("widens the visible window when siblingCount is increased", () => {
+    render(
+      <PaginationComponent
+        totalItems={1000}
+        itemsPerPage={10}
+        currentPage={50}
+        siblingCount={2}
+        onPageChange={jest.fn()}
+      />
+    )
+    ;["48", "49", "50", "51", "52"].forEach((page) => {
+      expect(screen.getByRole("link", { name: page })).toBeInTheDocument()
+    })
+  })
+
   it("calls onPageChange when a page number is clicked", async () => {
     const user = userEvent.setup()
     const onPageChange = jest.fn()
@@ -128,6 +196,70 @@ describe("PaginationComponent", () => {
     )
     await user.click(screen.getByRole("link", { name: "3" }))
     expect(onPageChange).toHaveBeenCalledWith(3)
+  })
+
+  it("does not fire onPageChange when the current page is clicked", async () => {
+    const user = userEvent.setup()
+    const onPageChange = jest.fn()
+    render(
+      <PaginationComponent
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={3}
+        onPageChange={onPageChange}
+      />
+    )
+    await user.click(screen.getByRole("link", { name: "3" }))
+    expect(onPageChange).not.toHaveBeenCalled()
+  })
+
+  it("clamps a currentPage above the last page", () => {
+    render(
+      <PaginationComponent
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={99}
+        onPageChange={jest.fn()}
+      />
+    )
+    expect(screen.getByRole("link", { name: "5" })).toHaveAttribute(
+      "aria-current",
+      "page"
+    )
+    expect(
+      screen.getByRole("link", { name: /go to next page/i })
+    ).toHaveAttribute("aria-disabled", "true")
+  })
+
+  it("clamps a currentPage below the first page", () => {
+    render(
+      <PaginationComponent
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={0}
+        onPageChange={jest.fn()}
+      />
+    )
+    expect(screen.getByRole("link", { name: "1" })).toHaveAttribute(
+      "aria-current",
+      "page"
+    )
+    expect(
+      screen.getByRole("link", { name: /go to previous page/i })
+    ).toHaveAttribute("aria-disabled", "true")
+  })
+
+  it("rounds a partial last page up into its own page", () => {
+    render(
+      <PaginationComponent
+        totalItems={21}
+        itemsPerPage={10}
+        currentPage={1}
+        onPageChange={jest.fn()}
+      />
+    )
+    expect(screen.getByRole("link", { name: "3" })).toBeInTheDocument()
+    expect(screen.queryByRole("link", { name: "4" })).not.toBeInTheDocument()
   })
 
   it("disables the previous control on the first page", async () => {
@@ -259,5 +391,18 @@ describe("PaginationComponent", () => {
     )
     expect(screen.getByRole("navigation")).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "1" })).toBeInTheDocument()
+  })
+
+  it("forwards a custom className to the nav", () => {
+    render(
+      <PaginationComponent
+        totalItems={50}
+        itemsPerPage={10}
+        currentPage={1}
+        onPageChange={jest.fn()}
+        className="custom-pagination"
+      />
+    )
+    expect(screen.getByRole("navigation")).toHaveClass("custom-pagination")
   })
 })
