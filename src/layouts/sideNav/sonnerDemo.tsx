@@ -1,18 +1,18 @@
-import { CircleCheck, CircleX } from "lucide-react";
+import { successIcon, alertIcon } from "@/assets";
 import { Sonner } from "@/components/ui/Sonner";
 
 const SonnerDemo = () => (
-  <div className="flex flex-row max-w-lg gap-4 p-8">
+  <div className="flex flex-row w-full gap-4 p-8">
     <Sonner
       text="Success"
       description="Your changes have been saved."
-      icon={<CircleCheck />}
+      icon={<img src={successIcon} alt="Success" />}
       fill="success"
     />
     <Sonner
       text="Error"
       description="The upload failed. Please try again."
-      icon={<CircleX />}
+      icon={<img src={alertIcon} alt="Error" />}
       fill="error"
     />
   </div>
