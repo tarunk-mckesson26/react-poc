@@ -1,4 +1,5 @@
 import { cva } from "class-variance-authority"
+import type { ButtonVariant } from "./type"
 
 /**
  * Button style variants using CVA (Class Variance Authority)
@@ -12,6 +13,28 @@ const buttonTextStyles="text-[14px] leading-5";
 const buttonSvgStyles=" [&>img]:size-4 [&>svg]:size-4";
 const buttonTextPressedStyle="active:text-primary-pressed aria-pressed:text-primary-pressed";
 const buttonFocusStyles="focus-visible:shadow-[0_0_0_3px_rgba(0,90,140,0.2)]";
+
+/** Forces the hover look in galleries/docs where the button can't actually be hovered. */
+// To be deleted once we move to actual repo
+export const buttonHoverPreviewStyles: Record<ButtonVariant, string> = {
+  primary: "opacity-80 bg-primary-hover",
+  secondary: "opacity-80 bg-secondary-hover",
+  destructive: "opacity-80",
+  tertiary: "opacity-80 bg-accent",
+  ghost: "opacity-80 bg-accent",
+  link: "opacity-80 underline",
+}
+
+/** Forces the focus-visible look in galleries/docs where the button can't actually hold focus. */
+// To be deleted once we move to actual repo
+export const buttonFocusPreviewStyles: Record<ButtonVariant, string> = {
+  primary: "shadow-[0_0_0_3px_rgba(0,90,140,0.2)]",
+  secondary: "shadow-[0_0_0_3px_rgba(0,90,140,0.2)]",
+  destructive: "shadow-[0_0_0_3px_rgba(220,38,38,0.2)]",
+  tertiary: "shadow-[0_0_0_3px_rgba(0,90,140,0.2)]",
+  ghost: "",
+  link: "",
+}
 
 export const buttonVariants = cva(
   "rounded-full font-medium cursor-pointer transition-all duration-200 hover:opacity-80 focus:outline-none disabled:opacity-50 disabled:pointer-events-none data-[loading=true]:opacity-50 active:opacity-100 aria-pressed:opacity-100 [&>img]:mx-auto [&>svg]:mx-auto",
