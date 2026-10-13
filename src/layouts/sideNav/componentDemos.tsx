@@ -9,6 +9,7 @@ import CheckboxDemo from "./checkboxDemo";
 import InputDemo from "./inputDemo";
 import PaginationDemo from "./paginationDemo";
 import ProgressDemo from "./progressDemo";
+import SonnerDemo from "./sonnerDemo";
 import TooltipDemo from "./tooltipDemo";
 
 export interface ComponentDemo {
@@ -29,5 +30,6 @@ export const componentDemos: ComponentDemo[] = [
   { id: "input", label: "Input", description: "Text, password, and file fields in default and bare variants.", render: () => <InputDemo /> },
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
+  { id: "sonner", label: "Sonner", description: "All options of Sonner / Toast.", render: () => <SonnerDemo /> },
   { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
 ];
