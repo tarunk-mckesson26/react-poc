@@ -7,13 +7,24 @@ import type { Accordion as AccordionPrimitive } from "radix-ui"
  * while `AccordionComponentProps` powers the dynamic wrapper in `./index`.
  */
 
+/**
+ * `basic` — bottom rule on every item, including the last one.
+ * `border` — outer border around the whole accordion, rules between items only.
+ */
+export type AccordionVariant = "basic" | "border"
+
 export type AccordionRootProps = React.ComponentProps<
   typeof AccordionPrimitive.Root
->
+> & {
+  variant?: AccordionVariant
+}
 
 export type AccordionItemProps = React.ComponentProps<
   typeof AccordionPrimitive.Item
->
+> & {
+  /** Overrides the variant inherited from the accordion root */
+  variant?: AccordionVariant
+}
 
 export type AccordionTriggerProps = React.ComponentProps<
   typeof AccordionPrimitive.Trigger
@@ -46,6 +57,8 @@ export interface AccordionItemData {
 export type AccordionComponentProps = AccordionRootProps & {
   /** Items rendered inside the accordion */
   items: AccordionItemData[]
+  /** Visual style of the accordion — defaults to `basic` */
+  variant?: AccordionVariant
   /** className applied to each `AccordionItem` */
   itemClassName?: string
   /** className applied to each `AccordionTrigger` */

@@ -2,6 +2,11 @@ import type React from "react"
 import { type VariantProps } from "class-variance-authority"
 import { type buttonVariants } from "./style"
 
+/** Visual style of the button, mirrors the variants defined in `buttonVariants`. */
+export type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>
+/** Size of the button, mirrors the sizes defined in `buttonVariants`. */
+export type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>
+
 /**
  * Centralized type definitions for Button props
  * Keeps types separate from implementation for better organization and reusability
@@ -21,3 +26,4 @@ export interface ButtonProps
    */
   "data-loading"?: boolean | "true" | "false"
 }
+

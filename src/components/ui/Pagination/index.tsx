@@ -173,4 +173,13 @@ export {
   PaginationNext,
   PaginationPrevious,
 }
-export type { PaginationComponentProps } from "./type"
+export type {
+  PaginationComponentProps,
+  PaginationContentProps,
+  PaginationEllipsisProps,
+  PaginationItemProps,
+  PaginationLinkProps,
+  PaginationNextProps,
+  PaginationPreviousProps,
+  PaginationProps,
+} from "./type"

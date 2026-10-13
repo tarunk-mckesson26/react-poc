@@ -1,13 +1,14 @@
 import { clsx } from "@/lib/clsx"
 import { Accordion as AccordionPrimitive } from "radix-ui"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { createContext, useContext } from "react"
 
 import {
   accordionContentAnimationClass,
   accordionContentInnerClass,
   accordionHeaderClass,
   accordionItemVariants,
-  accordionRootClass,
+  accordionRootVariants,
   accordionTriggerClass,
   accordionTriggerIconCloseClass,
   accordionTriggerIconOpenClass,
@@ -17,6 +18,7 @@ import type {
   AccordionItemProps,
   AccordionRootProps,
   AccordionTriggerProps,
+  AccordionVariant,
 } from "./type"
 
 /**
@@ -26,21 +28,36 @@ import type {
  * the common data-driven use case.
  */
 
-function Accordion({ className, ...props }: AccordionRootProps) {
+// Lets hand-composed `AccordionItem`s inherit the root's variant
+const AccordionVariantContext = createContext<AccordionVariant>("basic")
+
+function Accordion({
+  className,
+  variant = "basic",
+  ...props
+}: AccordionRootProps) {
   return (
-    <AccordionPrimitive.Root
-      data-slot="accordion"
-      className={clsx(accordionRootClass, className)}
-      {...props}
-    />
+    <AccordionVariantContext.Provider value={variant}>
+      <AccordionPrimitive.Root
+        data-slot="accordion"
+        data-variant={variant}
+        className={clsx(accordionRootVariants({ variant }), className)}
+        {...props}
+      />
+    </AccordionVariantContext.Provider>
   )
 }
 
-function AccordionItem({ className, ...props }: AccordionItemProps) {
+function AccordionItem({ className, variant, ...props }: AccordionItemProps) {
+  const inheritedVariant = useContext(AccordionVariantContext)
+
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
-      className={clsx(accordionItemVariants({ bordered: true }), className)}
+      className={clsx(
+        accordionItemVariants({ variant: variant ?? inheritedVariant }),
+        className
+      )}
       {...props}
     />
   )
