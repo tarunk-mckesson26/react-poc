@@ -8,11 +8,11 @@ export const avatarVariants = cva(
         default: "bg-muted text-avatar-fallback-textColor",
       },
       size: {
-        xs: "h-6 w-6 text-[10px]",
-        sm: "h-8 w-8 text-xs",
-        default: "h-10 w-10 text-sm",
-        lg: "h-12 w-12 text-base",
-        xl: "h-16 w-16 text-lg",
+        xs: "h-[20px] w-[20px] text-[12px]",
+        sm: "h-[24px] w-[24px] text-[12px]",
+        default: "h-[32px] w-[32px] text-[14px]",
+        lg: "h-[40px] w-[40px] text-[14px]",
+        xl: "h-[48px] w-[48px] text-[14px]",
       },
     }
   }
@@ -21,5 +21,5 @@ export const avatarVariants = cva(
 export const avatarImageVariants = cva("aspect-square size-full object-cover")
 
 export const avatarFallbackVariants = cva(
-  "flex size-full items-center justify-center rounded-full text-center font-medium"
+  "flex size-full items-center justify-center rounded-full text-center"
 )
