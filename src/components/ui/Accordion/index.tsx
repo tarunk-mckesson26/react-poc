@@ -18,13 +18,14 @@ import type { AccordionComponentProps } from "./type"
 function AccordionComponent({
   items,
   className,
+  variant = "basic",
   itemClassName,
   triggerClassName,
   contentClassName,
   ...rootProps
 }: AccordionComponentProps) {
   return (
-    <Accordion className={className} {...rootProps}>
+    <Accordion className={className} variant={variant} {...rootProps}>
       {items.map(({ value, title, content, disabled }) => (
         <AccordionItem key={value} value={value} className={itemClassName}>
           <AccordionTrigger disabled={disabled} className={triggerClassName}>
@@ -40,10 +41,10 @@ function AccordionComponent({
 }
 
 export {
-  AccordionComponent,
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
+  AccordionComponent
 }
-export type { AccordionComponentProps, AccordionItemData } from "./type"
+export type {
+  AccordionComponentProps,
+  AccordionItemData,
+  AccordionVariant,
+} from "./type"
