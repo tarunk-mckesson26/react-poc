@@ -13,8 +13,9 @@ export interface CheckboxOption {
 
 export interface CheckboxProps
   extends Omit<React.ComponentProps<"input">, "size" | "type" | "children">,
-    Pick<VariantProps<typeof checkboxContainerVariants>, "variant" | "align">,
+    Pick<VariantProps<typeof checkboxContainerVariants>, "variant">,
     Pick<VariantProps<typeof checkboxIndicatorVariants>, "size"> {
+  align?: "start" | "end"
   onCheckedChange?: (checked: boolean) => void
   label?: React.ReactNode
   description?: React.ReactNode
