@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 const badgeContentStyles =
-  "rounded-[6px] px-[6px] py-[2px] font-sans font-medium text-xs leading-4 tracking-normal";
+  "rounded-md px-1.5 py-0.5 font-sans font-medium text-xs leading-4 tracking-normal";
 const badgeFocusStyles =
   "focus:outline-none focus:[box-shadow:inset_0_0_0_1px_color-mix(in_srgb,var(--ring)_50%,transparent),0_0_0_1px_var(--background),0_0_0_2px_color-mix(in_srgb,var(--ring)_50%,transparent),0_0_0_6px_color-mix(in_srgb,var(--primary)_20%,transparent)]";
 const badgeSubtleFocusStyles =
