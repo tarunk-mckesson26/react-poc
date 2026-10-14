@@ -11,6 +11,7 @@ import PaginationDemo from "./paginationDemo";
 import ProgressDemo from "./progressDemo";
 import SonnerDemo from "./sonnerDemo";
 import TooltipDemo from "./tooltipDemo";
+import SwitchDemo from "./switchDemo";
 
 export interface ComponentDemo {
   id: string;
@@ -32,4 +33,5 @@ export const componentDemos: ComponentDemo[] = [
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
   { id: "sonner", label: "Sonner", description: "All options of Sonner / Toast.", render: () => <SonnerDemo /> },
   { id: "tooltip", label: "Tooltip", description: "Contextual hint on hover.", render: () => <TooltipDemo /> },
+  { id: "switch", label: "Switch", description: "Toggle control with label.", render: () => <SwitchDemo /> },
 ];
