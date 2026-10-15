@@ -1,25 +1,4 @@
-import type { ReactNode } from "react";
 import { AccordionComponent, type AccordionItemData } from "@/components/ui/Accordion";
-
-const Section = ({
-  title,
-  description,
-  children,
-}: {
-  title: string;
-  description?: string;
-  children: ReactNode;
-}) => (
-  <section className="flex flex-col gap-3">
-    <div className="flex flex-col gap-0.5">
-      <h2 className="text-sm font-semibold text-slate-500">{title}</h2>
-      {description ? (
-        <p className="text-xs text-slate-400">{description}</p>
-      ) : null}
-    </div>
-    {children}
-  </section>
-);
 
 const items: AccordionItemData[] = [
   {
@@ -42,48 +21,15 @@ const items: AccordionItemData[] = [
 
 const AccordionDemo = () => (
   <div className="grid gap-10 md:grid-cols-2">
-    <Section
-      title="Single · Basic"
-      description="One section at a time; collapsible lets you close the open one."
-    >
-      <AccordionComponent type="single" collapsible items={items} />
-    </Section>
+    <AccordionComponent type="single" collapsible items={items} />
 
-    <Section
-      title="Single · Border"
-      description="Same behaviour, wrapped in an outlined container."
-    >
-      <AccordionComponent
-        type="single"
-        collapsible
-        variant="border"
-        defaultValue="shipping"
-        items={items}
-      />
-    </Section>
-
-    <Section
-      title="Multiple · Basic"
-      description="Any number of sections can stay open at once."
-    >
-      <AccordionComponent
-        type="multiple"
-        defaultValue={["shipping"]}
-        items={items}
-      />
-    </Section>
-
-    <Section
-      title="Multiple · Border"
-      description="Starts with two sections expanded."
-    >
-      <AccordionComponent
-        type="multiple"
-        variant="border"
-        defaultValue={["shipping", "returns"]}
-        items={items}
-      />
-    </Section>
+    <AccordionComponent
+      type="single"
+      collapsible
+      variant="border"
+      defaultValue="shipping"
+      items={items}
+    />
   </div>
 );
 

@@ -38,7 +38,7 @@ export const accordionItemVariants = cva("", {
 export const accordionHeaderClass = "flex"
 
 export const accordionTriggerClass =
-  "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-[9px] text-left text-[14px] font-medium leading-5 text-text transition-all outline-none hover:underline cursor-pointer focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground"
+  "group/accordion-trigger relative flex flex-1 items-start justify-between rounded-lg border border-transparent py-[9px] text-[14px] leading-5 text-text font-medium font-semibold transition-all outline-none hover:underline cursor-pointer focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground"
 
 export const accordionTriggerIconOpenClass =
   "pointer-events-none shrink-0 group-aria-expanded/accordion-trigger:hidden"
