@@ -1,70 +1,63 @@
-import { Button } from "@/components/ui/Button";
-import {
-  Breadcrumb,
-  BreadcrumbDropdownMenu,
-  BreadcrumbDropdownMenuContent,
-  BreadcrumbDropdownMenuGroup,
-  BreadcrumbDropdownMenuItem,
-  BreadcrumbDropdownMenuTrigger,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator,
-} from "@/components/ui/Breadcrumb";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ChevronDownIcon } from "lucide-react";
 import DemoRow from "./demoRow";
 
 const BreadcrumbDemo = () => (
   <DemoRow>
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Breadcrumb</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbDropdownMenu>
-            <BreadcrumbDropdownMenuTrigger asChild>
-              <Button
-                size="icon-sm"
-                variant="ghost"
-                className="focus-visible:ring-0! focus-visible:border-transparent!"
-              >
-                <BreadcrumbEllipsis />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </BreadcrumbDropdownMenuTrigger>
-            <BreadcrumbSeparator />
-            <BreadcrumbDropdownMenuContent align="start">
-              <BreadcrumbDropdownMenuGroup>
-                <BreadcrumbDropdownMenuItem>Documentation</BreadcrumbDropdownMenuItem>
-                <BreadcrumbDropdownMenuItem>Themes</BreadcrumbDropdownMenuItem>
-                <BreadcrumbDropdownMenuItem>GitHub</BreadcrumbDropdownMenuItem>
-              </BreadcrumbDropdownMenuGroup>
-            </BreadcrumbDropdownMenuContent>
-          </BreadcrumbDropdownMenu>
-        </BreadcrumbItem>
-        <BreadcrumbItem>
-          <BreadcrumbDropdownMenu>
-            <BreadcrumbDropdownMenuTrigger asChild>
-              <button className="flex items-center gap-1">
+    <div className="mx-auto grid grid-cols-3 gap-8 p-8">
+      <Breadcrumb>
+        <Breadcrumb name="List">
+          <Breadcrumb name="Item">
+            <Breadcrumb name="Link" href="#">
+              Breadcrumb
+            </Breadcrumb>
+          </Breadcrumb>
+
+          <Breadcrumb name="Separator" />
+
+          <Breadcrumb name="Item">
+            <Breadcrumb name="DropdownMenu">
+              <Breadcrumb name="DropdownMenuTrigger" aria-label="Toggle menu">
+                <Breadcrumb name="Ellipsis" />
+              </Breadcrumb>
+
+              <Breadcrumb name="Separator" />
+
+              <Breadcrumb name="DropdownMenuContent">
+                <Breadcrumb name="DropdownMenuGroup">
+                  <Breadcrumb name="DropdownMenuItem">Documentation</Breadcrumb>
+
+                  <Breadcrumb name="DropdownMenuItem">Themes</Breadcrumb>
+
+                  <Breadcrumb name="DropdownMenuItem">GitHub</Breadcrumb>
+                </Breadcrumb>
+              </Breadcrumb>
+            </Breadcrumb>
+          </Breadcrumb>
+
+          <Breadcrumb name="Item">
+            <Breadcrumb name="DropdownMenu">
+              <Breadcrumb name="DropdownMenuTrigger">
                 Components
-                <ChevronDownIcon data-icon="inline-end" className="size-3.5" />
-              </button>
-            </BreadcrumbDropdownMenuTrigger>
-            <BreadcrumbDropdownMenuContent align="start">
-              <BreadcrumbDropdownMenuGroup>
-                <BreadcrumbDropdownMenuItem>Documentation</BreadcrumbDropdownMenuItem>
-                <BreadcrumbDropdownMenuItem>Themes</BreadcrumbDropdownMenuItem>
-                <BreadcrumbDropdownMenuItem>GitHub</BreadcrumbDropdownMenuItem>
-              </BreadcrumbDropdownMenuGroup>
-            </BreadcrumbDropdownMenuContent>
-          </BreadcrumbDropdownMenu>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-      </BreadcrumbList>
-    </Breadcrumb>
+                <ChevronDownIcon />
+              </Breadcrumb>
+
+              <Breadcrumb name="DropdownMenuContent">
+                <Breadcrumb name="DropdownMenuGroup">
+                  <Breadcrumb name="DropdownMenuItem">Documentation</Breadcrumb>
+
+                  <Breadcrumb name="DropdownMenuItem">Themes</Breadcrumb>
+
+                  <Breadcrumb name="DropdownMenuItem">GitHub</Breadcrumb>
+                </Breadcrumb>
+              </Breadcrumb>
+            </Breadcrumb>
+          </Breadcrumb>
+
+          <Breadcrumb name="Separator" />
+        </Breadcrumb>
+      </Breadcrumb>
+    </div>
   </DemoRow>
 );
 
