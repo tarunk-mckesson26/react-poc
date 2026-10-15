@@ -36,8 +36,8 @@ describe("Alert", () => {
       </Alert>,
     );
 
-    expect(screen.getByRole("alert")).toHaveClass("min-h-[58px]");
-    expect(screen.getByRole("alert")).not.toHaveClass("h-[58px]");
+    expect(screen.getByRole("alert")).toHaveClass("min-h-14.5", "max-w-158.5");
+    expect(screen.getByRole("alert")).not.toHaveClass("h-14.5");
   });
 
   it.each([
@@ -53,38 +53,38 @@ describe("Alert", () => {
   it.each([
     [
       "info",
-      "--alert-alert-bgColor,#FFFBEB",
-      "--alert-alert-borderColor,#FDE68A",
-      "--alert-alert-title-textColor,#92400E",
-      "--alert-description-textColor,#333333",
+      "--alert-alert-bgColor,--theme(--color-warning)",
+      "--alert-alert-borderColor,--theme(--color-warning-border)",
+      "--alert-alert-title-textColor,--theme(--color-warning-foreground)",
+      "--alert-description-textColor,--theme(--color-text)",
     ],
     [
       "alert",
-      "--alert-error-bgColor,#FEF2F2",
-      "--alert-error-borderColor,#FECACA",
-      "--alert-error-title-textColor,#991B1B",
-      "--alert-description-textColor,#333333",
+      "--alert-error-bgColor,--theme(--color-error)",
+      "--alert-error-borderColor,--theme(--color-error-border)",
+      "--alert-error-title-textColor,--theme(--color-error-foreground)",
+      "--alert-description-textColor,--theme(--color-text)",
     ],
     [
       "error",
-      "--alert-info-bgColor,#E7EFF8",
-      "--alert-info-borderColor,#B3CDEA",
-      "--alert-info-title-textColor,#063467",
-      "--alert-description-textColor,#333333",
+      "--alert-info-bgColor,--theme(--color-info)",
+      "--alert-info-borderColor,--theme(--color-info-border)",
+      "--alert-info-title-textColor,--theme(--color-info-foreground)",
+      "--alert-description-textColor,--theme(--color-text)",
     ],
     [
       "success",
-      "--Semantic-Success50,#E6F3ED",
-      "--Green-100,#B0D9C8",
-      "--Semantic-Success900,#00492B",
-      "--Semantic-Success900,#00492B",
+      "--Semantic-Success50,--theme(--color-success)",
+      "--Green-100,--theme(--color-success-border)",
+      "--Semantic-Success900,--theme(--color-success-foreground)",
+      "--Semantic-Success900,--theme(--color-success-foreground)",
     ],
     [
       "success-strong",
-      "--base-success,#007948",
-      "--base-success,#007948",
-      "--base-success-foreground,#FFFFFF",
-      "--base-success-foreground,#FFFFFF",
+      "--base-success,--theme(--color-success-strong)",
+      "--base-success,--theme(--color-success-strong)",
+      "--base-success-foreground,--theme(--color-success-strong-foreground)",
+      "--base-success-foreground,--theme(--color-success-strong-foreground)",
     ],
   ] as const)(
     "applies the %s palette to all alert parts",
@@ -110,7 +110,7 @@ describe("Alert", () => {
       );
       expect(screen.getByText("Title")).toHaveClass("text-inherit");
       expect(screen.getByText("Description")).toHaveClass(
-        "text-[color:var(--alert-description-color,var(--alert-description-textColor,#333333))]",
+        "text-[color:var(--alert-description-color,var(--alert-description-textColor,--theme(--color-text)))]",
       );
       expect(screen.getByTestId("alert-icon")).not.toHaveAttribute("style");
     },
