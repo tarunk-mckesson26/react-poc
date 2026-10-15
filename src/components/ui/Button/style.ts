@@ -55,7 +55,7 @@ export const buttonVariants = cva(
       size: {
         xs:
           "px-2 text-[12px] leading-4 py-[3px]",
-        default: `h-9 py-2 px-3.5 ${buttonTextStyles}`,
+        default: `h-9 px-3.5 ${buttonTextStyles}`,
         sm: "px-3 text-[12px] leading-4 py-[7px]",
         lg: `px-4 py-[9px] ${buttonTextStyles}`,
         icon: `p-0 size-9 ${buttonSvgStyles}`,

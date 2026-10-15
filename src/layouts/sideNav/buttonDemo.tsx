@@ -70,12 +70,12 @@ const ButtonDemo = () => (
       <section key={variant} className="flex flex-col gap-4">
         <h2 className="text-sm font-semibold text-slate-500">{title}</h2>
         <div
-          className="grid items-center gap-x-6 gap-y-3"
+          className="grid items-center, gap-x-7 gap-y-5"
           style={{ gridTemplateColumns: `72px repeat(${states.length}, minmax(96px, 1fr))` }}
         >
           <div />
           {states.map((state) => (
-            <span key={state} className="text-xs font-medium text-slate-400">
+            <span key={state} className="text-xs font-medium text-slate-400 text-center">
               {state}
             </span>
           ))}
@@ -84,7 +84,7 @@ const ButtonDemo = () => (
             <Fragment key={size}>
               <span className="text-xs text-slate-400">{sizeTitle}</span>
               {states.map((state) => (
-                <div key={state} className="flex items-center">
+                <div key={state} className="flex items-center justify-center">
                   <ButtonCell variant={variant} size={size} icon={icon} state={state} />
                 </div>
               ))}
