@@ -1,6 +1,6 @@
 import { Avatar } from "@/components/ui/Avatar";
 import avatarImage from "@/assets/avatar_test.png";
-import plusIcon from "@/assets/Plus.svg";
+import {plusIcon} from "@/assets";
 import DemoRow from "./demoRow";
 
 const sizes = ["xl", "lg", "default", "sm", "xs"] as const;
@@ -30,7 +30,7 @@ const AvatarDemo = () => (
 					<Avatar
 						size={size}
 						aria-label="Add user"
-						icon={<img src={plusIcon} alt="" className="h-1/2 w-1/2" />}
+						icon={<img src={plusIcon} alt="" />}
 					/>
 				</div>
 			))}

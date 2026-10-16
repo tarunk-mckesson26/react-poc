@@ -64,6 +64,10 @@
   --color-checkbox-card-checked-bg: var(--checkbox-card-checked-bgColor);
   --color-checkbox-focus-ring: var(--checkbox-focus-ringColor);
   --radius-checkbox: var(--checkbox-border-radius);
+  --color-toast-success-borderColor: var(--toast-success-borderColor);
+  --color-toast-success-bgColor: var(--toast-success-bgColor);
+  --color-toast-error-borderColor: var(--toast-error-borderColor);
+  --color-toast-error-bgColor: var(--toast-error-bgColor);
 }
 
 :root {
@@ -124,7 +128,11 @@
   --checkbox-invalid-label-textColor: var(--destructive);
   --checkbox-border-radius: 4px;
   --checkbox-card-checked-bgColor: rgba(23, 23, 23, 0.05);
-  --checkbox-focus-ringColor: #0a5fbc;
+  --checkbox-focus-ringColor: #0A5FBC;
+  --toast-success-borderColor: #8AC7AE;
+  --toast-success-bgColor: #E6F3ED;
+  --toast-error-borderColor: #FECACA;
+  --toast-error-bgColor: #FEF2F2;
   --error-bg: #fef2f2;
   --error-border: #fecaca;
   --error-foreground: #991b1b;

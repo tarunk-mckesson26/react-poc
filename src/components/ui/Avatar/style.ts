@@ -23,3 +23,4 @@ export const avatarImageVariants = cva("aspect-square size-full object-cover")
 export const avatarFallbackVariants = cva(
   "flex size-full items-center justify-center rounded-full text-center"
 )
+

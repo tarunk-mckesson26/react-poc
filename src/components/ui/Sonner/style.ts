@@ -1,0 +1,32 @@
+import { cva } from "class-variance-authority"
+
+/**
+ * Sonner toast styling.
+ * `fill` presets map to theme tokens; any other color string is applied inline
+ * by the component, in which case `fill` falls back to the `custom` variant.
+ */
+export const sonnerVariants = cva(
+  "pointer-events-auto flex w-[384px] items-center gap-3 rounded-md border shadow-lg",
+  {
+    variants: {
+      fill: {
+        success: "border-toast-success-borderColor bg-toast-success-bgColor text-success-foreground",
+        error: "border-toast-error-borderColor bg-toast-error-bgColor text-destructive-pressed",
+      },
+      size: {
+        sm: "px-3 py-2 text-xs",
+        default: "px-4 py-3 text-sm",
+        lg: "px-5 py-4 text-base",
+      },
+    },
+    defaultVariants: {
+      fill: "success",
+      size: "default",
+    },
+  }
+)
+
+export const sonnerIconVariants = cva(
+  "flex shrink-0 items-center justify-center [&>svg]:size-5 [&>img]:size-5"
+)
+
