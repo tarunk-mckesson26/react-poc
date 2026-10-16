@@ -11,7 +11,7 @@ export const breadcrumbItemStyles = "inline-flex items-center gap-1";
 
 export const breadcrumbLinkStyles = `${breadcrumbLinkBaseStyles} ${breadcrumbLinkColorStyles} hover:text-breadcrumb-link-hover hover:decoration-breadcrumb-link-hover ${breadcrumbLinkFocusStyles}`;
 
-export const breadcrumbPageStyles = "font-normal text-foreground";
+export const breadcrumbPageStyles = `rounded-xs font-sans text-sm font-semibold not-italic leading-5 tracking-normal text-[color:var(--breadcrumbItem-hover-textColor,#063467)] outline-1 outline-offset-2 outline-transparent transition-[color,text-decoration-color,outline-color] duration-300 ease-out focus:underline ${breadcrumbLinkFocusStyles}`;
 
 export const breadcrumbSeparatorStyles = "[&>svg]:size-3.75";
 

@@ -55,6 +55,47 @@ describe("Breadcrumb", () => {
     expect(container.querySelector("[name]")).toBeNull();
   });
 
+  it("styles the current page and supports keyboard and click focus by default", async () => {
+    const user = userEvent.setup();
+    render(<Breadcrumb name="Page">Current</Breadcrumb>);
+
+    const page = screen.getByRole("link", { name: "Current" });
+    expect(page).toHaveClass(
+      "rounded-xs",
+      "font-sans",
+      "text-sm",
+      "font-semibold",
+      "not-italic",
+      "leading-5",
+      "tracking-normal",
+      "text-[color:var(--breadcrumbItem-hover-textColor,#063467)]",
+      "outline-1",
+      "outline-offset-2",
+      "outline-transparent",
+      "transition-[color,text-decoration-color,outline-color]",
+      "duration-300",
+      "ease-out",
+      "focus:outline-[var(--custom-outline,var(--breadcrumb-focus))]",
+      "focus:underline",
+    );
+    expect(page).not.toHaveClass("font-normal", "text-foreground");
+    expect(
+      Array.from(page.classList).some((className) =>
+        className.includes("hover:"),
+      ),
+    ).toBe(false);
+
+    await user.tab();
+
+    expect(page).toHaveFocus();
+
+    await user.click(document.body);
+    expect(page).not.toHaveFocus();
+
+    await user.click(page);
+    expect(page).toHaveFocus();
+  });
+
   it("supports asChild links and custom separators", () => {
     render(
       <Breadcrumb>

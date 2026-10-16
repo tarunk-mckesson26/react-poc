@@ -72,6 +72,7 @@ const Breadcrumb = (props: BreadcrumbProps) => {
           role="link"
           aria-disabled="true"
           aria-current="page"
+          tabIndex={0}
           className={clsx(breadcrumbPageStyles, className)}
           {...rest}
         />
