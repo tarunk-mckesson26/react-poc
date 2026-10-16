@@ -108,4 +108,80 @@ describe("CardComponent", () => {
     expect(card).toHaveAttribute("data-size", "sm")
     expect(card).toHaveClass("custom-class")
   })
+
+  it("renders the image as the first child of the card", () => {
+    const { container } = render(
+      <CardComponent
+        image={<img src="/rebate.png" alt="Rebate chart" />}
+        title="Title"
+      >
+        Content
+      </CardComponent>
+    )
+    const card = container.querySelector('[data-slot="card"]')
+    expect(card?.firstElementChild?.tagName).toBe("IMG")
+    expect(screen.getByAltText("Rebate chart")).toBeInTheDocument()
+  })
+
+  it("applies the per-slot classNames", () => {
+    const { container } = render(
+      <CardComponent
+        title="Title"
+        description="Description"
+        action={<button>Edit</button>}
+        footer={<span>Footer</span>}
+        headerClassName="header-cls"
+        titleClassName="title-cls"
+        descriptionClassName="description-cls"
+        actionClassName="action-cls"
+        contentClassName="content-cls"
+        footerClassName="footer-cls"
+      >
+        Content
+      </CardComponent>
+    )
+    expect(container.querySelector('[data-slot="card-header"]')).toHaveClass(
+      "header-cls"
+    )
+    expect(container.querySelector('[data-slot="card-title"]')).toHaveClass(
+      "title-cls"
+    )
+    expect(
+      container.querySelector('[data-slot="card-description"]')
+    ).toHaveClass("description-cls")
+    expect(container.querySelector('[data-slot="card-action"]')).toHaveClass(
+      "action-cls"
+    )
+    expect(container.querySelector('[data-slot="card-content"]')).toHaveClass(
+      "content-cls"
+    )
+    expect(container.querySelector('[data-slot="card-footer"]')).toHaveClass(
+      "footer-cls"
+    )
+  })
+
+  it("renders the header when only a description is given", () => {
+    const { container } = render(<CardComponent description="Only text" />)
+    expect(
+      container.querySelector('[data-slot="card-header"]')
+    ).toBeInTheDocument()
+    expect(container.querySelector('[data-slot="card-title"]')).toBeNull()
+  })
+
+  it("omits the content wrapper when there are no children", () => {
+    const { container } = render(<CardComponent title="Title" />)
+    expect(container.querySelector('[data-slot="card-content"]')).toBeNull()
+  })
+
+  it("forwards extra div props to the root card", () => {
+    render(
+      <CardComponent data-testid="card" aria-label="Summary card">
+        Content
+      </CardComponent>
+    )
+    expect(screen.getByTestId("card")).toHaveAttribute(
+      "aria-label",
+      "Summary card"
+    )
+  })
 })
