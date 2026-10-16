@@ -31,7 +31,6 @@ export const componentDemos: ComponentDemo[] = [
   { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   { id: "input", label: "Input", description: "Text, password, and file fields in default and bare variants.", render: () => <InputDemo /> },
-  { id: "line-chart", label: "Line Chart", description: "Line chart variants: curves, dots, multiple series and labels.", render: () => <LineChartDemo /> },
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
   { id: "progress", label: "Progress", description: "Determinate progress bar.", render: () => <ProgressDemo /> },
   { id: "sonner", label: "Sonner", description: "All options of Sonner / Toast.", render: () => <SonnerDemo /> },
