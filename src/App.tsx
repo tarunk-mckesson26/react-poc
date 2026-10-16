@@ -32,7 +32,7 @@ const icons: Record<string, React.ReactNode> = {
   badge: <BadgeCheck />,
   'bar-chart': <ChartColumn />,
   breadcrumb: <Route />,
-  'line-graph': <ChartLine />,
+  'line-chart': <ChartLine />,
   button: <MousePointerClick />,
   card: <WalletCards />,
   checkbox: <SquareCheck />,
