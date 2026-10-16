@@ -30,6 +30,3 @@ export const sonnerIconVariants = cva(
   "flex shrink-0 items-center justify-center [&>svg]:size-5 [&>img]:size-5"
 )
 
-export const sonnerCloseVariants = cva(
-  "ml-auto shrink-0 cursor-pointer rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-current/40 [&>svg]:size-4"
-)

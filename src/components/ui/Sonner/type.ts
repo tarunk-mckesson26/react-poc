@@ -20,7 +20,7 @@ export interface SonnerProps {
   /** Secondary line below the text */
   description?: React.ReactNode
   /** Renders a dismiss button */
-  closable?: boolean
+  isbutton?: boolean
   onClose?: () => void
   className?: string
   iconClassName?: string

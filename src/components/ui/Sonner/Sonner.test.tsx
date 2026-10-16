@@ -27,16 +27,25 @@ describe("Sonner", () => {
 
   it("calls onClose when the dismiss button is clicked", () => {
     const onClose = jest.fn();
-    render(<Sonner text="Dismissible notice" closable onClose={onClose} />);
+    render(<Sonner text="Dismissible notice" isbutton onClose={onClose} />);
 
-    fireEvent.click(screen.getByRole("button", { name: "Dismiss notification" }));
+    const button = screen.getByRole("button", { name: "Close" });
+    expect(button).toHaveAttribute("data-size", "sm");
+    expect(button).toHaveAttribute("data-slot", "button");
+    fireEvent.click(button);
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("does not render a dismiss button when not closable", () => {
+  it("does not render a dismiss button by default", () => {
     render(<Sonner text="Persistent notice" />);
 
-    expect(screen.queryByRole("button", { name: "Dismiss notification" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+  });
+
+  it("does not render a dismiss button when isbutton is false", () => {
+    render(<Sonner text="Persistent notice" isbutton={false} />);
+
+    expect(screen.queryByRole("button")).not.toBeInTheDocument();
   });
 });

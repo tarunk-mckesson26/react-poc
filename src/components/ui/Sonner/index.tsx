@@ -1,7 +1,7 @@
-import { X } from "lucide-react"
 import { Toaster as SonnerToaster, toast } from "sonner"
 import { clsx } from "@/lib/clsx"
-import { sonnerCloseVariants, sonnerIconVariants, sonnerVariants } from "./style"
+import { Button } from "../Button"
+import { sonnerIconVariants, sonnerVariants } from "./style"
 import type { SonnerFill, SonnerProps, SonnerToastOptions, SonnerToasterProps } from "./type"
 
 const FILL_PRESETS = ["success", "error"] as const
@@ -20,7 +20,7 @@ const Sonner = ({
   color,
   size = "default",
   description,
-  closable = false,
+  isbutton = false,
   onClose,
   className,
   iconClassName,
@@ -46,10 +46,10 @@ const Sonner = ({
         {description ? <span className="opacity-80">{description}</span> : null}
       </div>
 
-      {closable ? (
-        <button type="button" aria-label="Dismiss notification" onClick={onClose} className={sonnerCloseVariants()}>
-          <X />
-        </button>
+      {isbutton ? (
+        <Button type="button" variant="secondary" size="sm" onClick={onClose} className="ml-auto shrink-0">
+          Close
+        </Button>
       ) : null}
     </div>
   )
@@ -58,7 +58,7 @@ const Sonner = ({
 /** Imperatively show a toast. Returns the toast id so it can be dismissed. */
 const sonner = ({ id, duration, position, onAutoClose, onDismiss, ...props }: SonnerToastOptions) =>
   toast.custom(
-    (toastId) => <Sonner {...props} closable={props.closable ?? true} onClose={() => toast.dismiss(toastId)} />,
+    (toastId) => <Sonner {...props} isbutton={props.isbutton ?? true} onClose={() => toast.dismiss(toastId)} />,
     { id, duration, position, onAutoClose, onDismiss }
   )
 
@@ -73,5 +73,5 @@ const Toaster = ({ position = "bottom-right", ...props }: SonnerToasterProps) =>
   />
 )
 
-export { Sonner, Toaster, sonner, sonnerVariants }
+export { Sonner, Toaster }
 export type { SonnerProps, SonnerToastOptions, SonnerToasterProps, SonnerFill } from "./type"

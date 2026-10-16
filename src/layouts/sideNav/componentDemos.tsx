@@ -5,7 +5,7 @@ import AvatarDemo from "./avatarDemo";
 import BadgeDemo from "./badgeDemo";
 import BreadcrumbDemo from "./breadcrumbDemo";
 import ButtonDemo from "./buttonDemo";
-import CardDemo from "./cardDemo";
+// import CardDemo from "./cardDemo";
 import CheckboxDemo from "./checkboxDemo";
 import InputDemo from "./inputDemo";
 import PaginationDemo from "./paginationDemo";
@@ -28,7 +28,6 @@ export const componentDemos: ComponentDemo[] = [
   { id: "badge", label: "Badge", description: "Variants and sizes.", render: () => <BadgeDemo /> },
   { id: "breadcrumb", label: "Breadcrumb", description: "Navigation for hierarchical content.", render: () => <BreadcrumbDemo /> },
   { id: "button", label: "Button", description: "Variants and sizes.", render: () => <ButtonDemo /> },
-  { id: "card", label: "Card", description: "Composed card with text, JSX, and media content.", render: () => <CardDemo /> },
   { id: "checkbox", label: "Checkbox", description: "Selection control with label.", render: () => <CheckboxDemo /> },
   { id: "input", label: "Input", description: "Text, password, and file fields in default and bare variants.", render: () => <InputDemo /> },
   { id: "pagination", label: "Pagination", description: "Page navigation control.", render: () => <PaginationDemo /> },
