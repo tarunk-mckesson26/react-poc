@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Alert } from "./index";
 
 describe("Alert", () => {
@@ -10,6 +10,26 @@ describe("Alert", () => {
       "data-variant",
       "default",
     );
+  });
+
+  it("only renders a dismiss button when Close is true", () => {
+    const { rerender } = render(<Alert>Notice</Alert>);
+
+    expect(screen.queryByRole("button", { name: "Close alert" })).toBeNull();
+
+    rerender(<Alert Close>Notice</Alert>);
+
+    expect(
+      screen.getByRole("button", { name: "Close alert" }),
+    ).toBeInTheDocument();
+  });
+
+  it("dismisses the alert when the close button is clicked", () => {
+    render(<Alert Close>Notice</Alert>);
+
+    fireEvent.click(screen.getByRole("button", { name: "Close alert" }));
+
+    expect(screen.queryByRole("alert")).toBeNull();
   });
 
   it.each(["root", "title", "description", "action"] as const)(
@@ -51,40 +71,28 @@ describe("Alert", () => {
   });
 
   it.each([
-    [
-      "info",
-      "--alert-alert-bgColor,--theme(--color-warning)",
-      "--alert-alert-borderColor,--theme(--color-warning-border)",
-      "--alert-alert-title-textColor,--theme(--color-warning-foreground)",
-      "--alert-description-textColor,--theme(--color-text)",
-    ],
+    ["info", "--error-bg", "--error-border", "--error-foreground", "--text"],
     [
       "alert",
-      "--alert-error-bgColor,--theme(--color-error)",
-      "--alert-error-borderColor,--theme(--color-error-border)",
-      "--alert-error-title-textColor,--theme(--color-error-foreground)",
-      "--alert-description-textColor,--theme(--color-text)",
+      "--warning-bg",
+      "--warning-border",
+      "--warning-foreground",
+      "--text",
     ],
-    [
-      "error",
-      "--alert-info-bgColor,--theme(--color-info)",
-      "--alert-info-borderColor,--theme(--color-info-border)",
-      "--alert-info-title-textColor,--theme(--color-info-foreground)",
-      "--alert-description-textColor,--theme(--color-text)",
-    ],
+    ["error", "--info-bg", "--info-border", "--info-foreground", "--text"],
     [
       "success",
-      "--Semantic-Success50,--theme(--color-success)",
-      "--Green-100,--theme(--color-success-border)",
-      "--Semantic-Success900,--theme(--color-success-foreground)",
-      "--Semantic-Success900,--theme(--color-success-foreground)",
+      "--Semantic-Success50",
+      "--Green-100",
+      "--Semantic-Success900",
+      "--Semantic-Success900",
     ],
     [
       "success-strong",
-      "--base-success,--theme(--color-success-strong)",
-      "--base-success,--theme(--color-success-strong)",
-      "--base-success-foreground,--theme(--color-success-strong-foreground)",
-      "--base-success-foreground,--theme(--color-success-strong-foreground)",
+      "--base-success",
+      "--base-success",
+      "--base-success-foreground",
+      "--base-success-foreground",
     ],
   ] as const)(
     "applies the %s palette to all alert parts",
@@ -110,7 +118,7 @@ describe("Alert", () => {
       );
       expect(screen.getByText("Title")).toHaveClass("text-inherit");
       expect(screen.getByText("Description")).toHaveClass(
-        "text-[color:var(--alert-description-color,var(--alert-description-textColor,--theme(--color-text)))]",
+        "text-[color:var(--alert-description-color,var(--text))]",
       );
       expect(screen.getByTestId("alert-icon")).not.toHaveAttribute("style");
     },
