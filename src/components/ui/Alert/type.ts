@@ -7,4 +7,5 @@ export type AlertName = "root" | "title" | "description" | "action";
 export interface AlertProps
   extends React.ComponentProps<"div">, VariantProps<typeof alertVariants> {
   name?: AlertName;
+  Close?: boolean;
 }

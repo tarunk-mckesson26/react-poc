@@ -51,9 +51,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-checkbox-checked-bg: var(--checkbox-checked-default-bgColor);
   --color-checkbox-checked-border: var(--checkbox-checked-default-borderColor);
-  --color-checkbox-checked-label: var(--checkbox-checked-default-label-textColor);
+  --color-checkbox-checked-label: var(
+    --checkbox-checked-default-label-textColor
+  );
   --color-checkbox-unchecked-bg: var(--checkbox-unchecked-default-bgColor);
-  --color-checkbox-unchecked-border: var(--checkbox-unchecked-default-borderColor);
+  --color-checkbox-unchecked-border: var(
+    --checkbox-unchecked-default-borderColor
+  );
   --color-checkbox-description: var(--checkbox-description-textColor);
   --color-checkbox-invalid-border: var(--checkbox-invalid-borderColor);
   --color-checkbox-invalid-label: var(--checkbox-invalid-label-textColor);
@@ -112,10 +116,10 @@
   --sidebar-primary-foreground: #fafafa;
   --sidebar-accent: #f5f5f5;
   --sidebar-accent-foreground: #171717;
-  --sidebar-border: #E5E5E5;
-  --sidebar-ring: #A3A3A3;
-  --checkbox-checked-default-bgColor: #0A5FBC;
-  --checkbox-checked-default-borderColor: #0A5FBC;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a3a3a3;
+  --checkbox-checked-default-bgColor: #0a5fbc;
+  --checkbox-checked-default-borderColor: #0a5fbc;
   --checkbox-checked-default-label-textColor: #333333;
   --checkbox-unchecked-default-bgColor: #ffffff;
   --checkbox-unchecked-default-borderColor: #737373;
@@ -129,5 +133,18 @@
   --toast-success-bgColor: #E6F3ED;
   --toast-error-borderColor: #FECACA;
   --toast-error-bgColor: #FEF2F2;
-
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-foreground: #991b1b;
+  --warning-bg: #fffbeb;
+  --warning-border: #fde68a;
+  --warning-foreground: #92400e;
+  --info-bg: #eff4fa;
+  --info-border: #b3cdea;
+  --info-foreground: #063467;
+  --Semantic-Success50: #e6f3ed;
+  --Green-100: #b0d9c8;
+  --Semantic-Success900: #00492b;
+  --base-success: #007948;
+  --base-success-foreground: #ffffff;
 }

@@ -1,11 +1,16 @@
 import { Alert } from "@/components/ui/Alert";
-import { BellRingIcon, CircleCheck, InfoIcon, TriangleAlert } from "lucide-react";
+import {
+  BellRingIcon,
+  CircleCheck,
+  InfoIcon,
+  TriangleAlert,
+} from "lucide-react";
 import DemoRow from "./demoRow";
 
 const AlertDemo = () => (
   <DemoRow>
-    <div className="mx-auto grid grid-cols-1 gap-8 p-8">
-      <Alert variant="info">
+    <div className="w-full gap-3 flex flex-col">
+      <Alert variant="info" Close={true}>
         <BellRingIcon />
         <Alert name="title">Alert Title</Alert>
         <Alert name="description">This is an alert description.</Alert>
@@ -15,7 +20,7 @@ const AlertDemo = () => (
         <Alert name="title">Alert Title</Alert>
         <Alert name="description">This is an alert description.</Alert>
       </Alert>
-      <Alert variant="error">
+      <Alert variant="error" Close={true}>
         <InfoIcon />
         <Alert name="title">Alert Title</Alert>
         <Alert name="description">This is an alert description.</Alert>
@@ -25,7 +30,7 @@ const AlertDemo = () => (
         <Alert name="title">Alert Title</Alert>
         <Alert name="description">This is an alert description.</Alert>
       </Alert>
-      <Alert variant="success-strong">
+      <Alert variant="success-strong" Close={true}>
         <CircleCheck />
         <Alert name="title">Alert Title</Alert>
         <Alert name="description">This is an alert description.</Alert>
