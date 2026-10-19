@@ -8,6 +8,7 @@ module.exports = {
   ],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
+    "\\.svg\\?react$": "<rootDir>/__mocks__/svgMock.cjs",
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
     "\\.(jpg|jpeg|png|gif|svg|webp)$": "<rootDir>/__mocks__/fileMock.cjs",
     "^@/(.*)$": "<rootDir>/src/$1",
