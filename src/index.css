@@ -68,6 +68,7 @@
   --color-toast-success-bgColor: var(--toast-success-bgColor);
   --color-toast-error-borderColor: var(--toast-error-borderColor);
   --color-toast-error-bgColor: var(--toast-error-bgColor);
+  --color-avatar-fallback-textColor: var(--avatar-fallback-textColor);
 }
 
 :root {
@@ -147,4 +148,5 @@
   --Semantic-Success900: #00492b;
   --base-success: #007948;
   --base-success-foreground: #ffffff;
+  --avatar-fallback-textColor: #505050;
 }
