@@ -21,6 +21,7 @@ const Sonner = ({
   size = "default",
   description,
   isbutton = false,
+  buttonText = "Close",
   onClose,
   className,
   iconClassName,
@@ -48,7 +49,7 @@ const Sonner = ({
 
       {isbutton ? (
         <Button type="button" variant="secondary" size="sm" onClick={onClose} className="ml-auto shrink-0">
-          Close
+          {buttonText}
         </Button>
       ) : null}
     </div>

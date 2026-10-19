@@ -31,6 +31,7 @@ const SonnerDemo = () => (
       icon={<img src={successIcon} alt="Success" />}
       fill="success"
       isbutton={true}
+      buttonText="button"
     />
   </div>
   </>

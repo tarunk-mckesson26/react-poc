@@ -21,6 +21,7 @@ export interface SonnerProps {
   description?: React.ReactNode
   /** Renders a dismiss button */
   isbutton?: boolean
+  buttonText?: string
   onClose?: () => void
   className?: string
   iconClassName?: string

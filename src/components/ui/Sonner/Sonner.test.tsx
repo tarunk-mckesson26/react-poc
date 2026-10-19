@@ -37,6 +37,15 @@ describe("Sonner", () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
+  it("renders custom button text and calls onClose when clicked", () => {
+    const onClose = jest.fn();
+    render(<Sonner text="Changes saved" isbutton buttonText="Dismiss" onClose={onClose} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Dismiss" }));
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
   it("does not render a dismiss button by default", () => {
     render(<Sonner text="Persistent notice" />);
 
