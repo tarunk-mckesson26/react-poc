@@ -8,7 +8,7 @@ import ButtonDemo from "./buttonDemo";
 // import CardDemo from "./cardDemo";
 import CheckboxDemo from "./checkboxDemo";
 import InputDemo from "./inputDemo";
-import LineChartDemo from "./lineChartDemo";
+import HeaderDemo from "./headerDemo";
 import PaginationDemo from "./paginationDemo";
 import ProgressDemo from "./progressDemo";
 import SonnerDemo from "./sonnerDemo";
@@ -23,6 +23,7 @@ export interface ComponentDemo {
 }
 
 export const componentDemos: ComponentDemo[] = [
+  { id: "header", label: "Header", description: "Catalog navigation and profile login options.", render: () => <HeaderDemo /> },
   { id: "accordion", label: "Accordion", description: "Collapsible sections in basic and bordered variants.", render: () => <AccordionDemo /> },
   { id: "alert", label: "Alert", description: "Informational messages with different variants.", render: () => <AlertDemo /> },
   { id: "avatar", label: "Avatar", description: "Image, name, and icon avatars in different sizes.", render: () => <AvatarDemo /> },

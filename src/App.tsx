@@ -24,8 +24,10 @@ import {
 import './App.css';
 import { SideNav } from './layouts/sideNav';
 import { componentDemos } from './layouts/sideNav/componentDemos';
+import HeaderDemo from './layouts/sideNav/headerDemo';
 
 const icons: Record<string, React.ReactNode> = {
+  header: <PanelsTopLeft />,
   alert: <CircleAlert />,
   accordion: <Rows3 />,
   avatar: <CircleUser />,
@@ -54,6 +56,14 @@ const App = () => {
 
   const active = componentDemos.find((demo) => demo.id === activeId) ?? componentDemos[0];
 
+  if (window.location.pathname.replace(/\/$/, '') === '/new-era') {
+    return <HeaderDemo page="new-era" />;
+  }
+
+  if (new URLSearchParams(window.location.search).get('preview') === 'header') {
+    return <HeaderDemo />;
+  }
+
   return (
     <div className='flex min-h-screen bg-slate-50'>
       <SideNav
@@ -77,7 +87,7 @@ const App = () => {
         ]}
       />
 
-      <main className='flex-1 overflow-y-auto p-8'>
+      <main className='min-w-0 flex-1 overflow-y-auto p-4 md:p-8'>
         <header className='mb-6'>
           <h1 className='text-2xl font-semibold text-slate-900'>{active.label}</h1>
           <p className='text-sm text-slate-500'>{active.description}</p>
