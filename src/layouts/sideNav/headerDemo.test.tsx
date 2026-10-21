@@ -27,7 +27,7 @@ describe("Header demo session and New Era page", () => {
     originalPage.unmount()
 
     render(<HeaderDemo page="new-era" />)
-    expect(screen.getByRole("heading", { name: "Welcome to New Era landing page" })).toBeInTheDocument()
+    expect(screen.queryByRole("heading", { name: "Welcome to New Era landing page" })).not.toBeInTheDocument()
     expect(screen.getByRole("img", { name: /Purchasing Insights dashboard/ })).toHaveAttribute("src", expect.any(String))
     expect(screen.queryByRole("img", { name: "Connect Portal dashboard" })).not.toBeInTheDocument()
     expect(screen.getByRole("button", { name: "Profile" })).toHaveTextContent("CPH")
@@ -54,6 +54,30 @@ describe("Header demo session and New Era page", () => {
     expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument()
   })
 
+  it("disables every main menu except Reporting only on the New Era page", async () => {
+    const user = userEvent.setup()
+    sessionStorage.setItem("header-demo-user-type", "cph")
+    const { rerender } = render(<HeaderDemo page="new-era" />)
+    const disabledMenus = ["Ordering", "DSCSA Traceability", "Billing and Payments", "340B Architect", "Admin"]
+    for (const name of disabledMenus) {
+      const menu = screen.getByRole("button", { name })
+      expect(menu).toBeDisabled()
+      expect(menu).not.toHaveAttribute("href")
+      await user.click(menu)
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument()
+    }
+    const reporting = screen.getByRole("button", { name: "Reporting" })
+    expect(reporting).toBeEnabled()
+    await user.click(reporting)
+    expect(await screen.findByRole("menuitem", { name: "My Reports" })).toBeInTheDocument()
+    await user.keyboard("{Escape}")
+
+    rerender(<HeaderDemo />)
+    for (const name of disabledMenus) {
+      expect(screen.getByRole("link", { name })).toHaveAttribute("href")
+    }
+  })
+
   it("updates the header when another tab switches user type", async () => {
     const user = userEvent.setup()
     localStorage.setItem("header-demo-user-type", "cph")
@@ -65,5 +89,26 @@ describe("Header demo session and New Era page", () => {
     await user.click(screen.getByRole("button", { name: "Reporting" }))
     expect(await screen.findByRole("menuitem", { name: "Enterprise Reporting & Analytics" })).toHaveAttribute("href", "https://dev-era.mckesson.com")
     expect(screen.queryByRole("menuitem", { name: /KPI Dashboard/ })).not.toBeInTheDocument()
+  })
+
+  it("replaces catalog search with a location dropdown only on New Era", async () => {
+    const user = userEvent.setup()
+    sessionStorage.setItem("header-demo-user-type", "cph")
+    const { rerender } = render(<HeaderDemo page="new-era" />)
+    expect(screen.queryByRole("search")).not.toBeInTheDocument()
+    expect(screen.queryByRole("combobox", { name: "Search catalog" })).not.toBeInTheDocument()
+    await user.click(screen.getByRole("button", { name: "Location / Street: Select location" }))
+    expect(await screen.findByRole("menuitemradio", { name: "Street 1" })).toBeInTheDocument()
+    expect(screen.queryByRole("menuitemradio", { name: "VUMC" })).not.toBeInTheDocument()
+    await user.click(screen.getByRole("menuitemradio", { name: "Street 2" }))
+    expect(screen.getByRole("button", { name: "Location / Street: Street 2" })).toHaveTextContent("Street 2")
+    await user.click(screen.getByRole("button", { name: "Location / Street: Street 2" }))
+    expect(await screen.findByRole("menuitemradio", { name: "Street 2" })).toHaveAttribute("aria-checked", "true")
+    await user.keyboard("{Escape}")
+
+    rerender(<HeaderDemo />)
+    expect(screen.getByRole("search")).toBeInTheDocument()
+    expect(screen.getByRole("combobox", { name: "Search catalog" })).toBeInTheDocument()
+    expect(screen.queryByRole("button", { name: /Location \/ Street/ })).not.toBeInTheDocument()
   })
 })

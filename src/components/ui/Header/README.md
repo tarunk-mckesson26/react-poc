@@ -9,16 +9,15 @@ by the component. The mobile layout responds to its container width.
 import { Header } from "@/components/ui/Header"
 
 <Header
-  cphLoginHref="/auth/cph"
-  nonCphLoginHref="/auth/non-cph"
+  loginHref="/login"
+  userType="cph"
   onSearch={(query, catalog) => searchProducts(query, catalog)}
 />
 ```
 
-Alternatively, use `onLogin={(userType) => startLogin(userType)}` for client-side
-authentication, where `userType` is `"cph"` or `"non-cph"`. No authentication
-provider or credentials are built into this presentation component. Supply
-login URLs or a callback in the consuming application.
+The profile menu links to `loginHref`, which defaults to `/login`. Supply
+`userType` as `"cph"` or `"non-cph"` from application session state. No
+authentication provider or credentials are built into this presentation component.
 
 Override `navigation`, `homeHref`, `alertsHref`, `contactHref`, and `helpHref`
 with application routes. Override `catalogOptions`, `alertCount`, or `logo` as
@@ -29,19 +28,24 @@ pairs) to enable its dropdown. Without options the account is display-only.
 `profileInitials` defaults to `EV`, and `appsHref` sets the Apps destination.
 
 The gallery includes a Header entry. `/?preview=header` displays it full width.
+Without a session, the demo displays a username-only login form matching
+`login.png`. `/login` always displays that form. Submitting `cphUser` selects
+CPH; any other non-empty username selects N-CPH. Successful login displays the
+Connect Portal dashboard. Keep me signed in uses local storage; otherwise the
+selection is saved in session storage for the current tab.
 Reporting includes Enterprise Reporting & Analytics (opening
 `https://dev-era.mckesson.com` in a new tab), My Reports (`/reporting/my-reports`),
-and Team Reports (`/reporting/team-reports`). Selecting CPH updates the profile
+and Team Reports (`/reporting/team-reports`). Signing in as CPH updates the profile
 badge to `CPH` and adds KPI Dashboard with a highlighted New badge, opening
 `/new-era` in a new tab. The destination displays the same header and
-"Welcome to New Era landing page". Selecting non-CPH changes the profile badge
+the Purchasing Insights dashboard image. Signing in as non-CPH changes the profile badge
 to `N-CPH` and removes KPI Dashboard.
 
 Use `userType` to control the header from application state and `newEraHref`
-to override the destination URL. A standalone header keeps selection in memory;
-the demo saves it in local storage and syncs changes across same-origin tabs.
+to override the destination URL. The demo syncs remembered sessions across
+same-origin tabs.
 This is UI simulation, not authentication or authorization. A different origin
 requires its own authentication/session integration; local storage is not shared.
 
-Production hosting must route `/new-era` requests to the app's `index.html`,
+Production hosting must route `/login` and `/new-era` requests to the app's `index.html`,
 as the Vite development server does. Search in the preview shows feedback only.

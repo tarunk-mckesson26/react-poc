@@ -12,6 +12,7 @@ export interface HeaderProps extends Omit<ComponentPropsWithoutRef<"header">, "o
   logo?: ReactNode
   homeHref?: string
   navigation?: HeaderNavigationItem[]
+  reportingOnly?: boolean
   alertCount?: number
   alertsHref?: string
   contactHref?: string
@@ -19,6 +20,7 @@ export interface HeaderProps extends Omit<ComponentPropsWithoutRef<"header">, "o
   appsHref?: string
   accountLabel?: string
   accountOptions?: { label: string; href: string }[]
+  locationOptions?: string[]
   profileInitials?: string
   userType?: HeaderLoginType | null
   newEraHref?: string

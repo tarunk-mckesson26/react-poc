@@ -51,19 +51,19 @@ export default function HeaderDemo({ page = "header" }: { page?: "header" | "new
       <Header
         homeHref="/?preview=header"
         userType={userType}
+        reportingOnly={page === "new-era"}
+        locationOptions={page === "new-era" ? ["Street 1", "Street 2"] : undefined}
         onSearch={(query, catalog) => setMessage(`Search submitted: ${query} (${catalog}).`)}
       />
       <section className="mx-auto max-w-7xl px-6 py-12">
-        {page === "new-era" ? (
-          <h1 className="text-3xl font-semibold text-foreground">Welcome to New Era landing page</h1>
-        ) : (
+        {page !== "new-era" && (
           <img src={connectDashboardImage} alt="Connect Portal dashboard" className="block h-auto w-full" />
         )}
         {page === "new-era" && (
           <img
             src={eraNewImage}
             alt="Purchasing Insights dashboard with net purchase, service level, returned purchases, RX spend, gross purchase, and net quantity metrics"
-            className="mt-8 block h-auto w-full"
+            className="block h-auto w-full"
           />
         )}
       </section>

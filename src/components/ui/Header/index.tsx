@@ -1,5 +1,5 @@
 import { useId, useState } from "react"
-import { Bell, ChevronDown, CircleHelp, Grid3X3, Menu, Phone, Search, UserRound, X } from "lucide-react"
+import { Bell, ChevronDown, CircleHelp, Grid3X3, MapPin, Menu, Phone, Search, UserRound, X } from "lucide-react"
 import { DropdownMenu } from "radix-ui"
 import { clsx } from "@/lib/clsx"
 import { headerStyles } from "./style"
@@ -19,6 +19,7 @@ function Header({
   logo = "MCKESSON",
   homeHref = "/",
   navigation = defaultNavigation,
+  reportingOnly = false,
   alertCount = 0,
   alertsHref = "/alerts",
   contactHref = "/contact",
@@ -26,6 +27,7 @@ function Header({
   appsHref = "/apps",
   accountLabel = "VUMC IP VUH WAC A34",
   accountOptions = [],
+  locationOptions,
   profileInitials = "EV",
   userType,
   newEraHref = "/new-era",
@@ -38,6 +40,7 @@ function Header({
   const [query, setQuery] = useState("")
   const [catalog, setCatalog] = useState(catalogOptions[0] ?? "Catalog")
   const [navigationOpen, setNavigationOpen] = useState(false)
+  const [location, setLocation] = useState("")
   const activeUserType = userType
   const visibleNavigation = navigation.map((item) => {
     if (item.label !== "Reporting") return item
@@ -64,7 +67,9 @@ function Header({
       <div className="cph-header-top">
         <a className="cph-header-brand" href={homeHref} aria-label="McKesson home">{logo}</a>
         <nav id={navigationId} className="cph-header-navigation" data-open={navigationOpen} aria-label="Main navigation">
-          {visibleNavigation.map((item) => item.children?.length ? (
+          {visibleNavigation.map((item) => reportingOnly && item.label !== "Reporting" ? (
+            <button key={item.label} type="button" className="cph-header-nav-trigger" disabled>{item.label}</button>
+          ) : item.children?.length ? (
             <DropdownMenu.Root key={item.label}>
               <DropdownMenu.Trigger className="cph-header-nav-trigger">{item.label}<ChevronDown size={11} /></DropdownMenu.Trigger>
               <DropdownMenu.Portal>
@@ -110,7 +115,20 @@ function Header({
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
         ) : <div className="cph-header-account"><UserRound size={16} /><span>{accountLabel}</span></div>}
-        <form className="cph-header-search" role="search" onSubmit={(event) => {
+        {locationOptions ? (
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger className="cph-header-account" aria-label={`Location / Street: ${location || "Select location"}`}>
+              <MapPin size={16} /><span>{location || "Location / Street"}</span><ChevronDown size={14} />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className={headerStyles.menu} align="start" sideOffset={6} collisionPadding={12}>
+                <DropdownMenu.RadioGroup value={location} onValueChange={setLocation}>
+                  {locationOptions.map((option) => <DropdownMenu.RadioItem key={option} value={option} className={headerStyles.menuItem}>{option}</DropdownMenu.RadioItem>)}
+                </DropdownMenu.RadioGroup>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        ) : <form className="cph-header-search" role="search" onSubmit={(event) => {
           event.preventDefault()
           if (query.trim()) onSearch?.(query.trim(), catalog)
         }}>
@@ -119,7 +137,7 @@ function Header({
           </select>
           <input aria-label="Look up item details" placeholder="Look up item details" value={query} onChange={(event) => setQuery(event.target.value)} />
           <button type="submit" aria-label="Search" title="Search"><Search size={18} /></button>
-        </form>
+        </form>}
       </div>
     </header>
   )

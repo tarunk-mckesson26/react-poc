@@ -33,6 +33,7 @@
 .cph-header-navigation { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 22px; }
 .cph-header-navigation > a, .cph-header-nav-trigger { display: flex; align-items: center; gap: 4px; min-height: 36px; padding: 6px 0; border: 0; background: transparent; color: #fff; font-weight: 600; text-align: left; white-space: nowrap; }
 .cph-header a:hover, .cph-header-profile:hover, .cph-header-nav-trigger:hover { color: #d5edf9; }
+.cph-header .cph-header-nav-trigger:disabled { color: #fff; opacity: 0.45; cursor: not-allowed; }
 .cph-header :focus-visible { outline: 2px solid #ffcf70; outline-offset: 3px; }
 .cph-header-search :focus-visible { outline-offset: -2px; }
 .cph-header-menu { z-index: 100; min-width: 210px; max-width: calc(100vw - 24px); padding: 5px; border: 1px solid #cbd5df; border-radius: 4px; background: #fff; color: #123e55; box-shadow: 0 5px 16px #002d4a26; font: 13px Arial, Helvetica, sans-serif; letter-spacing: 0; }
