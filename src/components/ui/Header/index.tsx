@@ -3,7 +3,7 @@ import { Bell, ChevronDown, CircleHelp, Grid3X3, Menu, Phone, Search, UserRound,
 import { DropdownMenu } from "radix-ui"
 import { clsx } from "@/lib/clsx"
 import { headerStyles } from "./style"
-import type { HeaderLoginType, HeaderNavigationItem, HeaderProps } from "./type"
+import type { HeaderNavigationItem, HeaderProps } from "./type"
 import "./header.css"
 
 const defaultNavigation: HeaderNavigationItem[] = [
@@ -29,9 +29,7 @@ function Header({
   profileInitials = "EV",
   userType,
   newEraHref = "/new-era",
-  cphLoginHref,
-  nonCphLoginHref,
-  onLogin,
+  loginHref = "/login",
   onSearch,
   catalogOptions = ["Catalog"],
   className,
@@ -40,27 +38,26 @@ function Header({
   const [query, setQuery] = useState("")
   const [catalog, setCatalog] = useState(catalogOptions[0] ?? "Catalog")
   const [navigationOpen, setNavigationOpen] = useState(false)
-  const [selectedUserType, setSelectedUserType] = useState<HeaderLoginType | null>(null)
-  const activeUserType = userType === undefined ? selectedUserType : userType
+  const activeUserType = userType
   const visibleNavigation = navigation.map((item) => {
-    if (item.label !== "Reporting" || !activeUserType) return item
+    if (item.label !== "Reporting") return item
     return {
       ...item,
       children: [
+        { label: "Enterprise Reporting & Analytics", href: "https://dev-era.mckesson.com", target: "_blank" as const },
+        { label: "My Reports", href: "/reporting/my-reports" },
+        { label: "Team Reports", href: "/reporting/team-reports" },
         ...(item.children ?? []),
-        {
-          label: activeUserType === "cph" ? "New Era Page" : "ERA Classic",
-          href: activeUserType === "cph" ? newEraHref : "https://dev-era.mckesson.com",
+        ...(activeUserType === "cph" ? [{
+          label: "KPI Dashboard",
+          href: newEraHref,
           target: "_blank" as const,
-        },
+          isNew: true,
+        }] : []),
       ],
     }
   })
   const navigationId = useId()
-  const loginOptions: { label: string; type: HeaderLoginType; href?: string }[] = [
-    { label: "Login as CPH user", type: "cph", href: cphLoginHref },
-    { label: "Login as non-CPH user", type: "non-cph", href: nonCphLoginHref },
-  ]
 
   return (
     <header className={clsx(headerStyles.root, className)} {...props}>
@@ -72,7 +69,7 @@ function Header({
               <DropdownMenu.Trigger className="cph-header-nav-trigger">{item.label}<ChevronDown size={11} /></DropdownMenu.Trigger>
               <DropdownMenu.Portal>
                 <DropdownMenu.Content className={headerStyles.menu} align="start" sideOffset={0} collisionPadding={12}>
-                  {item.children.map((child) => <DropdownMenu.Item key={child.href} className={headerStyles.menuItem} asChild><a href={child.href} target={child.target} rel={child.target === "_blank" ? "noopener noreferrer" : undefined}>{child.label}</a></DropdownMenu.Item>)}
+                  {item.children.map((child) => <DropdownMenu.Item key={child.href} className={headerStyles.menuItem} asChild><a href={child.href} target={child.target} rel={child.target === "_blank" ? "noopener noreferrer" : undefined}>{child.label}{child.isNew && <span className="cph-header-menu-new">New</span>}</a></DropdownMenu.Item>)}
                 </DropdownMenu.Content>
               </DropdownMenu.Portal>
             </DropdownMenu.Root>
@@ -89,14 +86,9 @@ function Header({
             </DropdownMenu.Trigger>
             <DropdownMenu.Portal>
               <DropdownMenu.Content className={headerStyles.menu} align="end" sideOffset={10} collisionPadding={12}>
-                {loginOptions.map((option) => (
-                  <DropdownMenu.Item key={option.type} className={headerStyles.menuItem} asChild={Boolean(option.href)} onSelect={() => {
-                    setSelectedUserType(option.type)
-                    onLogin?.(option.type)
-                  }}>
-                    {option.href ? <a href={option.href}>{option.label}</a> : option.label}
-                  </DropdownMenu.Item>
-                ))}
+                <DropdownMenu.Item className={headerStyles.menuItem} asChild>
+                  <a href={loginHref}>Sign In</a>
+                </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Portal>
           </DropdownMenu.Root>

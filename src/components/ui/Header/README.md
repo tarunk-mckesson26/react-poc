@@ -29,11 +29,13 @@ pairs) to enable its dropdown. Without options the account is display-only.
 `profileInitials` defaults to `EV`, and `appsHref` sets the Apps destination.
 
 The gallery includes a Header entry. `/?preview=header` displays it full width.
-Selecting CPH updates the profile badge to `CPH` and adds Reporting > New Era
-Page, opening `/new-era` in a new tab. The destination displays the same header
-and "Welcome to New Era landing page". Selecting non-CPH changes the badge to
-`N-CPH` and replaces the CPH-specific entry with Reporting > ERA Classic, opening
-`https://dev-era.mckesson.com` in a new tab.
+Reporting includes Enterprise Reporting & Analytics (opening
+`https://dev-era.mckesson.com` in a new tab), My Reports (`/reporting/my-reports`),
+and Team Reports (`/reporting/team-reports`). Selecting CPH updates the profile
+badge to `CPH` and adds KPI Dashboard with a highlighted New badge, opening
+`/new-era` in a new tab. The destination displays the same header and
+"Welcome to New Era landing page". Selecting non-CPH changes the profile badge
+to `N-CPH` and removes KPI Dashboard.
 
 Use `userType` to control the header from application state and `newEraHref`
 to override the destination URL. A standalone header keeps selection in memory;

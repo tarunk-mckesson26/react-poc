@@ -38,6 +38,7 @@
 .cph-header-menu { z-index: 100; min-width: 210px; max-width: calc(100vw - 24px); padding: 5px; border: 1px solid #cbd5df; border-radius: 4px; background: #fff; color: #123e55; box-shadow: 0 5px 16px #002d4a26; font: 13px Arial, Helvetica, sans-serif; letter-spacing: 0; }
 .cph-header-menu-item { display: flex; align-items: center; min-height: 36px; padding: 8px 12px; border-radius: 2px; cursor: pointer; text-decoration: none; color: inherit; outline: none; overflow-wrap: anywhere; }
 .cph-header-menu-item[data-highlighted] { background: #e7f2f9; color: #00476b; }
+.cph-header-menu-new { flex-shrink: 0; margin-left: 12px; padding: 2px 6px; border-radius: 3px; background: #fff0b3; color: #714b00; font-size: 11px; font-weight: 700; line-height: 16px; }
 .cph-header-mobile-toggle { display: none; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; background: transparent; color: white; border: 0; }
 @container cph-header (max-width: 1550px) {
   .cph-header-top { gap: 20px; }

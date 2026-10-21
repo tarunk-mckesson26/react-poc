@@ -56,6 +56,10 @@ const App = () => {
 
   const active = componentDemos.find((demo) => demo.id === activeId) ?? componentDemos[0];
 
+  if (window.location.pathname.replace(/\/$/, '') === '/login') {
+    return <HeaderDemo page="login" />;
+  }
+
   if (window.location.pathname.replace(/\/$/, '') === '/new-era') {
     return <HeaderDemo page="new-era" />;
   }

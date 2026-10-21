@@ -13,27 +13,22 @@ describe("Header", () => {
     expect(screen.getByText("VUMC IP VUH WAC A34")).toBeInTheDocument()
   })
 
-  it.each([
-    ["Login as CPH user", "cph"],
-    ["Login as non-CPH user", "non-cph"],
-  ])("selects %s from the profile menu", async (label, userType) => {
-    const onLogin = jest.fn()
+  it("links to the login page instead of selecting a user type", async () => {
     const user = userEvent.setup()
-    render(<Header onLogin={onLogin} />)
+    render(<Header />)
     await user.click(screen.getByRole("button", { name: "Profile" }))
-    await user.click(await screen.findByRole("menuitem", { name: label }))
-    expect(onLogin).toHaveBeenCalledWith(userType)
-    expect(screen.queryByRole("menu")).not.toBeInTheDocument()
+    expect(await screen.findByRole("menuitem", { name: "Sign In" })).toHaveAttribute("href", "/login")
+    expect(screen.queryByText("Login as CPH user")).not.toBeInTheDocument()
+    expect(screen.queryByText("Login as non-CPH user")).not.toBeInTheDocument()
   })
 
   it("supports login URLs and keyboard dismissal", async () => {
     const user = userEvent.setup()
-    render(<Header cphLoginHref="/auth/cph" nonCphLoginHref="/auth/non-cph" />)
+    render(<Header loginHref="/auth/login" />)
     const profile = screen.getByRole("button", { name: "Profile" })
     profile.focus()
     await user.keyboard("{ArrowDown}")
-    expect(await screen.findByRole("menuitem", { name: "Login as CPH user" })).toHaveAttribute("href", "/auth/cph")
-    expect(screen.getByRole("menuitem", { name: "Login as non-CPH user" })).toHaveAttribute("href", "/auth/non-cph")
+    expect(await screen.findByRole("menuitem", { name: "Sign In" })).toHaveAttribute("href", "/auth/login")
     await user.keyboard("{Escape}")
     expect(profile).toHaveFocus()
   })
@@ -64,25 +59,35 @@ describe("Header", () => {
     expect(await screen.findByRole("menuitem", { name: "Another account" })).toHaveAttribute("href", "/accounts/other")
   })
 
-  it("enables the New Era new-tab link only after selecting CPH", async () => {
+  it("shows the standard reporting items before login", async () => {
     const user = userEvent.setup()
     render(<Header />)
-    expect(screen.queryByRole("button", { name: "Reporting" })).not.toBeInTheDocument()
-    await user.click(screen.getByRole("button", { name: "Profile" }))
-    await user.click(await screen.findByRole("menuitem", { name: "Login as CPH user", exact: true }))
+    await user.click(screen.getByRole("button", { name: "Reporting" }))
+    expect(await screen.findByRole("menuitem", { name: "Enterprise Reporting & Analytics" })).toHaveAttribute("href", "https://dev-era.mckesson.com")
+    expect(screen.getByRole("menuitem", { name: "My Reports" })).toHaveAttribute("href", "/reporting/my-reports")
+    expect(screen.getByRole("menuitem", { name: "Team Reports" })).toHaveAttribute("href", "/reporting/team-reports")
+    expect(screen.getAllByRole("menuitem")).toHaveLength(3)
+    expect(screen.queryByText("New")).not.toBeInTheDocument()
+  })
+
+  it("enables the highlighted KPI Dashboard new-tab link only for CPH", async () => {
+    const user = userEvent.setup()
+    const { rerender } = render(<Header userType="cph" />)
     expect(screen.getByRole("button", { name: "Profile" })).toHaveTextContent("CPH")
     await user.click(screen.getByRole("button", { name: "Reporting" }))
-    const newEra = await screen.findByRole("menuitem", { name: "New Era Page" })
+    const newEra = await screen.findByRole("menuitem", { name: "KPI Dashboard New" })
+    expect(screen.getByText("New")).toHaveClass("cph-header-menu-new")
+    expect(screen.getAllByRole("menuitem")).toHaveLength(4)
     expect(newEra).toHaveAttribute("href", "/new-era")
     expect(newEra).toHaveAttribute("target", "_blank")
     expect(newEra).toHaveAttribute("rel", "noopener noreferrer")
     await user.keyboard("{Escape}")
-    await user.click(screen.getByRole("button", { name: "Profile" }))
-    await user.click(await screen.findByRole("menuitem", { name: "Login as non-CPH user", exact: true }))
+    rerender(<Header userType="non-cph" />)
     expect(screen.getByRole("button", { name: "Profile" })).toHaveTextContent("N-CPH")
     await user.click(screen.getByRole("button", { name: "Reporting" }))
-    expect(screen.queryByRole("menuitem", { name: "New Era Page" })).not.toBeInTheDocument()
-    const classic = await screen.findByRole("menuitem", { name: "ERA Classic" })
+    expect(screen.queryByRole("menuitem", { name: /KPI Dashboard/ })).not.toBeInTheDocument()
+    expect(screen.queryByText("New")).not.toBeInTheDocument()
+    const classic = await screen.findByRole("menuitem", { name: "Enterprise Reporting & Analytics" })
     expect(classic).toHaveAttribute("href", "https://dev-era.mckesson.com")
     expect(classic).toHaveAttribute("target", "_blank")
     expect(classic).toHaveAttribute("rel", "noopener noreferrer")
@@ -93,7 +98,7 @@ describe("Header", () => {
     render(<Header userType="cph" newEraHref="https://example.com/new-era" />)
     expect(screen.getByRole("button", { name: "Profile" })).toHaveTextContent("CPH")
     await user.click(screen.getByRole("button", { name: "Reporting" }))
-    expect(await screen.findByRole("menuitem", { name: "New Era Page" })).toHaveAttribute("href", "https://example.com/new-era")
+    expect(await screen.findByRole("menuitem", { name: "KPI Dashboard New" })).toHaveAttribute("href", "https://example.com/new-era")
   })
 
   it("restores non-CPH profile and reporting from parent state", async () => {
@@ -101,7 +106,7 @@ describe("Header", () => {
     render(<Header userType="non-cph" />)
     expect(screen.getByRole("button", { name: "Profile" })).toHaveTextContent("N-CPH")
     await user.click(screen.getByRole("button", { name: "Reporting" }))
-    expect(await screen.findByRole("menuitem", { name: "ERA Classic" })).toHaveAttribute("href", "https://dev-era.mckesson.com")
-    expect(screen.queryByRole("menuitem", { name: "New Era Page" })).not.toBeInTheDocument()
+    expect(await screen.findByRole("menuitem", { name: "Enterprise Reporting & Analytics" })).toHaveAttribute("href", "https://dev-era.mckesson.com")
+    expect(screen.queryByRole("menuitem", { name: /KPI Dashboard/ })).not.toBeInTheDocument()
   })
 })
